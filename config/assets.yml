@@ -1,0 +1,51 @@
+embed_images: off
+javascript_compressor: yui
+package_assets: on
+compress_assets: on
+javascripts:
+  base:
+    - public/javascripts/prototype.js
+    - public/javascripts/effects.js
+    - public/javascripts/scriptaculous.js
+    - public/javascripts/application.js
+  application:
+    - public/stylesheets/starbox.css
+  prototip:
+    - public/javascripts/prototip.js
+  pngfix:
+    - public/javascripts/pngfix.js
+  base_arguments_debates:
+    - public/javascripts/starbox.js
+    - public/javascripts/mktree.js
+  mytabz:
+    - public/javascripts/myTabz.js
+  facebox:
+    - public/javascripts/facebox.js
+    - public/javascripts/event.simulate.js
+  debates:
+    - public/javascripts/debates.js
+
+stylesheets:
+  base:
+    - public/stylesheets/application.css
+  application:
+    - public/stylesheets/sessions.css
+    - public/stylesheets/starbox.css
+  prototip:
+    - public/stylesheets/prototip.css
+  home:
+    - public/stylesheets/home.css
+  base_arguments_debates:
+    - public/stylesheets/da.css
+    - public/stylesheets/starbox.css
+    - public/stylesheets/mktree.css
+  arguments:
+    - public/stylesheets/arguments.css
+  debates:
+    - public/stylesheets/debates.css
+  author:
+    - public/greybox/gb_styles.css
+  mytabz:
+    - public/stylesheets/myTabz.css
+  facebox:
+    - public/stylesheets/facebox.css

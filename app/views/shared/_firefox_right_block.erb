@@ -1,0 +1,88 @@
+ <script type="text/javascript">
+function sendCommand(cmd) {
+  var element = document.createElement("BestDebatesDataElement");
+  element.setAttribute("command", cmd);
+  document.documentElement.appendChild(element);
+
+  var evt = document.createEvent("Events");
+  evt.initEvent("BestDebatesExtensionEvent", true, false);
+  element.dispatchEvent(evt);
+}
+</script>
+
+ <% unless logged_in? %>
+  <div class="firefox_right_top_border" >Bestdebates.com</div>
+  <div class="firefox_right_container">      
+    <p> <b>Login</b>
+<% form_tag session_path do -%>
+  <%= error_messages_for :login_user %>
+  <table cellpadding="0" cellspacing="0" border="0" id="login_form">
+    <tr>
+      <td class="login_form_labels"><label for="login">User Name:</label></td>
+      <td class="login_form_field">
+        <%= text_field_tag 'login', @login, {:autocomplete => 'off', :size => 10, :style => "width:82px;"} %>
+      </td>
+    </tr>
+    <tr>
+      <td class="login_form_labels"><label for="login">Password:</label></td>
+      <td class="login_form_field">
+        <%= password_field_tag 'password', nil, :size => 10, :style => "width:82px;" %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" id="center_text">or use</td>
+    </tr>
+    <tr>
+      <td class="login_form_labels"><%= label_tag 'openid_url', 'OpenID' %>(<%= link_to 'info', 'http://openid.net/get-an-openid/what-is-openid/' %>):</td>
+      <td class="login_form_field">
+        <%= text_field_tag :openid_url, "", {:style => "width:102px;"} %>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td style="padding:10px 0px 15px 0px;">
+         <%= check_box_tag 'remember_me', '1', @remember_me %>
+         <label>Remember Me</label>
+      </td>
+    </tr>
+    <% if session[:invitation_code] || session[:unique_code] %>
+      <tr>
+        <td>&nbsp;</td>
+        <td style="padding:10px 0px 15px 0px;">
+           <%= check_box_tag 'sponsor_allow', '1', false %>
+           <label>Allow sponsor to send emails</label>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+        <%= submit_tag 'Log in' %>
+      </td>
+    </tr>
+  </table>
+  </p>
+<% end -%>
+  </div>
+  <% else %>
+   <div class="firefox_right_top_border">Bestdebates.com</div>
+  <div class="firefox_right_container">
+    <div class="firefox_right_titles" style="text-align: center;">You are logged in to BestDebates.com</div>
+    <span class="spacing" id="singout_link" style="text-align: center;"><%= link_to("logout", firefox_logout_url, :onclick => "return sendCommand('logout')") %></span>
+ <br/><br/>
+  <p>When You click <b>"SAVE AS DRAFT"</b> , the argument to your left will be entered into
+      your <b>BestDebates.com</b> account in your <b>"drafts"</b> section.
+    </p>
+    <p>
+      Goto your <b>profile</b> page and click on your <b>"Drafts"</b> tab to find the argument.
+    </p>
+    <p>
+      You can edit further,and then add it as a response to <b>debate</b> or <b>argument</b> of your choice.
+    </p>
+  </div>
+<% end %>
+
+  <div class="firefox_right_bottom_border"></div>
+ 
+  
+  

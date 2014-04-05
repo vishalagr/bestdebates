@@ -1,0 +1,16 @@
+<div class="debate-tooltip">
+  <%= render_partial "rating_visual_display" %>
+  
+  <p style="position:relative">
+    debate <%= @debate.id %> by <%= render_author(@debate.author) %>
+    <span style="position:absolute; right:0;">
+      <% if logged_in? %>
+        <span id="unbookmark_link_debate_<%= @debate.id %>" style="display: <%=  'none'  unless current_user.bookmarked?(@debate) %>">   <%= link_to_remote("Unbookmark",:url => unbookmark_debate_url(@debate ))  %> </span>
+        <span id="bookmark_link_debate_<%= @debate.id %>" style="display: <%=  'none'  if  current_user.bookmarked?(@debate) %>">   <%= link_to_remote("Bookmark",:url => bookmark_debate_url(@debate ))  %> </span>
+      <% end %>
+      &nbsp;&nbsp;
+    </span>
+  </p>
+  <hr />
+  <%= debate_body(@debate) %>
+</div>

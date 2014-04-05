@@ -1,0 +1,12 @@
+<!-- XML Response -->
+<% if argument.new_record? %>
+  <div style="text-align:center">
+    <% form_tag xml_import_debate_arguments_path(argument.debate), :multipart => true do %>
+      <%= argument_parent_hidden_field(argument) %>  
+      Upload your xml response file: <%= file_field_tag 'xml_file' %>
+      &nbsp; &nbsp;
+      <%= submit_tag 'Upload' %>
+    <% end %>
+  </div>
+<% end %>
+

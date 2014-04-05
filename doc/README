@@ -1,0 +1,126 @@
+Best Debates Deployment/Admin Instructions
+
+dev_root refers to the directory with the files README and TODO
+
+You have two accounts on your server, knowlydge and staging.
+I've given knowlydge superuser (sudo) privileges, staging doesn't have them
+
+development
+
+  to get the source svn co https://secure.odesk.com/svn/ronpaulreveres/trunk
+
+  you can install all the required gems with  rake gems:install
+  we use svn (subversion) for the code
+
+  there is a development directory at /home/knowlydge/dev where one can
+  develop if on the road or someplace it's not possible to use svn
+
+Mark has been managing the repo
+
+deploying
+go to dev_root
+
+  to staging: cap staging deploy
+  to production: cap production deploy
+  to migrate: cap production deploy:migrate
+
+  cap(istrano) docs: http://www.capify.org/
+  pretty good capistrano cheatsheet (pdf) at:
+  http://www.scribd.com/doc/1618/a-great-capistrano-cheatsheet
+
+  The deployment recipe deploy.rb details where things are on the server
+  the file on the server which controls the mongrel cluster is not under
+  source code control, nor is the mysql/rails config file.
+
+    both files are in   /home/knowlydge/shared/config
+
+server Admin
+
+  webmin: http://bestdebates.com:10000 // user name admin
+
+    webmin contains tools to admin all of the intimate details of the life
+    of a linux server running Ubuntu, like yours
+
+      Ubuntu docs: https://help.ubuntu.com/8.04/index.html
+      Webmin docs: http://webmin.com/docs.html
+
+  On the front page of webmin you get access to these stats, and a graphic
+  of how your use of the sytem resources compares to what's available.
+  If your server ever seems slow, this may show you why. As you'll see,
+  today's' values are easily within the limits of the server:
+
+    System Hostname   knowlydge
+    Operating system     Ubuntu Linux 8.04.1
+    Webmin version       1.441
+    Time on system       Fri May 8 22:51:54 2009
+    Kernel and CPU       Linux 2.6.24-19-xen on x86_64
+    System uptime       142 days, 21 hours, 15 minutes
+    CPU load averages 0.00 (1 min) 0.00 (5 mins) 0.00 (15 mins)
+    Real memory         1 GB total, 725.67 MB used  <-- more free would be mo betta'
+
+    Virtual memory     2 GB total, 19.80 MB used <-- not really great, should be '0'
+
+    Local disk space     37.40 GB total, 20.80 GB used
+
+  Part of what's been set up in webmin is the automatic backup of your databases,
+  and here's where the backup files end up each day at just about midnight:
+
+    $ ls /home/knowlydge/Backup
+
+    2009-03-12_20h22.tgz  2009-04-01_00h00.tgz etc...
+
+
+Best Debates admin: http://bestdebates.com, log in as admin
+
+To ssh to your server
+
+    from any terminal window (or on windows, from putTy)
+
+    ssh -l knowlydge bestdebates.com
+
+    the app deploys to /home/knowlydge/apps/debate/current and also, there
+    are configuration files that aren't changed with each deploy at ../shared
+
+  You have an nginx web server that answers normal web requests (port 80) and
+  then distributes them to x mongrels running on ports y,z,l
+
+  Nginx is easy to configure and faster than apache, though is one of a very few things that
+  aren't controlled typically in webmin.
+
+    nginx configuration is in /etc/nginx
+
+    control nginx by ssh'ing to your server and
+
+      /etc/init.d/nginx start
+      /etc/init.d/nginx stop
+      /etc/init.d/nginx restart
+
+    nginx documentation: http://nginx.org (say 'engine-X', it's russian and fast)
+
+    each time the config changes it needs to be restarted
+
+
+If your server is slow, first thing to do is look at the webmin front page, then
+to ssh in and type
+
+    top <- which process(es) is taking all your resources
+    next, contact slicehost
+
+We don't have any monitoring on the site, but it's a good idea
+
+
+The primary mysql user is named xxx
+Mysql setup for the server is on webmin at xxx
+
+
+$ cat mongrel_cluster.yml
+---
+group: knowlydge
+log_file: log/mongrel.log
+port: "40640"
+cwd: /home/knowlydge/apps/debate/current
+environment: production
+user: knowlydge
+pid_file: tmp/pids/mongrel.pid
+servers: 5
+

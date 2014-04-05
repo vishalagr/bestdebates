@@ -1,0 +1,80 @@
+<div class="user-tooltip">
+  <div class="user-tooltip-left"><%= user_avatar(user) %></div>
+  <div class="user-tooltip-right">
+    <h1><%= user.name.capitalize_words %></h1>
+    
+    <div class="box-tabs">
+      <span class="tab">Base info</span>
+      <div class="box-tabs">Bookmarks</div>
+    </div>
+    
+    <!--<br style="clear:both;"/><br /> -->
+    <% if false %>
+      <p>Member Since: <%= user.created_at.strftime('%b. %d, %Y') %> </p>
+      <%- if user.show_sex? -%>
+        <p>Sex: <%= humanize_sex(user) %></p>
+      <% end -%>
+      <%- if show_birthday(user) -%>
+        <p>Birthday: <%= show_birthday(user) %></p>
+      <% end -%>
+      <%= "<p>Hometown: #{user.hometown}</p>" unless user.hometown.blank? %>
+      <%= "<p>Political Views: #{user.political_views}</p>" unless user.political_views.blank? %>
+      <%= "<p>Religious Views: #{user.religious_views}</p>" unless user.religious_views.blank? %>
+      <%= "<p>Website: #{user.website}</p>" unless user.website.blank? %>
+      <!--<p>Description: <%#= user.description %></p>-->
+      <br />
+      <p>Debates: <%= user.debates.size %></p>
+      <p>Arguments: <%= user.arguments.size %></p>
+      <p>Ranking: <%= "tbd" %></p>
+      <%= "<p>Hometown: #{user.description}</p>" unless user.description.blank? %>
+      <br />
+      <% unless (skip_profile_link rescue false) -%>
+        <p style="text-align:right; margin-right:15px"><%= link_to_user(user, :content_text => 'go to user\'s page', :target => :_blank) %></p>
+      <% end %>
+
+
+      <div class="mypage-listings">
+        <% if the_same_user?(user) -%>
+          <h3 style="clear:both">My Bookmarks:</h3>
+            <% for bookmark in user.bookmarks -%>
+            <dl>
+              <dd class="name">
+                <%= bookmark.debate ? debate_title(bookmark.debate) : link_to_argument(bookmark.argument) -%>
+              </dd>
+              <dd><%= bookmark.created_at.strftime('%b. %d, %Y %H:%M') %></dd>
+            </dl>
+        <% end -%>
+      <% end -%>
+    
+      <%= profile_debates_list(@user, profile_debates_arguments_title('Debates', user), user_debates(user)) %>
+      <% if the_same_user?(@user) %>
+        <%= profile_debates_list 'Private Debates I can Read',  user.writable_authored_debates %>
+        <%= profile_debates_list 'Private Debates I can Write', user.readable_authored_debates %>
+      <% end %>
+
+      <div class="mypage-listings">
+        <h3><%= profile_debates_arguments_title('Arguments', user) %></h3>
+         <%- for argument in user_arguments(user) -%>
+          <dl>
+            <dd class="name"><%= link_to_argument(argument) %></dd>
+            <dd><%= profile_debate_argument_time(argument, user) %></dd>
+          </dl>
+        <% end -%>
+      </div>
+      <br style="clear:both;"/><br />
+
+      <% if false #@invitations.any? -%>
+        <div class="mypage-listings">
+          <h3>My Invitations:</h3>
+          <% for invitation in @invitations -%>
+            <dl>
+              <dd class="name"><%= link_to invitation.debate.title, debate_url(invitation.debate, :code => invitation.code.unique_hash) %></dd>
+            </dl>
+          <% end -%>
+        </div>
+        <br style="clear:both;"/><br />
+      <% end -%>
+      
+    <% end %>    
+  </div>
+</div>

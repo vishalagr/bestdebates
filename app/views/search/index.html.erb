@@ -1,0 +1,33 @@
+<div id="content_top_box"><p class="page_title">Search Results</p></div>
+<div id="content_box">
+
+  <div class="debate-argument">
+    <div class="debate-listings">
+      <div class="debate-argument-title-background" style="padding:10px;">
+        <h2><%= pluralize @results.size, 'Result'%> Found</h2>
+      </div>
+      <div id="search-results-links">
+        show only &nbsp;
+        <%= link_to 'All', '#', :class => 'selected' %> |
+        <%= link_to 'Debates', '#' %> |
+        <%= link_to 'Arguments', '#' %> |
+        <%= link_to 'Users', '#' %>|
+        <%= link_to 'Tags', '#' %>
+      </div>
+
+      <div class="argument-form-inner" style="padding:10px;" >
+        <div class="search-results-wrapper">
+          <%= "<p><h3>Arguments tagged <b>#{params['tag']}</b></h3></p> <br />" if @show_search_title %>
+          <%= search_results(@results) %>
+        </div>
+      </div>
+    </div>
+    <div class="debate-listing-inner-footer"></div>
+  </div>
+  <div class="debate-listing-footer"></div>
+
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>
+
+<%= javascript_tag 'searchResultsHandlers()' %>

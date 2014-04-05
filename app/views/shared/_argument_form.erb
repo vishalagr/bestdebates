@@ -1,0 +1,32 @@
+<%= fckeditor_include! %>
+<div style="margin-left:-25px;">
+  <% reset_unique_id %>
+  <%# remote_form_for([argument.debate, argument], :html => {:id => 'argument_form_' + form_id(argument),
+      :onreset => (argument.new_record? ? "setTimeout(\"setArgumentDefaultTitle($('#{title_id(argument)}'));setArgumentDefaultBody(FCKeditorAPI.GetInstance('#{editor_id(argument)}'), $('#{editor_id(argument)}'));\", 100);" : "")},
+    :before => "document.getElementById('#{editor_id(argument)}').value = FCKeditorAPI.GetInstance('#{editor_id(argument)}').GetXHTML();put_circle('more_less_options_#{argument.dest_id || 0}');",
+    :complete => "remove_circle('more_less_options_#{argument.dest_id || 0}')") do |f| %>
+ <% form_for([argument.debate, argument], :html => {:id => 'argument_form_' + form_id(argument), :multipart => true, :target => 'argument_form_target_' + form_id(argument)}) do |f|%>
+    <% content_tag( :div, :class => "errors", :id => arguments_errors(argument)) do f.error_messages end %>
+
+    <%= render :partial => 'shared/argument_form_fields', :locals => {:argument => argument,:debate => argument.debate, :f => f} %>
+    <%= hidden_field_tag :tab_action, "1" %>
+    <p>
+      <% if argument.draft? && !argument.new_record? %>
+        <%= image_submit_tag 'save_as_draft.png', :class => 'left publish-button', :name => "unpublish", :style => 'border: none;',:onclick => "$('clicked_button#{unique_id}').value = this.name;"  %>
+        <%= image_submit_tag 'make_public.jpg', :name => "publish", :class => 'left create-button', :style => 'border: none;', :onclick => "$('clicked_button#{unique_id}').value = this.name;return parentPublic(#{parentIsDraft(argument.parent_id)});" %>
+      <% elsif !argument.draft? || argument.new_record? %>
+        <%= image_submit_tag 'save.png', :name => "publish", :class => 'left create-button', :style => 'border: none;', :onclick => "$('clicked_button#{unique_id}').value = this.name;return parentPublic(#{parentIsDraft(argument.dest_id)});" %>
+        <%= image_submit_tag 'save_as_draft.png', :class => 'left publish-button', :name => "unpublish", :style => 'border: none;', :onclick => "$('clicked_button#{unique_id}').value = this.name;" if arg_save_as_draft_button?(argument) %>
+      <% end  %>
+    </p>
+    
+    <div style="padding-left:100px;  padding-top: 6px;">
+      <a href="#" id="more_less_options_<%=argument.dest_id || 0 %>" style="padding-right: 9px;" onclick="fMoreLessOptions(this); return false;">more options</a>
+    </div>
+  <% end %>
+<iframe id="argument_form_target_<%=form_id(argument)%>" name="argument_form_target_<%=form_id(argument)%>"  style="width:1px;height:1px;border:0px"></iframe>
+  <div class="clear_both"></div> <!--<br />
+<%#= render :partial => 'arguments/xml_upload_form', :locals => {:argument => argument} %>
+  <br />-->
+<%#= render :partial => 'arguments/similar_argument', :locals => {:argument => argument} %>
+</div>

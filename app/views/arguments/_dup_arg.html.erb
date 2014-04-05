@@ -1,0 +1,21 @@
+<div style="font-size:11px">
+  <% form_remote_tag(
+    :url => duplicate_argument_argument_path(argument),
+    :method => :post,
+    :update => 'identification-hash',
+    :insertion => true
+  ) do %>
+    You can duplicate this argument and use in another debate. <br />
+    You will be provided with an identification_hash which can be used later to post your opinion. <br />
+    <%= submit_tag 'Duplicate' %>
+  <% end %>
+    <%#= submit_to_remote(
+      'duplicate_btn', 'Duplicate',
+      :url => duplicate_argument_argument_path(argument),
+      :method => :post,
+      :update => 'identification-hash',
+      :insertion => true
+    )%>
+</div>
+
+<div id="identification-hash" style="color:brown"></div>

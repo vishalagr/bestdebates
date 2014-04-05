@@ -1,0 +1,3 @@
+out = render :partial => 'debates/bookmark', :locals => {:debate => @debate}
+
+page.replace_html bookmark_dom_id(@debate), :inline => out

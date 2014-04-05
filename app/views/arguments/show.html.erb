@@ -1,0 +1,80 @@
+<%= fckeditor_include! %>
+<%= show_defaults(@argument) %>
+<div id="content_top_bg">&nbsp;</div>
+<div id="content_box">
+
+  <div class="a_top_left_text">
+    Category: <%= link_to @argument.debate.category.name, debates_url(:category_id => @argument.debate.category_id) %>
+    <div class="arg_rating_top" > Argument Rating:
+      <span class="a_<%= @argument.argument_type == 'pro' ? 'blue' : (@argument.argument_type == 'con' ? 'red' : 'green') %>_title" id="aa_rating" >
+        <%= ratting_score(@argument) %></span><%#= rating_tooltip_script("aa_rating_#{@argument.id}") %>
+      <span  class="a_<%= @argument.argument_type == 'pro' ? 'blue' : (@argument.argument_type == 'con' ? 'red' : 'green') %>_title" id="aa_vetting">
+        <%= vetting_score(@argument) %></span><%#= vetting_tooltip_script("aa_vetting_#{@argument.id}") %>
+    </div>
+  </div>
+
+  <div class="a_top_right_text">Arg. ID <%= @argument.id %>, created <%= @argument.created_at.strftime('%b. %d, %Y') %></div>
+  <div class="clear_both"></div>
+
+ <%- if argument_show_draft_info?(@argument) -%>    
+    <div style="text-align:center;margin-top:8px;margin-bottom:-8px; font-size: 14px;font-weight: bold;">This argument is a DRAFT and is not public. </div>
+<% end -%>
+
+  <div id="<%= mktree_node_dom_id(@argument) %>">
+    <div class="a_red_arg_title"> Argument: <%= @argument.full_title %> </div>
+    <div class="a_body_title">Clarification:</div>
+    <div class="a_body_text"><%= argument_body(@argument) %> </div>
+  </div>
+
+
+  <div class="a_buttons">
+    <div class="a_buttons_bottom">
+      <%= render_partial "buttons" %>
+      <div class="clear_both"></div>
+    </div>
+
+    <div class="middle_tag_links">
+      <div class="a_grey_box">
+        <span class="green">
+          Author: <%= render_author(@argument.user) %>
+        </span>
+        <div class="access_functions">
+          <span><%= link_to 'Invite', argument_invitations_path(@argument) if (logged_in? && !@argument.draft?) or @argument.owner?(current_user) or admin_user? %></span>|
+          <span><%= link_to 'Watching',"#" , :id => "#{watching_argument_url(@argument)}" , :class => "watching" %><%#=watching_script(@argument)%></span> |
+          <%- if @argument.can_be_modified_by?(current_user) -%>
+            <span><%= link_to 'Edit', edit_argument_path(@argument) %></span> |
+            <span><%= link_to 'Delete', @argument, :confirm => "Are you sure you'd like to delete the argument #{@argument.title}?", :method => :delete %> </span>|
+          <% end -%>
+          <%= bookmark_link(@argument, true) %>
+        </div>
+      </div>
+
+      <span style=" font-size: 11px; "><%= tags_div @argument %></span>
+      <%= render :partial =>"arguments/images" , :locals => {:argument => @argument} %>
+      <%= render :partial =>"arguments/video" , :locals => {:argument => @argument} %>
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td style="width:440px;vertical-align:bottom;text-align:left;word-wrap:break-word;">
+            <div class="links_list">
+              <%= render :partial => 'links_list', :locals => {:argument => @argument} %>
+            </div>
+          </td>
+        </tr>
+        <tr><td style="width:440px;vertical-align:bottom;text-align:left;word-wrap:break-word;">
+            <div class="a_indebate_link"><%= render :partial => "my_parent", :locals => {:argument => @argument} %> </div> </td></tr>
+
+      </table>
+      <div class="clear_both"> </div>
+      <br/>
+    </div>
+
+  </div>
+
+
+
+  <%= render_partial "details" %>
+
+  <div class="clear_both">&nbsp;</div>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

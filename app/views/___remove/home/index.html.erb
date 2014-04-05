@@ -1,0 +1,57 @@
+<% @home_page = true %>
+<div style="position:absolute;top:-43px;left:50px;"><img src="/images/home-top-callout.png"></div>
+<div><img src="/images/home.png"> </div>
+
+<% if debate = Debate.find_by_id(flash[:debate_id]) %>
+
+  <% header_content do %>
+    <%= stylesheet_link_tag    'lightbox' %>
+    <%= javascript_include_tag 'lightbox' %>
+  <% end %>
+  <div id="welcome-message" style="display:none;">
+    <%= render :partial => 'welcome_message', :locals => {:debate => debate}  %>
+  </div>
+  <script type="text/javascript">
+    addEvent(window, 'load', show_welcom_alert_message, false);
+    function show_welcom_alert_message(){
+      $('overlay').style.display = 'block';
+      $('lightbox').style.display = 'block';
+      $('lbLoadMessage').innerHTML = $('welcome-message').innerHTML;
+      setTimeout('fade_welcom_alert_message()', 5000)
+    }
+    function fade_welcom_alert_message(){
+      new Effect.Fade('overlay',  { duration:3 });
+      new Effect.Fade('lightbox', { duration:3 });
+    }
+  </script>
+<% end %>
+<% if false %>
+<h2><span>Search, Judge or Create a debate, see the difference your opinion makes!</span></h2>
+<div id="join">
+	<h1>Search</h1>
+	<div class="content-background">
+		<h2>Find a topic that matters to you</h2>
+		<p>Take advantage of wisdom of others who care about what you care about. See how they verify every component of an argument. See how this wisdom is translated into verified propositions.</p>
+	</div>
+	<div class="shadow-bottom"></div>
+	<div class="go-button"><%= link_to 'go', debates_path %></div>
+</div>
+<div id="judge">
+	<h1>Judge</h1>
+	<div class="content-background">
+		<h2>Contribute what you know</h2>
+		<p>Is an argument clear? Does a conclusion follow logically? Is the evidence reliable? Add your knowledge to the mix. If you know, you can judge an argument that changes the reliability of its proposition.</p>
+	</div>
+	<div class="shadow-bottom"></div>
+	<div class="go-button"><%= link_to 'go', debates_path %></div>
+</div>
+<div id="create">
+	<h1>Create</h1>
+	<div class="content-background">
+		<h2>State your new proposition.</h2>
+		<p>Open a new debate that brings the concerns, wisdom and experience of your community to a critical issue. Start a new conversation.  Ask a good question. Move truth forward.</p>
+	</div>
+	<div class="shadow-bottom"></div>
+	<div class="go-button"><%= link_to 'go', new_debate_path %></div>
+</div>
+<% end %>

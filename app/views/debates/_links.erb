@@ -1,0 +1,9 @@
+<div id="links<%= debate.id %>">
+  <div class="box-tabs">    
+    <span class="tab"><%= tab_link_to_remote('Tags', :tags, debate) %></span>
+    <% if can_edit_debate?(debate) -%>
+      <span class="tab"><%= tab_link_to_remote('Edit', :edit, debate) %></span>
+    <% end -%>
+    <!-- Watching mock<span class="tab"><%#= tab_link_to_remote('Watching', :watching, debate) %></span> -->
+  </div>
+</div>

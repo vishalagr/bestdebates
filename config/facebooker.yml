@@ -1,0 +1,78 @@
+# The api key, secret key, and canvas page name are required to get started
+# Tunnel configuration is only needed if you are going to use the facebooker:tunnel Rake tasks
+# Your callback url in Facebook should be set to http://public_host:public_port
+# If you're building a Facebook connect site, 
+#    change the value of set_asset_host_to_callback_url to false
+# To develop for the new profile design, add the following key..
+# api: new
+# remove the key or set it to anything else to use the old facebook design.
+# This should only be necessary until the final version of the new profile is released.
+
+# http://apps.facebook.com/bestdebates_dev/
+# http://www.facebook.com/developers/apps.php?app_id=342244150631&ret=2
+development:
+  api_key: 5ccff10f291950a939c9e06065699686
+  secret_key: d40fffe61822bfc5f68b76bc18c0bb88
+  canvas_page_name: BestDebates_development
+  callback_url: <%= HOST_DOMAIN %>
+  pretty_errors: true
+  set_asset_host_to_callback_url: true
+  tunnel:
+    public_host_username:
+    public_host:
+    public_port: 4007
+    local_port: 3000
+    server_alive_interval: 0
+
+server_dev:
+  api_key: 5ccff10f291950a939c9e06065699686
+  secret_key: d40fffe61822bfc5f68b76bc18c0bb88
+  canvas_page_name: BestDebates_development
+  callback_url: <%= HOST_DOMAIN %>
+  pretty_errors: true
+  set_asset_host_to_callback_url: true
+  tunnel:
+    public_host_username: 
+    public_host: 
+    public_port: 4007
+    local_port: 3000
+    server_alive_interval: 0
+
+test:
+  api_key: 
+  secret_key: 
+  canvas_page_name: 
+  callback_url:
+  set_asset_host_to_callback_url: true
+  tunnel:
+    public_host_username: 
+    public_host: 
+    public_port: 4007
+    local_port: 3000
+    server_alive_interval: 0
+
+production:
+  api_key: a6e807c48ee178bcddb098fba1ee68ad
+  secret_key: 9e29cca20576a59f886df352abf227aa
+  canvas_page_name: bestdebates
+  callback_url: <%= HOST_DOMAIN %>
+  set_asset_host_to_callback_url: true   
+  tunnel:
+    public_host_username: 
+    public_host: 
+    public_port: 4007
+    local_port: 3000
+    server_alive_interval: 0
+
+staging:
+  api_key: 100ff7d60e2904acbd248a00e06e721d
+  secret_key: 61808cbf94af844982b509e3a0d8172f
+  canvas_page_name: bestdebatesstaging
+  callback_url: <%= HOST_DOMAIN %>
+  set_asset_host_to_callback_url: true
+  tunnel:
+    public_host_username:
+    public_host:
+    public_port: 2020
+    local_port: 2020
+    server_alive_interval: 0

@@ -1,0 +1,13 @@
+<h1> Editing Shortcut </h1>
+
+<%= error_messages_for :shortcut %>
+
+<%- form_for(:shortcut, :url => object_url, :html => { :method => :put }) do |f| %>
+  <%= render :partial => "form", :locals => {:f => f} %>
+  <p id="create_form" style="display:none;"> <%= submit_tag "Update" %></p>
+<% end %>
+
+<br/>
+<%= link_to 'Show', object_path %>
+|
+<%= link_to 'Back', objects_path %>

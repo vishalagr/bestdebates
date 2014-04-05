@@ -1,0 +1,11 @@
+<%= tags_div(taggable_object) %>
+
+<% form_remote_for(taggable_object, :url => {:controller => taggable_object.class.to_s.downcase + 's',
+                                             :action => 'add_tag',
+                                             :id => taggable_object.id}) do |f| %>
+<p>
+  Tags (separate by commas):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= text_field_tag :tag, params[:tag], :size => 18 %>
+  <%= submit_tag "add" %>
+</p>
+<% end %>

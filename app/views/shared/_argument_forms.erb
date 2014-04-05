@@ -1,0 +1,32 @@
+<div class="mktree_argument_top_bg" id="forms_borders<%= argument.id %>" style="display:none;">
+  <div class="mktree_argument_bottom_bg">
+    <div class="mktree_argument_middle_bg" id="forms<%= argument.id %>" style="display:none">  
+      <div class="dd_a_content">
+        <% if argument.video -%>
+          <div id="<%= tab_div_id(:video, argument) %>" style="display:none;" ><%= argument.video.code %></div>
+        <% end -%>
+        <div id="<%= tab_div_id(:rating, argument) %>" style="display:none;" ></div>
+        <div id="<%= tab_div_id(:reply,  argument) %>" style="display:none;" ><br /></div>
+        <div id="<%= tab_div_id(:tags,   argument) %>" style="display:none;" ><br /><br /></div>
+        <div id="<%= tab_div_id(:links,  argument) %>" style="display:none;"><br /><br /></div>
+        <div id="<%= tab_div_id(:image,  argument) %>" style="display:none;"><br /><br /></div>
+        <div id="<%= tab_div_id(:watching, argument) %>" style="display:none;" ><br /><br /></div>
+        <div id="<%= tab_div_id(:duparg, argument) %>" style="display:none;" ><br /><br /></div>
+        <div id="<%= tab_div_id(:contexts, argument) %>" style="display:none;" ><br /><br /></div>
+        <% if bookmark_tab? -%>
+          <div id="<%= tab_div_id(:bookmark, argument) %>" style="display:none;"><br /><br /></div>
+        <% end -%>
+        <% if can_edit_argument?(argument) -%>
+          <div id="<%= tab_div_id(:edit, argument) %>" style="display:none;"><br /><br /></div>
+        <% end -%>
+        <div id="<%= tab_div_id(:drafts,   argument) %>" style="display:none;" ><br /><br /></div>
+        <div class="clear_both"></div>
+      </div>      
+        <div class="dd_cancel_button">
+        <%= image_submit_tag 'close_button_small_red.gif',
+          :class => 'cancel_button', :name => "close", :style => 'border: none;',
+          :onclick => "#{toggle_div_cancel(argument)}; return false;" %>
+      </div>
+    </div>
+  </div>
+</div>

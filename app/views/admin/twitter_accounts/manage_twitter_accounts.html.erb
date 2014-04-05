@@ -1,0 +1,20 @@
+<table style="width: 100%;">
+  <tr>
+    <td><b>#</b></td>
+    <td align="center"><b>Debate Title</b></td>
+    <td align="center"><b>Twitter Account</b></td>
+  </tr>  
+  <% @debates.each do |debate| %>
+    <tr>
+      <td style="width: 5%;"><%=debate.id%></td>
+      <td style="width: 60%;"><%=debate.title%></td>
+      <td style="width: 35%; text-align: center;">
+        <% form_for @debate_twitter_account , :url => {:controller =>'admin/twitter_accounts', :action => 'twitter_debate_create',:id=>debate.id}, :html => {:method => :post} do |f| %>
+          <%= f.hidden_field(:debate_id , :value => "#{debate.id}")  %>
+          <%= f.select(:twitter_account_id, TwitterAccount.all.collect {|twitter| [ twitter.twitter_username, twitter.id ] }, {:selected => debate.try(:debate_twitter_account).try(:twitter_account).try(:id),:include_blank => 'Select a Twitter' }, :onchange => 'this.form.submit();')%>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate(@debates) %>

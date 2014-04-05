@@ -1,0 +1,28 @@
+<div>
+  <p><strong> Title : </strong><%= h user_variable.title %> </p>
+  <p><strong> No of debates created  (A): </strong><%= h user_variable.a %> </p>
+  <p><strong> No of arguments are in those debates (B)  : </strong><%= h user_variable.b %> </p>
+  <p><strong> No of ratings (total) within the arguments of that debate (C): </strong><%= h user_variable.c %> </p>
+ <p><strong> No of arguments the user has authored (D) : </strong><%= h user_variable.d %> </p>
+  <p><strong> No of arugments the user has rated (E) : </strong><%= h user_variable.e %> </p>
+  <p><strong> No of 1st level replies have been made to their arguments (F): </strong><%= h user_variable.f %> </p>
+  <p><strong> No of second level replies have been made to their arguments (G) : </strong><%= h user_variable.g %> </p>
+ <p><strong>Do they have a picture on the site (H) : </strong><%= h user_variable.h %> </p>
+  <p><strong> No of arguments are they watching (I): </strong><%= h user_variable.i %> </p>
+  <p><strong> No of total ratings have other users made on their arguments (J) : </strong><%= h user_variable.j %> </p>
+  <p><strong> Average total rating on their arguments (K): </strong><%= h user_variable.k %> </p>
+ <p><strong> Average total clarity rating on their arguments (L): </strong><%= h user_variable.l %> </p>
+  <p><strong> Average total accuracy rating on their arguments (M): </strong><%= h user_variable.m %> </p>
+  <p><strong> Average total relevance rating on their arguments (N): </strong><%= h user_variable.n %> </p>
+  <p><strong> No of videos have they embedded (O): </strong><%= h user_variable.o%> </p>
+ <p><strong> No of images have they embedded (P): </strong><%= h user_variable.p %> </p>
+  <p><strong> No of  links have they added (Q): </strong><%= h user_variable.q %> </p>
+  <p><strong> No of  tags have they added (R) : </strong><%= h user_variable.r %> </p>
+ <%= link_to 'Show', object_path(user_variable) %>
+  |
+  <%= link_to 'Activate', activate_admin_user_variable_path(user_variable) %>&nbsp;&nbsp;
+  |
+  <%= link_to 'Edit', edit_object_path(user_variable) %>
+  |
+  <%= link_to user_variable.active? ? 'Active' : 'Destroy', object_path(user_variable), :confirm => 'Really destroy user variable?', :method => :delete   if user_variable.active? and user_variable.title != 'Default' %>
+  </div>

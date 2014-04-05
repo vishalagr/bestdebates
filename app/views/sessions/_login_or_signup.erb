@@ -1,0 +1,80 @@
+ <%#= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
+<% @user ||= User.new %>
+<div id="content_top_box">
+  <p class="page_title">LOGIN <span style="text-transform:lowercase;">OR</span> SIGN UP</p>
+</div>
+<div id="content_box">
+  <p id="red_login_text">
+    YOU MUST REGISTER AND LOGIN TO RATE, REPLY OR ADD ARGUMENTS OR DEBATES TO THE SITE.<br />
+    NO SWEAT - IT TAKES 10 SECONDS AND ITS FREE.
+  </p>
+  <table cellpadding="0" cellspacing="0" border="0" id="login_form_box">
+    <tr>
+      <td id="login_left_half">
+        <p class="login_form_titles">LOGIN</p>
+
+        <%= render_partial "sessions/login_form" %>
+        <%= render :partial => "sessions/reminder_form" %>
+
+      </td>
+      <td id="border_left">
+        <p class="signup_form_titles">OR SIGN UP</p>
+
+        <% form_for @user do |f| -%>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>" />
+          <%= error_messages_for :user %>
+          <%= hidden_field_tag 'code', params[:code] if @guest && params[:code] %>
+          <p>
+            <%= f.label 'name', 'Your Full Name:' %><br/>
+            <%= f.text_field :name, :size => 20 %> (private)
+          </p>
+          <p>
+            <%= f.label 'login', 'User Name(no spaces):', :id => 'lb_login' %><br/>
+            <%= f.text_field :login, {:size => 20, :autocomplete => 'off'} %> (Your Online Name)
+          </p>          
+          <p>
+            <%= f.label 'email', 'Email:' %><br/>
+            <%= f.text_field :email, :size => 20 %>
+          </p>
+          <p>
+            <%= f.label 'I belong to group:' %><br />
+            <% if @group %>
+              <b><%= @group.name %></b>
+              <%= f.hidden_field :group_id %>
+            <% else %>
+              <%= f.select :group_id, [['None', nil]] + public_groups.collect{|group| [group.name, group.id]}, :size => 8 %>
+            <% end %>
+          </p>
+          <p>
+            <%= f.label 'password', 'Password:' %><br/>
+            <%= f.password_field :password, :size => 25 %>
+          </p>
+          <p>
+            <%= f.label 'password_confirmation', 'Confirm Password:' %><br/>
+            <%= f.password_field :password_confirmation, :size => 25 %>
+          </p>
+          <% if session[:invitation_code] || session[:unique_code] %>
+            <p>
+              <%= check_box_tag 'sponsor_allow', '1', false %>
+              <label>Allow sponsor to send emails</label>
+            </p>
+          <% end %>
+          <p><%= submit_tag 'Sign Up' %></p>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  <div id="privacy_nitice"><br/>
+    <h2><i>Privacy Notice</i></h2><hr/>
+    <p>
+      Best Debates will not sell or share your private information,
+      such as email addresses, entries or profiles with third parties,
+      unless you have agreed to release this information or it is
+      required by law. If required by law, the Best Debates will notify,
+      if possible, those users whose identifiable data has been sought
+      unless we are prohibited from doing so by law enforcement agencies.
+    </p>
+  </div>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

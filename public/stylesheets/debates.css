@@ -1,0 +1,412 @@
+.page_title {
+	margin-left:22px;
+	padding-top:1px;
+	/*padding-left:;*/
+	_padding-bottom:5px;
+	font-size:32px;
+	font-family:'Arial Narrow';
+	text-transform:uppercase;
+	color:#FFFFFF;
+	}
+.top_text {
+	margin-left:16px;
+	}
+.blue_text {
+	font-size:14px;
+	line-height:15px;
+	font-weight:bold;
+	font-family:Arial,Helvetica, sans-serif;
+	color:#006699;
+	}
+.green_text {
+	font-size:14px;
+	line-height:15px;
+	font-weight:bold;
+	font-family:Arial,Helvetica, sans-serif;
+	color:#006600;
+	}
+.red_text {
+	font-size:14px;
+	line-height:15px;
+	font-weight:bold;
+	font-family:Arial,Helvetica, sans-serif;
+	color:#660000;
+	}
+.top_text a {
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:12px;
+	line-height:18px;
+	text-decoration:none;
+	color:#0000CD;
+	}
+.top_text a:hover {
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:12px;
+	line-height:18px;
+	text-decoration:none;
+	color:#008000;
+	}
+.grey_box {
+	width:638px;
+	height:20px;
+	background-color:#EFEEEE;
+	}
+#create_debate_button {
+	margin:5px 0px 25px 13px;
+	}
+#show_hide_link {
+	width:613px;
+	padding-right:25px;
+	padding-bottom:22px;
+	text-align:right;
+	font-size:12px;
+	font-family:Verdana,Arial,Helvetica, sans-serif;
+	}
+#debates_list_labels {
+	display:inline;
+	}
+#d_category_label {
+	margin-left:12px;
+	}
+#d_rating_label {
+	margin-left:42px;
+	}
+#d_title_label {
+	margin-left:16px;
+	}
+#d_type_label {
+	margin-left:275px;
+	}
+#d_sponsor_label {
+	margin-left:38px;
+	}
+#d_updated_at_label {
+	margin-left:22px;
+	}
+#debates_list_container {
+	overflow-x:hidden;
+	/*overflow-y:scroll;*/
+	height:370px;
+	margin-top:3px;
+	border-top:1px solid #CCCCCC;
+	}
+.list_debate {
+	width:622px;
+	_width:618px;
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+	border:none;
+	border-bottom:1px solid #CCCCCC;
+	}
+.list_debate a {
+	font-size:13px;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	}
+.list_debate td {
+	padding-top:3px;
+	padding-bottom:4px;
+	text-align:left;
+	vertical-align:top;
+	}
+.d_category_box {
+	width:75px;
+	padding-left:13px;
+	padding-right:12px;
+	}
+.d_rating_box{
+	width:50px;
+	padding:0px 0px 0px 7px;
+	}
+.d_title_box{
+	width:290px;
+	padding:0px 12px 0px 4px;
+	}
+.d_type_box{
+	width:60px;
+	padding-right:10px;
+	}
+.d_sponsor_box{
+	width:84px;
+	padding-right:5px;
+	}
+.d_title_box p {
+	line-height:14px;
+	}
+.b_ft_rating {
+	padding:10px 0px 12px 0px;
+	}
+#debates_list .b_tags_box td {
+	padding-top:30px;
+	padding-left:11px;
+	padding-bottom:10px;
+	}
+.d_tabs_container .d_tabs_box {
+	margin:10px 0px 0px;
+	padding:0px 0px 0px 151px;
+/*	border-bottom:1px solid #069BCC;*/
+	}
+.d_tab {
+	display:inline-block;
+	margin:0px -2px -1px 0px;
+	_margin:0px 1px 0px 0px;
+	padding:2px 8px 1px;
+	cursor:pointer;
+	border-color:#069BCC;
+	border-style:solid solid;
+	border-width:1px 1px;
+	background-color:#E4F8FF;
+	z-index:100;
+	}
+.d_curr_tab {
+	display:inline-block;
+	margin:0px -2px -1px 0px;
+	_margin:0px 1px 0px 0px;
+	padding:2px 8px 1px;
+	cursor:pointer;
+	border-color:#069BCC #069BCC #FFFFFF #069BCC;
+	border-style:solid;
+	border-width:1px;
+	background-color:#FFFFFF;
+	z-index:200;
+	}
+.d_tab a {
+	text-decoration:none;
+	color:#000000;
+	}
+.d_tags_top_bg {
+	width:600px;
+	_margin-top:-1px;
+	padding-top:4px;
+	background-image:url(/images/d_tags_top_bg.gif);
+	/*_background-image:url(/images/d_tags_top_bg_ie.gif);*/
+	background-repeat:no-repeat;
+	background-position:top left;
+	z-index:101;
+	}
+.d_tags_bottom_bg {
+	width:600px;
+	padding-bottom:4px;
+	background-image:url(/images/d_tags_bottom_bg.gif);
+	background-repeat:no-repeat;
+	background-position:bottom left;
+	}
+.d_tags_container {
+	width:588px;
+	padding:4px 5px 5px;
+	border-left:1px solid #069BCC;
+	border-right:1px solid #069BCC;
+	}
+.d_tags_cancel_button_box {
+	width:588px;
+	text-align:right;
+        margin-top: -57px;
+	}
+.d_tags_form_box {
+	margin-left:35px;
+	margin-bottom:22px;
+	}
+
+#dd_top_right_text, #dd_top_left_text {
+	padding:0px 16px;
+	font-size:9px;
+	font-family:Verdana,Arial,Helvetica, sans-serif;
+	color:#333333;
+	}
+
+#dd_top_left_text  { float: left; font-size: 10px; text-align: left; width: 54%; }
+#dd_top_right_text { float: right; text-align:right;width: 35%; }
+
+.dd_blue_title {
+	padding-left:22px;
+	line-height:12px;
+	font-size:11px;
+	font-family:Tahoma,Arial, sans-serif;
+	font-weight:bold;
+	color:#3366FF;
+        width: 50%;
+        float: right;
+	}
+.dd_red_title {
+	width:600px;
+	padding-left:16px;
+	padding-top:18px;
+	padding-bottom:18px;
+	line-height:16px;
+	font-size:15px;
+	font-weight:bold;
+	color:brown;
+	}
+.dd_arg {
+	padding-top:0px;
+	padding-right:22px;
+	padding-bottom:0px;
+	padding-left:16px;
+	line-height:16px;
+	font-size:13px;
+	font-family:Arial,Helvetica, sans-serif;
+	color:#313131;
+	}
+.dd_buttons {
+	padding: 10px 14px 0px;
+	line-height:1.5;
+	font-size:13px;
+	font-family:Tahoma, sans-serif;
+	color:#313131;
+	}
+.right {
+	float:right;
+	}
+.dd_buttons span {
+    font-size:11px;
+	font-family:Arial,Helvetica, sans-serif;
+	}
+        .button_bottom{
+
+            padding-bottom:2px;
+            _padding-bottom:20px;
+}
+a.stbutton {
+	padding:1px 5px 5px 22px;
+	}
+.debate-listings a {
+	color:#0000CD;
+	}
+.debate-listings a, .debate-listings h5 {
+	line-height:18px;
+	font-size:12px;
+	font-family:Verdana,Arial,Helvetica, sans-serif;
+	}
+.stico_default {
+	background:transparent url(http://w.sharethis.com/images/share-icon-16x16.png?CXNID=1000014.0NXC) no-repeat scroll 0 0;
+	}
+.dd_grey_box {
+	width:602px;
+	height:17px;
+	margin:5px 16px 0px 10px;
+	padding-top:3px;
+	padding-left:5px;
+	padding-right:5px;
+	background-color:#EFEEEE;
+	}
+.left {
+	float:left;
+	}
+span.green.left a {
+	line-height:15px;
+	font-size:12px;
+	font-family:Verdana,Arial,Helvetica, sans-serif;
+	}
+.dd_grey_box span.right {
+	font-size:12px;
+	font-family:Verdana,Arial,Helvetica, sans-serif;
+	line-height:15px;
+	}
+.dd_grey_box span.right a {
+	font-size:12px;
+	font-family:Verdana,Arial,Helvetica, sans-serif;
+	line-height:15px;
+	}
+.details {
+	width:616px;
+	padding-left:15px;
+	padding-top:30px;
+	line-height:1.5;
+	font-size:13px;
+	font-family:Tahoma,Arial, sans-serif;
+	color:#313131;
+	}
+#d_twitter_form {
+	width:100%;
+	margin-left:15px;
+	}
+
+#d_form_box {
+	width:100%;
+	margin-left:15px;
+	}
+#d_form_box td {
+	padding-top:1px;
+	padding-bottom:1px;
+	vertical-align:top;
+	}
+#d_form_box td p {
+	padding-bottom:1px;
+	}
+.d_form_labels {
+	width:158px;
+	padding-right:8px;
+	}
+.d_form_labels_sponsor {
+        width:207px;
+	padding-right:8px;
+}
+#d_f_container {
+	
+	}
+#d_f_container #d_f_box {
+	width:100%;
+	}
+#d_f_container #d_f_box td {
+	padding-top:1px;
+	padding-bottom:1px;
+	vertical-align:top;
+	}
+#d_f_container #d_f_box td p {
+	padding-bottom:1px;
+	}
+#d_f_container .d_f_labels {
+	width:165px;
+	padding-right:0px;
+	}
+
+.watching-email {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #eee;
+}
+.watching-rss {
+}
+.watching-heading {
+  text-transform: uppercase;
+  font-weight:bold;
+}
+.make_public{
+font-size:15px;
+margin-top:2px;
+padding-bottom:2px;
+padding-top:3px;
+}
+.star_left
+{    
+    border: 1px red solid;   
+    float: left;   
+}
+
+.debate_stat {
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+	border:none;
+	border-bottom:1px solid #CCCCCC;
+	}
+.debate_stat a {
+	font-size:13px;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	}
+.debate_stat td {
+	padding-top:3px;
+	padding-bottom:4px;
+	text-align:left;
+	padding-left:0px;
+	width:25%;
+	vertical-align:top;
+	}
+
+.debate_stat th {
+	padding-top:3px;
+	padding-bottom:4px;
+	text-align:left;
+	padding-left:0px;
+	width:25%;
+	vertical-align:top;
+	}
+

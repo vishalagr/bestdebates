@@ -1,0 +1,12 @@
+<% header_content do %>
+  <% @author_js_included = true # skip script load duplications %>
+  <%# already compressed %>
+  <%= javascript_include_tag '/greybox/AJS.js', '/greybox/AJS_fx.js', '/greybox/gb_scripts.js' %>
+  <%#= include_stylesheets :author %>
+  <%=stylesheet_link_tag "/greybox/gb_styles"%>
+  <%#= stylesheet_link_tag    '/greybox/gb_styles.css' %>
+<% end unless @author_js_included %>
+
+<% uid = 'author' << author.id.to_s << '_' << rand(1500).to_s %>
+<%= link_to "#{author.fb_user? ? author.name.upcase.gsub(/[-_.@]/,' ').titleize : author.login.gsub(/[-_.@]/,' ').titleize}", user_path(author),:class => "auth_tooltip", :id => tooltip_user_url(author) %>
+

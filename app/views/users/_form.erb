@@ -1,0 +1,111 @@
+<% if user.can_change_password? -%>
+  <span style="float:right;position:relative;right:20px;"><%= link_to 'change password', change_password_user_url(user) %></span>
+<% end -%>
+
+<div class="user-form-edit" style="padding-left: 15px">
+  <%= error_messages_for :user %><br />
+
+  <table cellspacing="0" cellpadding="0" border="0" id="user_form_box">
+    <tr>
+      <td class="u_form_label" style="padding-bottom:20px;"><label for="username"> User Name: </label></td>
+      <td style="padding-bottom:20px;"><b><%= current_user_name(user) %></b></td>
+    </tr>
+    <% if admin_user? %>
+      <tr>
+        <td class="u_form_label"><label for="sex">Administrator:</label></td>
+        <td><%= f.select :role, User::ROLES %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td class="u_form_label"><label for="sex">Sex:</label></td>
+      <td><%= f.select :sex, User::SEX.collect{|k,v| [v,k]} %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label"><label for="show_sex">&nbsp;</label></td>
+      <td><%= f.check_box :show_sex %>&nbsp;<b>Display gender in my profile</b></td>
+    </tr>
+    <tr>
+      <td class="u_form_label" style="padding-top:8px;"><label for="birthday">Birthday:</label></td>
+      <td style="padding-top:8px;"><%= f.date_select :birthday, :start_year => 1900, :order => [:month, :day, :year], :end_year => Time.now.year %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label" style="padding-bottom:8px;"><label for="show_birthday">&nbsp;</label></td>
+      <td style="padding-bottom:8px;"><%= f.select :show_birthday , User::SHOW_BIRTHDAY_OPTIONS.collect{|k,v| [v,k]}, {}, {} %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label"><label for="hometown">Hometown:</label></td>
+      <td><%= f.text_field :hometown %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label"><label for="political_views">Political Views:</label></td>
+      <td><%= f.text_field :political_views %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label"><label for="religious_views">Religious Views:</label></td>
+      <td><%= f.text_field :religious_views %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label"><label for="website">Website</label></td>
+      <td><%= f.text_field :website %> eg. http://domain.com</td>
+    </tr>
+    <tr>
+      <td class="u_form_label"><label for="group_id">I belong to a group</label></td>
+      <td><%= f.select :group_id, [['None', nil]] + public_groups.collect{|group| [group.name, group.id]}, :size => 8 %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label"><label for="description">My Description / Personal Statement</label></td>
+      <td><%= f.text_area :description ,:rows => 4, :cols => 38 %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label">
+        <label for="user_use_gravatar"><%= question_mark_image(:id => "gravatar_question_mark") %> <%= link_to('Gravatar', 'http://gravatar.com') %>:</label>
+      </td>
+      <td><%= image_tag(user.gravatar_url) %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label">Use Gravatar image</td>
+      <td><%= f.check_box :use_gravatar %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label">Show my private debates/arguments in profile</td>
+      <td><%= f.check_box :show_priv_arg %></td>
+    </tr>
+     <tr>
+      <td class="u_form_label">Show Favorites on every page</td>
+      <td><%= f.check_box :show_favs  %>  &nbsp;&nbsp; sort by <%= f.radio_button :fav_sort_by , 1  , :checked => "#{@user.fav_sort_by == 1 ? 'checked' : '' }"%> date added <%= f.radio_button :fav_sort_by , 0, :checked => "#{@user.fav_sort_by == 0 ? 'checked' : '' }"%>most accessed</td>
+    </tr>
+    <tr>
+      <td class="u_form_label">choose to receive private messages from other site members</td>
+      <td><%= f.check_box :receive_priv_msgs %> </td>
+    </tr>
+    <tr>
+      <td class="u_form_label">Enable Auto Tweet for posting arguments to your twitter account </td>
+      <td><%= f.check_box :enable_auto_tweet %> </td>
+    </tr>
+    <tr>
+      <td class="u_form_label"></td>
+      <td><%= image_tag(url_for_file_column('user', 'image')) unless user.image.blank? %></td>
+    </tr>
+    <tr>
+      <td class="u_form_label"><label for="image">Userpic:</label></td>
+      <td>
+        <%= file_column_field 'user', 'image' %>
+      </td>
+    </tr>
+    <!--<tr>
+      <td>
+        API Key:
+      </td>
+      <td>
+        <%# if @user.api_is_enabled? %>
+          <%#= @user.api_key %>
+          (<%#= link_to "re-generate", api_key_path, :method => :post %> | <%#= link_to "disable", api_key_path, :method => :delete %>)
+        <%# else %>
+          <%#= link_to("Get a key", api_key_path, :method => :post) %>
+        <%# end %>
+      </td>
+    </tr>-->
+  </table>
+  <%= button_submit_save %>
+  <%= link_to button_cancel, debates_url %>
+</div>

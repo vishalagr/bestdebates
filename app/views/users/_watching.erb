@@ -1,0 +1,18 @@
+<table cellpadding="0" cellspacing="0" border="0" class="list_watching">
+  <tr>
+    <td class="w_title_box">
+      <%= link_to(watching.argument.title, argument_url(watching.argument)) %>
+    </td>
+    <td class="w_debate_box" align="center">
+      <%= link_to watching.debate.id, debate_url(watching.debate) if watching.debate %>
+    </td>
+    <td class="w_deep_box" align="center">
+    <%= select_tag "watching[deep]",options_for_select([ "0","1", "3", "5" ,"10","25"],"#{watching.deep}"), :onchange => "watchingDeep(#{watching.id},this.value)" %>
+    </td>
+    
+    <td class="w_status_box" align="center">
+      <%=  radio_button("watching","status", "0"  , :onclick => "watchingStatus(#{watching.id})" )%>
+    </td>
+  </tr>
+
+</table>

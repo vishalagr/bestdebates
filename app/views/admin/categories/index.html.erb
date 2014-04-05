@@ -1,0 +1,24 @@
+<div style="background-color:white; height:500px;padding:20px; border: medium double gray; overflow:auto">
+  <h2>Current Categories:</h2>
+  <div id="categories" style="margin-left:22px">
+    <% form_tag admin_categories_update_path do %>
+      <ul>
+      <% for category in categories_list %>
+        <li>
+          <%= link_to image_tag('delete-icon.gif'), admin_category_url(category) , :method => :delete, :confirm => "Are you sure you want to permanently delete category #{category.name} and all its debates? " %>
+          <label>Display:<%= radio_button_tag "ids[#{category.id}]", 1 %></label>
+          <label>Hide:<%= radio_button_tag    "ids[#{category.id}]", 0 %></label>
+          <%= link_to category.name, debates_path(:category_id => category) %> (<%= category.description %>)
+        </li>
+      <% end %>
+      <%= submit_tag 'Update' %>
+      </ul>
+    <% end %>
+  </div> <br /> <br />
+  <% form_for [:admin, @category] do |f| %>
+    Create a new Category named <br />
+    <%= f.text_field "name" %> <br />with description: <br />
+    <%= f.text_field "description" %>
+    <%= f.submit 'Create Category' %>
+  <% end %>
+</div>

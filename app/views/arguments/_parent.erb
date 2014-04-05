@@ -1,0 +1,10 @@
+<% unless @argument.parent.nil? %>
+  <div class="dd_purple">
+    <span class="right">
+      <%= link_to_function verbose_link_name, 'fShowHideDetails("parent_tree", this);' %>
+    </span> Parent Arguments
+  </div>
+<div id="parent_argument_list">
+  <%= render :partial => "parent_arguments" %>
+</div>
+<% end %>

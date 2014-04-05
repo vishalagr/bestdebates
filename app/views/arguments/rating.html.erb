@@ -1,0 +1,60 @@
+<div id="content_top_bg">&nbsp;</div>
+<div id="content_box">
+<div class="argument-tooltip" id=<%= "arg#{@argument.id}" %> >
+  <%= render_partial "rating_visual_display" %>
+ 
+  <p>
+    <%= argument_type_icon(@argument) -%> <b><%= @argument.full_title %></b> 
+    <%= argument_body(@argument) %>
+  </p>
+  <div class="left" style="width:30px;"><b>Tags:</b></div>
+  <div class="left" style="width:310px;"><%= tags_links @argument.tags %></div>
+
+  <!--
+  <div style="clear:both;">
+    <div class="left">
+      <span class="black">Current Rating:</span>&nbsp;
+      <span class="<%#= @argument.priv? ? 'grey' : (@argument.argument_type == 'pro' ? 'blue' : 'red') %> title" ><%#= combo_score(@argument) %> &nbsp;</span>
+      <%#= argument_type_icon(@argument) -%>
+    </div>
+    <%# unless @argument.owner?(current_user) %>
+    <div class="right" style="position:relative;top:4px">[ <%#= link_to "Rate This Argument","#", :id => argument_rate_id(@argument) %> ]</div>
+    <%# end %>
+  </div>
+  -->
+  <div class="clear_both"></div>
+  <%  if logged_in? %>
+
+  <div style="margin-top:10px; position:relative;">
+    <span style="position:absolute;right:4px;">
+      <span <%= "style=\"position:relative;top:6px;\"" if logged_in? -%>>
+        Argument <%= @argument.id %> by <%= render_author(@argument.author) %>
+      </span>
+    </span>
+    <% if can_rate_argument?(@argument) %>
+      <div style="display:block; float:left">
+        <%= render :partial => 'shared/rating_form', :locals => {:argument => @argument, :buttons_in_right => true} %>
+      </div>
+    <% else %>
+      <br /><br />
+    <% end %>
+  </div>
+  <% else  %>
+  <span style="padding-left: 340px;">Please <%= link_to 'Login', new_session_path(:url=>request.url), :id => 'login_for_rate' %> to rate</span>
+<script type="text/javascript">
+	new Tip('login_for_rate', {
+    closeButton: true,
+    title: 'Login',
+	width: 250,
+    hook: { target: 'bottomLeft', tip: 'topRight'},
+    stem: 'topRight',
+    hideOn: false,
+    hideAfter: 1,
+    ajax: {url: '<%= new_session_path %>?url=' + location.href, options: {method: 'get'}}});
+</script>
+  <% end  %>
+</div>
+  <div class="clear_both">&nbsp;</div>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

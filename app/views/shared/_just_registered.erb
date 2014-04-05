@@ -1,0 +1,13 @@
+<% session[:just_registered] = false %>
+<div id="confirm-popup-content" style="display:none">
+  Welcome to BestDebates.com. Registration confirm link was sent to provided email address
+  <%= javascript_tag 'setTimeout("facebox.close()", 6000);' %>
+</div>
+<a id="confirm-popup-trigger" rel="facebox" style="display:block" href="#confirm-popup-content">Trigger</a>
+
+<script type="text/javascript">
+    document.observe("dom:loaded", function() {
+        $('confirm-popup-trigger').simulate('click');
+        $('confirm-popup-trigger').facebox();
+    });
+</script>

@@ -1,0 +1,27 @@
+development:
+  bin_path: /usr/local/bin
+  max_matches: 10000
+  port: 9312
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
+
+test:
+  bin_path: /usr/local/bin
+  max_matches: 10000
+  port: 9313
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
+
+production:
+  bin_path: /usr/local/bin
+  max_matches: 10000
+  port: 9314
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
+
+staging:
+  bin_path: /usr/local/bin
+  max_matches: 10000
+  port: 9312
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer

@@ -1,0 +1,65 @@
+tab = params[:tab].to_i
+tab_validate!(@argument, tab)
+use_arg = params[:reply_arg].blank? ? nil : params[:reply_arg].to_i
+out = 
+  case tab
+  when Argument::TABS[:rating]
+    render(:partial => "shared/rating_visual_display", :locals => {:argument => @argument}) <<
+    if logged_in?
+      unless the_same_user?(@argument.user)
+        render :partial => 'shared/rating_form',       :locals => {:argument => @argument}
+      else
+        '<span style="padding-left:7px;">You are the author of this argument.</span><br />' << 
+        '<span style="padding-left:7px;">The author is not able to rate their own argument.</span>'
+      end
+    else
+      render :partial => 'shared/login_rate_or_reply', :locals => {:argument => @argument,:action_name => 'rate'}
+    end
+  when Argument::TABS[:reply]
+    if !logged_in?
+      render :partial => 'shared/login_rate_or_reply', :locals => {:argument => @argument,:action_name => 'reply'}
+    elsif can_create_argument?(@argument)
+      if !use_arg.blank?
+        new_argument = Argument.find(use_arg);
+        new_argument.dest_id = @argument.id;        
+        new_argument.debate_id = @argument.debate_id;
+      else
+      new_argument = Argument.new;
+      new_argument.dest_id = @argument.id;
+      new_argument.debate_id = @argument.debate_id;
+      end
+      render :partial => 'shared/argument_form', :locals => {:argument => new_argument}
+    else
+      'You hav\'nt permissions to reply to this argument'
+    end
+  when Argument::TABS[:tags]
+    "<br/>"+tags_div_and_or_add_tag_form(@argument)
+  when Argument::TABS[:links]
+    render :partial => 'arguments/links_list', :locals => {:argument => @argument}
+  when Argument::TABS[:watching]
+    render :partial => 'arguments/rss',        :locals => {:argument => @argument}
+  when Argument::TABS[:edit]
+    render :partial => 'shared/argument_form', :locals => {:argument => @argument} if can_edit_argument?(@argument)
+  when Argument::TABS[:bookmark]
+    "<br/>"+bookmark_link(@argument, params[:short_title])
+  when Argument::TABS[:video]
+    "Played #{pluralize(@argument.video.played_times, 'time')}<br />" << @argument.video.play! << "<br/>"
+  when Argument::TABS[:duparg]
+    render :partial => 'arguments/dup_arg', :locals => {:argument => @argument}
+  when Argument::TABS[:contexts]
+    render :partial => 'arguments/contexts'
+  when Argument::TABS[:drafts]
+    render :partial => 'arguments/drafts'
+  when Argument::TABS[:image]
+    render :partial => 'arguments/images', :locals => {:argument => @argument}
+end
+
+page.replace_html tab_div_id(get_tab_name(@argument, tab), @argument), :inline => out
+page << <<-STR
+  $('#{[tab_link_id(@argument, get_tab_name(@argument, tab))]}').onclick = function(){
+      toggle_div(this);
+      scrollToCenter(#{@argument.id});
+      return false;
+  };
+  $('#{[tab_link_id(@argument, get_tab_name(@argument, tab))]}').onclick();
+STR

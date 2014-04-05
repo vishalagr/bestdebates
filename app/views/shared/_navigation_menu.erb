@@ -1,0 +1,89 @@
+<img src="/images/menu_top_bg.gif" alt="" title="" style="margin-bottom:-5px;" />
+<div id="menu">
+  <div id="nav">
+    <ul class="main_nav">
+      <li><%= link_to('overview', root_url) unless admin_user? %></li>
+      <li>
+        <%= link_to 'Browse debates', debates_path %>
+        <ul class="sub_nav">
+          <li><%= link_to 'Create Debates', (logged_in? ? new_debate_path : login_path), {:class => "sub_link"} %></li>
+          <li><%= link_to 'All Debates', debates_path, {:class => "sub_link"} %></li>
+          <% categories_list.each do |category| -%>
+            <li><%= category_link(category, :class => "sub_link") %></li>
+          <% end -%>
+          <% if admin_user? -%>
+            <li><%= link_to 'Retired', debates_path(:retired => true), {:class => "sub_link"} %></li>
+          <% end -%>
+          <%# if logged_in? && !fb_user? %>
+          <!--<li><%#=link_to "Messages" , private_messages_url , {:class => "sub_link"} %></li>-->
+          <%# end %>
+        </ul>
+      </li>
+      <li><%= link_to 'Create A Debate', (logged_in? ? new_debate_path : login_path)  %></li>
+      
+      <% if admin_user? %>
+        <li>
+            <%= link_to 'Config', admin_variables_url %>
+          <ul class="sub_nav">
+             <li><%= link_to 'Vetting Config', admin_variables_url  , {:class => 'sub_link'} %></li>
+             <li><%= link_to 'Rating Config',   admin_rating_variables_url, {:class => 'sub_link'} %></li>
+	     <li><%= link_to 'User Score Config',   admin_user_variables_url, {:class => 'sub_link'} %></li>
+	     <li><%= link_to 'Shortcuts',   admin_shortcuts_url, {:class => 'sub_link'} %></li>
+          </ul>
+        </li>
+        <li><%= link_to 'Users',  admin_users_url %></li>
+        <li>
+          <%= link_to 'Stat',   admin_home_url(:action => 'stats') %>
+          <ul class="sub_nav">
+            <li><%= link_to 'Logins',   admin_home_url(:action => 'stats'), {:class => 'sub_link'} %></li>
+            <li><%= link_to 'Debates', '/admin/debate_stats', {:class => 'sub_link'} %></li>
+            <li><%= link_to 'Categories', '/admin/category_stats', {:class => 'sub_link'} %></li>
+            <li><%= link_to 'Twitter Accounts', '/admin/twitter_accounts', {:class => 'sub_link'} %></li>
+            <li><%= link_to 'Manage Twitter Accounts', manage_twitter_accounts_url ,{:class => 'sub_link'} %></li>
+            <li><%= link_to 'Manage Category Twitter Accounts', category_twitter_accounts_url ,{:class => 'sub_link'} %></li>
+          </ul>
+        </li>
+        <li>
+          <%= link_to 'Defs', admin_definitions_url %>
+          <ul class="sub_nav">
+            <li><%= link_to 'Categories', admin_categories_url, {:class => "sub_link"} %></li>
+            <li><%= link_to 'Groups',     admin_groups_url, {:class => "sub_link"} %></li>
+            <li><%= link_to 'Tags',       admin_tags_url, {:class => "sub_link"} %></li>
+            <li><%= link_to 'Debate of day', debate_of_day_admin_categories_url, {:class => "sub_link"} %></li>
+            <li><%= link_to 'Support Pages', '/admin/support_pages', {:class => "sub_link"} %></li>
+          </ul>
+        </li>
+        <li> <%= link_to 'Instr', admin_home_url(:action => 'instructions') %> </li>
+      <% else -%>
+        <li><%= link_to 'SUPPORT', support_url , :class=>'main_link' %>
+          <ul class="sub_nav">
+            <li><%= link_to 'Principles', principles_url, {:class => "sub_link"} %></li>
+             <li><%= link_to 'Participate1', participate_url, {:class => "sub_link"} %></li>
+	     <li><%= link_to 'Project Renovation', project_renovation_url, {:class => "sub_link"} %></li>
+             <% if !@supportpages.blank? %>
+              <% @supportpages.each do |support| %>
+               <li><%= link_to "#{support.page_title}",page_url(:action_page => "#{support.page_title}"), {:class => "sub_link"} %></li>
+              <% end %>
+             <% end %>
+          </ul>
+        </li>
+        <% if logged_in? %>
+          <li> <span class="spacing"> <%= link_to 'Profile',  user_path(current_user) %> </span> </li>       
+        <% end %>
+        <li><%= link_to 'Contact Us', contact_url, :class=>'main_link' %></li>     
+      <% end %>      
+    </ul>
+    <div class="clear_both"></div>
+  </div>
+  <div id="search">
+    <% form_for :search_result, SearchResult.new, :url => search_results_url do |f| -%>
+      <!-- <input type="text" name="" id="" value="search" class="search_field" /> -->
+      <%= f.text_field(:search, :value => "Search", :class => "search_field",
+                       :onclick => "if(this.value == 'Search') {this.value = '';}",
+                       :onblur => "if(this.value == '') {this.value = 'Search';}"
+                      ) %>
+      <input type="image" src="/images/pale_white_arrow.png" alt="" title="" name="" id="" value="Submit" class="search_button" />
+    <% end %>
+  </div>
+  <div class="clear_both"></div>
+</div>

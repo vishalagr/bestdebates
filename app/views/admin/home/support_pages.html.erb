@@ -1,0 +1,16 @@
+<h1>Admin: Support Pages</h1>
+
+<table>
+  <tr></tr>
+  <% @support_pages.each do |page| %>
+  <tr>
+    <td><%= page.page_title %>&nbsp;&nbsp;</td>
+    <td><%= link_to 'Edit',     edit_support_page_path(page) %>&nbsp;&nbsp;</td>
+    <td><%= link_to 'Delete', support_page_path(page) , :method => 'delete' %>&nbsp;&nbsp;</td>
+    <td><%= link_to 'show',   page_url(:action_page => page.page_title)%>&nbsp;&nbsp;</td>
+   </tr>
+  <% end %>
+</table>
+
+<br />
+<%= link_to 'New Support Page', new_support_page_path %>

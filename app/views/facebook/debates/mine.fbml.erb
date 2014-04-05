@@ -1,0 +1,32 @@
+<style>
+div.pagination {
+  font-size: 11px;
+  padding:2px;
+  float: right;
+}
+
+div.pagination a {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  text-decoration: none; /* no underline */
+}
+div.pagination a:hover, div.pagination a:active {
+
+}
+div.pagination span.current {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  font-weight: bold;
+}
+div.pagination span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  color: #797979;
+}
+</style>
+<%= will_paginate(@debates_and_arguments)%><br style="clear:both;" />
+<%= render :partial => "debate_or_argument",
+           :collection => @debates_and_arguments,
+           :as => :debate_or_argument,
+           :spacer_template => 'spacer_divider' %><br />
+<%= will_paginate(@debates_and_arguments)%><br style="clear:both;"/>

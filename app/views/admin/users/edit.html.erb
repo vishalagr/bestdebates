@@ -1,0 +1,17 @@
+<div class="debate-argument">
+  <div class="debate-listings">
+    <div class="debate-argument-title-background">
+      <h2>Edit Profile</h2>
+    </div>
+    <div class="argument-form-inner">
+      <div class="argument-form-wrapper">
+        <% form_for [:admin, @user], :html => {:method => :put, :multipart => true} do |f| -%>
+          <%= render :partial => 'users/form', :locals => {:f => f, :user => @user} %>
+        <% end -%>
+        <%= link_to 'Back', admin_users_path %>
+      </div>
+    </div>
+  </div>
+  <div class="debate-listing-inner-footer"></div>
+</div>
+<div class="debate-listing-footer"></div>

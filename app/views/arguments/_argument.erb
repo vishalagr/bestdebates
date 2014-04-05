@@ -1,0 +1,7 @@
+<% content_tag :div, :id => argument_id(argument) do %>
+  <%#= link_to_remote '[DEL]', {:url => argument_url(argument), :update => {:success => argument.id.to_s}}, 
+    :confirm => "Are you sure you want to permanently delete the argument?", 
+    :method => :delete if admin_user? %>
+  <%= time_ago_in_words(argument.created_at) %> ago: <%#= link_to_argument(argument) %>
+<% end %>
+<%= argument_tooltip_script(argument) %>

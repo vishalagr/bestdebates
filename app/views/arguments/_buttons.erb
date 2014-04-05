@@ -1,0 +1,29 @@
+
+<%= link_to image_tag('red-reply-argument-button.png', :alt => 'reply to argument'), new_debate_argument_url(@debate, :parent_id => @argument.id , :code => params[:code]) %>
+ 
+<% unless the_same_user?(@argument.user) %>
+  <%= link_to_function image_tag('Rate-This-Argument-button.png', :alt => 'rate this argument'), :id => "rate" ,:name => "#{tooltip_argument_url(@argument)}"  %>
+  <%#= rating_script_top(@argument) %>
+<% end %>
+
+
+<% if logged_in? %>
+<% if @argument.draft? %>
+<div class="make_public_middle">
+ <% form_tag(publish_argument_path(@argument),:method=>:get) do %>
+      <%= image_submit_tag 'make_public.jpg',:style => 'border: none;' , :onclick => "return parentPublic(#{parentIsDraft(@argument.parent_id)});"%>
+    <% end %>
+</div>
+<% end %>
+   <div class="flag_middle">
+    <% form_remote_tag(
+      :url => report_offensive_argument_path(@argument),
+      :confirm => 'Are you sure you want to report this debate as offensive?'
+    ) do %>
+      <%= submit_tag '&nbsp;Flag&nbsp;' %>
+    <% end %>
+  </div>
+<% end %>
+<%= render_partial 'shared/external_links'%>
+<%#= link_to image_tag('Pub-for-public-deb-blu.gif', :alt => 'publish argument'), publish_argument_url(@argument) if @argument.priv? and @argument.can_be_modified_by?(current_user) %>
+<br/>

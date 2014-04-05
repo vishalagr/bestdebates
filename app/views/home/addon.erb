@@ -1,0 +1,370 @@
+<%= fckeditor_include! %>
+
+<%= javascript_include_tag "fckeditor/fckeditor.js" %>
+<script type="text/javascript">
+  window.onload = function()
+  {
+    var oFCKeditor = new FCKeditor( 'argument_body','580px;', '150px', 'Standard' ) ;
+    oFCKeditor.BasePath = '/javascripts/fckeditor/';
+    oFCKeditor.Config['CustomConfigurationsPath'] = '/javascripts/fckcustom.js';   
+
+    //var txt = CleanWord( '<%#= params[:seltext].gsub(/\W/, '\\\\\0') if !params[:seltext].blank? %>', false, false );
+    oFCKeditor.Value =  '<%= params[:seltext].gsub(/\W/, '\\\\\0') if !params[:seltext].blank? %>' //text;
+   
+    document.getElementById('argument_body').value = '<%= params[:seltext].gsub(/\W/, '\\\\\0') if !params[:seltext].blank? %>' // text;
+    oFCKeditor.ReplaceTextarea() ;
+  }
+
+
+function sendCommand(cmd) {
+  var element = document.createElement("BestDebatesDataElement");
+  element.setAttribute("command", cmd);
+  document.documentElement.appendChild(element);
+
+  var evt = document.createEvent("Events");
+  evt.initEvent("BestDebatesExtensionEvent", true, false);
+  element.dispatchEvent(evt);
+}
+function CleanWord( oNode, bIgnoreFont, bRemoveStyles )
+{
+	var html = oNode ;
+
+	html = html.replace(/<o:p>\s*<\/o:p>/g, '') ;
+	html = html.replace(/<o:p>.*?<\/o:p>/g, ' ') ;
+
+	// Remove mso-xxx styles.
+	html = html.replace( /\s*mso-[^:]+:[^;"]+;?/gi, '' ) ;
+
+	// Remove margin styles.
+	html = html.replace( /\s*MARGIN: 0cm 0cm 0pt\s*;/gi, '' ) ;
+	html = html.replace( /\s*MARGIN: 0cm 0cm 0pt\s*"/gi, "\"" ) ;
+
+	html = html.replace( /\s*TEXT-INDENT: 0cm\s*;/gi, '' ) ;
+	html = html.replace( /\s*TEXT-INDENT: 0cm\s*"/gi, "\"" ) ;
+
+	html = html.replace( /\s*TEXT-ALIGN: [^\s;]+;?"/gi, "\"" ) ;
+
+	html = html.replace( /\s*PAGE-BREAK-BEFORE: [^\s;]+;?"/gi, "\"" ) ;
+
+	html = html.replace( /\s*FONT-VARIANT: [^\s;]+;?"/gi, "\"" ) ;
+
+	html = html.replace( /\s*tab-stops:[^;"]*;?/gi, '' ) ;
+	html = html.replace( /\s*tab-stops:[^"]*/gi, '' ) ;
+
+	// Remove FONT face attributes.
+	if ( bIgnoreFont )
+	{
+		html = html.replace( /\s*face="[^"]*"/gi, '' ) ;
+		html = html.replace( /\s*face=[^ >]*/gi, '' ) ;
+
+		html = html.replace( /\s*FONT-FAMILY:[^;"]*;?/gi, '' ) ;
+	}
+
+	// Remove Class attributes
+	html = html.replace(/<(\w[^>]*) class=([^ |>]*)([^>]*)/gi, "<$1$3") ;
+
+	// Remove styles.
+	if ( bRemoveStyles )
+		html = html.replace( /<(\w[^>]*) style="([^\"]*)"([^>]*)/gi, "<$1$3" ) ;
+
+	// Remove empty styles.
+	html =  html.replace( /\s*style="\s*"/gi, '' ) ;
+
+	html = html.replace( /<SPAN\s*[^>]*>\s* \s*<\/SPAN>/gi, ' ' ) ;
+
+	html = html.replace( /<SPAN\s*[^>]*><\/SPAN>/gi, '' ) ;
+
+	// Remove Lang attributes
+	html = html.replace(/<(\w[^>]*) lang=([^ |>]*)([^>]*)/gi, "<$1$3") ;
+
+	html = html.replace( /<SPAN\s*>(.*?)<\/SPAN>/gi, '$1' ) ;
+
+	html = html.replace( /<FONT\s*>(.*?)<\/FONT>/gi, '$1' ) ;
+
+	// Remove XML elements and declarations
+	html = html.replace(/<\\?\?xml[^>]*>/gi, '' ) ;
+
+	// Remove Tags with XML namespace declarations: <o:p><\/o:p>
+	html = html.replace(/<\/?\w+:[^>]*>/gi, '' ) ;
+
+	// Remove comments [SF BUG-1481861].
+	html = html.replace(/<\!--.*?-->/g, '' ) ;
+
+	html = html.replace( /<(U|I|STRIKE)> <\/\1>/g, ' ' ) ;
+
+	html = html.replace( /<H\d>\s*<\/H\d>/gi, '' ) ;
+
+	// Remove "display:none" tags.
+	html = html.replace( /<(\w+)[^>]*\sstyle="[^"]*DISPLAY\s?:\s?none(.*?)<\/\1>/ig, '' ) ;
+
+	// Remove language tags
+	html = html.replace( /<(\w[^>]*) language=([^ |>]*)([^>]*)/gi, "<$1$3") ;
+
+	// Remove onmouseover and onmouseout events (from MS Word comments effect)
+	html = html.replace( /<(\w[^>]*) onmouseover="([^\"]*)"([^>]*)/gi, "<$1$3") ;
+	html = html.replace( /<(\w[^>]*) onmouseout="([^\"]*)"([^>]*)/gi, "<$1$3") ;
+
+	if ( false )
+	{
+		// The original <Hn> tag send from Word is something like this: <Hn style="margin-top:0px;margin-bottom:0px">
+		html = html.replace( /<H(\d)([^>]*)>/gi, '<h$1>' ) ;
+
+		// Word likes to insert extra <font> tags, when using MSIE. (Wierd).
+		html = html.replace( /<(H\d)><FONT[^>]*>(.*?)<\/FONT><\/\1>/gi, '<$1>$2<\/$1>' );
+		html = html.replace( /<(H\d)><EM>(.*?)<\/EM><\/\1>/gi, '<$1>$2<\/$1>' );
+	}
+	else
+	{
+		html = html.replace( /<H1([^>]*)>/gi, '<div$1><b><font size="6">' ) ;
+		html = html.replace( /<H2([^>]*)>/gi, '<div$1><b><font size="5">' ) ;
+		html = html.replace( /<H3([^>]*)>/gi, '<div$1><b><font size="4">' ) ;
+		html = html.replace( /<H4([^>]*)>/gi, '<div$1><b><font size="3">' ) ;
+		html = html.replace( /<H5([^>]*)>/gi, '<div$1><b><font size="2">' ) ;
+		html = html.replace( /<H6([^>]*)>/gi, '<div$1><b><font size="1">' ) ;
+
+		html = html.replace( /<\/H\d>/gi, '<\/font><\/b><\/div>' ) ;
+
+		// Transform <P> to <DIV>
+		var re = new RegExp( '(<P)([^>]*>.*?)(<\/P>)', 'gi' ) ;	// Different because of a IE 5.0 error
+		html = html.replace( re, '<div$2<\/div>' ) ;
+
+		// Remove empty tags (three times, just to be sure).
+		// This also removes any empty anchor
+		html = html.replace( /<([^\s>]+)(\s[^>]*)?>\s*<\/\1>/g, '' ) ;
+		html = html.replace( /<([^\s>]+)(\s[^>]*)?>\s*<\/\1>/g, '' ) ;
+		html = html.replace( /<([^\s>]+)(\s[^>]*)?>\s*<\/\1>/g, '' ) ;
+	}
+
+	return html ;
+}
+
+
+
+
+</script>
+<style type="text/css">
+  #content{
+    float:left;
+    margin-right:5px;
+    width:702px;
+  }
+  #content_top_box{
+    width:702px;
+    min-height:54px;
+    background-image:url(/images/lc_top_bg.png);
+    background-position:top left;
+    background-repeat:no-repeat;
+  }
+  #content_box  {
+    background-image:url("/images/lc_middle_bg.png");
+    background-position:left top;
+    background-repeat:repeat-y;
+    padding-left:26px;
+    padding-right:38px;
+    width:638px;
+  }
+  #content_inner_bottom_bg {
+    height:20px;
+    background-image:url(/images/lc_inner_bottom_bg.png);
+    background-position:top left;
+    background-repeat:repeat-y;
+  }
+  #content_outer_bottom_bg {
+    height:24px;
+    background-image:url(/images/lc_outer_bottom_bg.png);
+    background-position:top left;
+    background-repeat:repeat-y;
+  }
+  .a_form_box  {
+    margin-left:15px;
+    width:100%;
+  }
+
+  table {
+    border-collapse:collapse;
+    border-spacing:0;
+  }
+
+  html, body {
+    color:#313131;
+    font-family:Tahoma,Arial,sans-serif;
+    font-size:12px;
+    line-height:1.5;
+    text-align:left;
+    background-image:url("");
+
+  }
+  #a_form_box td {
+    padding-bottom:1px;
+    padding-top:1px;
+    vertical-align:top;
+  }
+
+  .a_f_labels_bottom_new {
+    padding-right:8px;
+    width:187px;
+  }
+
+
+  .a_f_labels_top_new {
+    padding-right:8px;
+    width:29px;
+  }
+  #middle {
+    width:952px;
+    padding-left:15px;
+    background-image:url(/images/main_middle_bg.gif);
+    background-repeat:repeat-y;
+    background-position:top left;
+    min-height:446px;
+  }
+  .page_title  {
+    color:#FFFFFF;
+    font-family:'Arial Narrow';
+    font-size:29px;
+    margin-left:22px;
+    padding-top:1px;
+    text-transform:uppercase;
+  }
+  #a_form_box {
+    width:91%;
+    margin-left:15px;
+  }
+  #a_form_box textarea {width: 90.5%}
+  #a_form_box td {
+    padding-top:1px;
+    padding-bottom:1px;
+    vertical-align:top;
+  }
+  #a_form_box td p {
+    padding-bottom:1px;
+  }
+  .argument-form-edit {
+    clear:both;
+    padding:2px 0 0 1px;
+  }
+  .textbox_class{
+
+    width:401px;
+  }
+  .firefox_right_top_border {
+    background-image:url("/images/right_column_top_bg.png");
+    background-position:left top;
+    background-repeat:no-repeat;
+    color:#FFFFFF;
+    font-family:Arial Narrow;
+    font-size:17px;
+    margin-left:0px;
+    min-height:45px;
+    padding-left:22px;
+    padding-top:9px;
+    text-transform:uppercase;
+    width:240px;
+  }
+  .firefox_right_container  {
+    background-color:#E4F8FF;
+    border-color:-moz-use-text-color #069BCC;
+    border-style:none solid;
+    border-width:medium 1px;
+    padding:0px 11px;
+    width:236px;
+  }
+  .firefox_right_titles {
+    font-family:Trebuchet MS,sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+  }
+  .firefox_right_bottom_border {
+    background-image:url("/images/right_column_bottom_bg.png");
+    background-position:left top;
+    background-repeat:no-repeat;
+    height:10px;
+    margin-bottom:10px;
+    width:260px;
+  }
+
+  .login_form_labels {
+    padding-right:10px;
+  }
+  p {
+    line-height: 22px;
+
+}
+
+</style>
+
+
+<div id="content">
+  <div id="content_top_box" style="margin-bottom:-5px;">
+    <p class="page_title">New Argument</p>
+  </div>
+  <div id="content_box">
+    <div style="height:auto;">
+
+      <%form_for(:argument , @argument,:url=>addon_argument_create_url()) do |f| %>
+       <div class="errors"><%= f.error_messages %></div>
+        <table cellpadding="0" cellspacing="0" border="0" id="a_form_box">
+          <tr>
+            <td class="a_f_labels_top_new"><% content_tag :div, :class => "argument-form-edit" do %>Title:<% end %> </td>
+            <td>
+              <input class="a_f_fields_top_new" id="argument-title" name="argument[title]" size="65" type="text" value ="<%=params[:seltext].to(100) if !params[:seltext].blank? %>"/>
+            </td>
+          </tr>
+          <tr><td colspan="2"><textarea id="argument_body" name="argument[body]"></textarea>
+            </td>
+          </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0" border="0" id="a_form_box">
+          <tr><td class="a_f_labels_bottom_new"><% content_tag :div, :class => "argument-form-edit" do %>
+                Add External Link: <font color=brown> http:// </font>
+              <% end %>
+            </td>
+            <td>
+              <% content_tag :div, :class => "argument-form-edit" do %>
+                <%= f.text_field  :link_url,:size => 50, :class=>'textbox_class' , :value => "#{params[:url]}" %>
+              <% end %>
+            </td>
+          </tr>
+
+          <% f.fields_for  :video do |v| %>
+            <tr>
+              <td class="a_f_labels_bottom_new"><%= v.label 'Place video embed code here' %></td>
+              <td><%= v.text_field :code, :size => 50, :class=>'textbox_class' %></td>
+            </tr>
+          <% end %>
+
+          <tr>
+            <td class="a_f_labels_bottom_new">
+              <% content_tag :div, :class => "argument-form-edit" do %>
+                Tags (separate by commas):
+              <% end %>
+            </td>
+            <td>
+              <% content_tag :div, :class => "argument-form-edit" do %>
+                <%= f.text_field :tag_list, :size => '50', :maxlength => 100, :class=>'textbox_class' %>
+              <% end %>
+            </td>
+          </tr>
+          <tr><td>
+              <%= image_submit_tag 'save_as_draft.png', :class => 'left publish-button', :name => "savedraft", :style => 'border: none;', :onclick=>"return sendCommand('save_as_draft')" %>
+             <!-- <input type="image"  src="images/save_as_draft.png" value="Submit" style="border:none;" onclick="sendCommand('save_as_draft')" />
+             -->
+             </td>
+            <td align="right;"><%= image_submit_tag 'cancel.png',        :class => 'cancel-button', :name => "cancel",    :style => 'border: none; padding-left:119px;float:right;', :onclick => "return sendCommand('cancel')" %></td></tr>
+        </table>  
+     <% end %>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+
+  <div id="content_inner_bottom_bg"></div>
+
+  <div id="content_outer_bottom_bg"></div>
+</div>
+
+
+
+
+
+

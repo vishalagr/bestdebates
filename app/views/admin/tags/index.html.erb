@@ -1,0 +1,54 @@
+<div id="left-content">
+  <div class="debate-argument">
+    <div class="debate-listings">
+      <div class="debate-argument-title-background">
+        <h2>Listing Tags</h2>
+      </div>
+      <div class="argument-form-inner">
+        <div class="argument-form-wrapper">
+          <div style="padding-left:10px;">
+
+            <%= link_to 'View tags by popularity', cloud_admin_tags_path %>
+            <br />
+
+            <table width="100%"cellspacing="0" cellpadding="0">
+              <tr style="background-color:#A6A6A6">
+                <th><%= link_to 'Tags', admin_tags_path(:order_by => 'name', :order_name => opp_order(@order_name)) %></th>
+                <th>&nbsp;</th>
+              </tr>
+
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+
+              <% @tags.each do |tag| %>
+                <tr bgcolor='<%= cycle "#E6E6E6", "#ffffff" %>'>
+                  <td><%= tag.name %></td>
+                  <td>
+                    <%= link_to image_tag('icon_edit.gif', :title => 'Edit'), edit_admin_tag_path(tag) %> | 
+                    <%= link_to image_tag('delete-icon.gif', :title => 'Delete'), admin_tag_path(tag), :confirm => "Are you sure?", :method => :delete %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+
+            <br />
+            <% form_for [:admin, @tag] do |f| %>
+              <%= render :partial => f, :locals => {:f => f, :submit_name => 'Add Tag'} %></td>
+            <% end %>
+            <br />
+
+            <table>
+              <tr><td align='center'><%= will_paginate @tags %></td></tr>
+            </table>
+
+          </div>
+          <div style="padding-right:10px;clear:both;"><br /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="debate-listing-inner-footer"></div>
+</div>
+<div class="debate-listing-footer"></div>

@@ -1,0 +1,5 @@
+<% form_for "bookmark" , :url => {:controller => 'users', :action => 'updatebookmark' , :id => @bookmark.id} do %>
+
+Bookmark Text : <%= text_field :bookmark ,:bookmark_text %>
+<%= submit_tag("save") %>
+<% end  %>

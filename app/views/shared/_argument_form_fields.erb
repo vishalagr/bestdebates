@@ -1,0 +1,174 @@
+  <%= argument_parent_hidden_field(argument) %> 
+
+  <table cellpadding="0" cellspacing="0" border="0" id="a_form_box">
+    <tr>
+      <td class="a_f_labels_top_<%=params[:action]%>"><%= f.label "Type:" %></td>
+      <td>
+        <%= f.label "For: "%> <%= f.radio_button :argument_type, 'pro' %>
+        &nbsp; &nbsp; &nbsp;
+        <%= f.label "Against: "%> <%= f.radio_button :argument_type, 'con' %>
+        &nbsp; &nbsp; &nbsp;
+        <%= f.label "Comment: "%> <%= f.radio_button :argument_type, 'com' %>
+      </td>
+    </tr>
+  <!--
+    <tr>
+      <td class="a_f_labels"><%#= f.label 'Political Position:' %></td>
+      <td><%#= f.select :definition_id,
+          [['-- Select Position --', nil]] + Definition.find(:all).collect{|d| [d.name, d.id]},
+          {}, {:style => 'width:200px;'} %></td>
+    </tr>
+  -->
+    <tr>
+      <td class="a_f_labels_top_<%=params[:action]%>"><%= f.label 'Title:' %></td>
+      <td>
+        <%=f.text_area(:title,
+          :id =>"argument-title#{argument_id(argument)}",
+          :class =>"a_f_fields_top_#{params[:action]}",
+          :cols => 75,
+          :rows => 2,
+          :wrap=>"physical",          
+          :onKeyDown =>"textCounter(this,220);saveIt('argument-title#{argument_id(argument)}');",
+          :onKeyUp => "textCounter(this,220);" )%>
+
+        <%#= f.text_field(
+          :title, 
+          :id => "argument-title#{argument_id(argument)}", 
+          :size => 44, :class => "a_f_fields_top_#{params[:action]}"
+        )%>
+        <%= javascript_tag "initArgumentTitleFieldHandlers('argument-title#{argument_id(argument)}')" if argument.new_record?%>
+	<%= javascript_tag "saveIt('argument-title#{argument_id(argument)}')" if argument.new_record? %>
+      </td>
+    </tr>
+
+    <% if false -%>
+      <tr>
+        <td class="a_form_labels">change author:</td>
+        <td>
+          <%= f.select :author_login, User.find_all_active.collect(&:login), {:include_blank => true}, {:style => 'width:200px;'} %>
+        </td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <td colspan="2">        
+        <% unless request.xhr? %>
+          <% content_tag :id => fckeditor_div_id('debate', 'body') do %>
+            <%= fckeditor_textarea("argument", "body", :toolbarSet => 'Standard',:cols => "75",:rows=> "12", :width => '580px;', :height => '200px') %>
+          <% end %>
+        <%= javascript_tag "initArgumentClarificationField('argument__body_editor')" if argument.new_record?%>
+        <% else %>
+          <textarea id="<%= editor_id(argument) -%>" cols="75" rows="12" width = '550px;' height = '200px' name="argument[body]"><%= argument.body %></textarea>
+          <%= javascript_tag "initArgumentClarificationField('#{editor_id(argument)}')" if argument.new_record?%>
+        <% end %>
+      </td>
+      
+    </tr>
+  </table>
+<table cellpadding="0" cellspacing="0" border="0" id="a_form_box2_<%=argument.dest_id || 0 %>" class="a_form_box2" style="display: none;">
+    <tr>
+      <td class="a_f_labels_bottom_<%=params[:action]%>">
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.label 'Add External Link: <font color=brown>http://</font>' %>
+        <% end %>
+      </td>
+      <td>
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.text_field :link_url,:size => 19, :style => 'width:380px;' %>
+        <% end %>
+      </td>
+    </tr>
+
+    <% f.fields_for :video do |v| %>
+      <tr>
+        <td class="a_f_labels_bottom_<%=params[:action]%>"><%= v.label 'Place video embed code here' %></td>
+        <td><%= v.text_field :code, :size => 19, :style => 'width:380px;' %></td>
+      </tr>
+    <% end unless argument.immutable? %>
+
+    <tr>
+      <td class="a_f_labels_bottom_<%=params[:action]%>">
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.label 'Tags (separate by commas):' %>
+        <% end %>
+      </td>
+      <td>
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.text_field :tag_list, :size => '50', :maxlength => 100, :style => 'width:380px;' %>
+        <% end %>
+      </td>
+    </tr>
+    <% if params[:action] != 'tab' %>
+    <tr>
+      <td class="a_f_labels_bottom_<%=params[:action]%>">
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.label 'Image:' %>
+        <% end %>
+      </td>
+      <td>
+        <% content_tag :div, :class => "argument-form-edit" do %>
+        <%= file_column_field 'argument', 'image' , :style => 'width:380px;',:size=>'31'%>
+        <% end %>
+      </td>
+    </tr>
+
+    <% else %>
+       <tr>
+      <td class="a_f_labels_bottom_<%=params[:action]%>">
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= uploaded_data=(f.label 'Image:') %>
+        <% end %>
+      </td>
+      <td>
+        <% content_tag :div, :class => "argument-form-edit" do %>
+ 	<%= f.file_field :image %>
+        <% end %>
+      </td>
+    </tr>
+    <% end  %>
+
+</table>
+<table cellpadding="0" cellspacing="0" border="0" id="a_form_box3_<%=argument.dest_id || 0 %>" class="a_form_box2" style="display: none;">
+    <tr>
+      <td class="a_f_labels_bottom_invite"><%= f.label 'Invite people to participate in debate:' %></td>
+      <td style="vertical-align: middle;"><%= check_box_tag :invite_people, '1', params[:invite_people] == '1'  %></td>      
+    </tr>
+    <% if argument.new_record? %>
+    <tr>
+      <td class="a_f_labels_bottom_invite"><%= f.label 'Watch Replies to This Argument:' %></td>
+      <td style="vertical-align: middle;">
+      <% Argument::RSS_AVAIVABLE_DEPTHS.each do |depth| %>
+        <%= depth %> <%= radio_button_tag 'depth', depth %> &nbsp; &nbsp;
+      <% end %>
+      </td>
+    </tr>
+    <% end %>
+    <%# Display `move` option only if this is edit action %>
+    <% if (!argument.new_record? and current_user.admin? and  params[:firefox_arg].blank? ) %>
+      <tr>
+        <td class="a_f_labels_bottom_invite">change parent argument to argument #:</font></td>
+        <td><%= f.text_field :dest_id, :size => 2 %></td>
+      </tr>
+      <% elsif !argument.new_record? %>
+      <input type="hidden" value="<%=  argument.dest_id %>" name="argument[dest_id]" id="argument_dest_id"/>
+    <% end %>
+
+    <!--
+    <tr>
+      <td class="a_f_labels">
+        <%# content_tag :div, :class => "argument-form-edit" do %>
+          <font size=1> Move arg <b><%#= argument.id %></b> to arg:</font>
+        <%# end unless argument.new_record? -%>
+      </td>
+      <td>
+        <%# content_tag :div, :class => "argument-form-edit" do %>
+          <%#= text_field :argument, :dest_id, :size => 2 %>
+        <%# end unless argument.new_record? -%>
+      </td>
+    </tr>
+    -->
+    <input id="clicked_button<%= unique_id -%>" type="hidden" name="clicked_button" />
+</table>
+ <div class="clear_both"></div>
+
+ <iframe id=""argument_form_<%=form_id(argument)%>" name="upload_frame"  style="display: none"></iframe>

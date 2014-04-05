@@ -1,0 +1,35 @@
+<div id="links<%= argument.id %>" style="display:none" class="dd_tabs_container">
+  <div class="d_tabs_box">  
+    <!--<span class="right">
+      <%#= link_to_function "go to parent", "new Effect.ScrollTo('mktree_node_#{argument.parent_id}',{duration:3.0, offset:-20});new Effect.Highlight('mktree_node_#{argument.parent_id}',{duration:5.0});"  %>
+    </span>-->
+    <span class="tab"><%= tab_link_to_remote('Rate',  :rating, argument) %></span>
+    <span class="tab"><%= tab_link_to_remote('Reply', :reply,  argument) %></span>
+    <% if logged_in? %>
+    <span class="tab"><%= tab_link_to_remote('DupArg', :duparg,  argument) %></span>
+     <!-- <span class="tab"><%#= tab_link_to_remote('Contexts', :contexts,  argument) %></span>-->
+    <% end %>
+    <span class="tab"><%= tab_link_to_remote('Tags',  :tags,   argument) %></span>
+     <% if argument.video -%>
+      <span class="tab"><%= tab_link_to_remote('Video', :video, argument) %></span>
+    <% end -%>
+    <span class="tab"><%= tab_link_to_remote('Links', :links, argument) %></span>
+     <% if argument.image -%>
+      <span class="tab"><%= tab_link_to_remote('Image', :image, argument) %></span>
+    <% end -%>
+    <% if argument.can_be_modified_by?(current_user) -%>
+      <span class="tab"><%= tab_link_to_remote('Edit', :edit, argument) %></span>
+    <% end %>
+    <span class="tab"><%= tab_link_to_remote('Watching', :watching, argument) %></span>
+    <% if bookmark_tab? -%>
+      <span class="tab"><%= tab_link_to_remote("Bookmark", :bookmark, argument) %></span>
+    <% end -%>
+    <% if logged_in? %>
+      <span class="tab"><%= tab_link_to_remote('Temp', :drafts,  argument) %></span>
+    <%  end %>
+    <% if argument.can_be_modified_by?(current_user)  -%>
+      <%#= link_to 'Delete', argument, :confirm => "Are you sure you'd like to delete the argument <b>#{argument.full_title}</b>?", :method => :delete %>
+      <span class="tab"><%= link_to_remote "Delete", :url  => argument_url(argument), :confirm => "Are you sure you'd like to delete the argument '#{argument.full_title}'?", :method => :delete %></span>
+    <% end -%>
+  </div>
+</div>

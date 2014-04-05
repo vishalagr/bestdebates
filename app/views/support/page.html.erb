@@ -1,0 +1,21 @@
+<div id="content_top_box"><p class="page_title" style="font-size:25px;padding-top:3px;"><%= !@support_page.blank? ? @support_page.page_title : "No Page" %></p></div>
+<div id="content_box" class="page">
+  <% if !@support_page.blank? %>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <p align="center"> <%= @support_page.video_code  %></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p> <%= @support_page.body  %></p>
+        </td>
+      </tr>  
+    </tbody>
+  </table>
+  <% end %>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

@@ -1,0 +1,5 @@
+<% if !logged_in? %>
+  <span>You must be logged in to watch arguments/debates </span>
+<% else %>
+  <%= render :partial => 'debates/rss', :locals => {:debate => @debate} %>
+<% end  %>

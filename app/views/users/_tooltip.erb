@@ -1,0 +1,30 @@
+<div class="user-tooltip">
+  <div class="user-tooltip-left"><%= user_avatar(user) %></div>
+  <div class="user-tooltip-right">
+    <h1><%= user.name.capitalize_words %></h1>
+    <p>Member Since: <%= user.created_at.strftime('%b. %d, %Y') %> </p>
+    <%- if user.show_sex? -%>
+      <p>Sex: <%= humanize_sex(user) %></p>
+    <% end -%>
+    <%- if show_birthday(user) -%>
+      <p>Birthday: <%= show_birthday(user) %></p>
+    <% end -%>
+    <%= "<p>Hometown: #{user.hometown}</p>" unless user.hometown.blank? %>
+    <%= "<p>Political Views: #{user.political_views}</p>" unless user.political_views.blank? %>
+    <%= "<p>Religious Views: #{user.religious_views}</p>" unless user.religious_views.blank? %>
+    <%= "<p>Website: #{user.website}</p>" unless user.website.blank? %>
+    <!--<p>Description: <%#= user.description %></p>-->
+    <br />
+    <p>Debates: <%= user.debates.size %></p>
+    <p>Arguments: <%= user.arguments.size %></p>
+    <p>Ranking: <%= "tbd" %></p>
+    <%= "<p>Hometown: #{user.description}</p>" unless user.description.blank? %>    
+    <% unless (skip_profile_link rescue false) -%>
+    <br />
+      <p style="text-align:right; margin-right:15px">
+        <%= link_to_user(user, :content_text => 'go to user\'s page', :target => :_blank) %>
+      </p>
+    <% end %>
+  </div>
+  <div class="clear_both"></div>
+</div>

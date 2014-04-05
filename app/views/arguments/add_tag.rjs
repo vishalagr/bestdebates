@@ -1,0 +1,2 @@
+page.reload_flashes!
+page.replace_html taggable_object_dom_id(@argument), :inline => tags_links(@argument.tags)

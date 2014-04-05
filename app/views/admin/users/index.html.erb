@@ -1,0 +1,67 @@
+<h2>Users</h2>
+<div id="content_pad">
+  <table style="margin:10px 0;">
+    <tr>
+      <% form_for :search, @search_results, :url => search_admin_users_url do |f| -%>
+        <td>
+          User Name: <%= f.text_field :user_name, {:autocomplete => 'off'} %>
+        </td>
+        <td><%= submit_tag 'Search' %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <% form_for :search, @search_results, :url => search_admin_users_url do |f| -%>
+        <td>
+          Sort by: &nbsp;&nbsp;&nbsp;&nbsp;  
+          <%= f.select :sort_by,    Admin::UsersSearch::SORTS_VIEW.collect{|key, name| [name, key] }, :include_blank => true %>
+          <%= f.select :order_by, Admin::UsersSearch::ORDERS %>
+        </td>
+        <td><%= submit_tag 'Sort' %></td>
+      <% end %>
+    </tr>
+  </table>
+    
+  <table style="width:100%;margin-bottom:10px;">
+    <tr>
+      <td></td>
+      <td><%= admin_sort_link 'Full Name', :name,   @search_results %></td>
+      <td><%= admin_sort_link 'User Name', :login,  @search_results %></td>
+      <td><%= admin_sort_link 'Email',     :email,  @search_results %></td>
+      <td><%= admin_sort_link 'Group',     :group,  @search_results %></td>
+      <td><%= admin_sort_link 'Status',    :status, @search_results %></td>
+	  <td><%= admin_sort_link 'Date',      :created_at, @search_results %></td>
+     <% if !(params[:search] && params[:search][:sort_by] == "1") %>  <td><%= admin_sort_link 'Active',    :active, @search_results %></td> <% end %>
+    </tr>
+
+    <% form_for :search, @search_results, :url => search_admin_users_url do |f| -%>
+      <% for user in @users -%>
+      <% if user %>
+        <tr class="<%= cycle("on","off") %>">
+          <td><%= check_box_tag("user_ids[]", user.id) %></td>
+          <td><span class="name"><%= user.name %></span></td>
+          <td><span class="name"><%= user.login %></span></td>
+          <td><span class="name"><%= user.email %></span></td>
+          <td align="center"><span class="name"><%= user.group ? user.group.name : '-' %></span></td>
+          <td><span class="name"><%= user.state %></span></td>
+		  <td><span class="name"><%= user.created_at.strftime("%b. %d. %Y") %></span></td>
+          <% if !(params[:search] && params[:search][:sort_by] == "1") %><td align="center"> <span class="name"> <%= user.args_count %> </span> </td><% end %>
+          <td>
+            <%= link_to 'edit', edit_admin_user_path(user) %>&nbsp;|
+            &nbsp;<%= link_to 'view', user, :target => :_blank %>&nbsp;|
+            &nbsp;<%= link_to 'Suspend', drop_admin_user_path(user),:confirm => "Sure you want to set status to Suspend for #{user.login}?"%> &nbsp;|
+            &nbsp;<%= link_to 'Delete', purge_admin_user_path(user),:confirm => "Delete forever #{user.login}?" %>
+          </td>
+        </tr>
+	<% end %>
+      <% end -%>
+
+      <% unless @users.size > 0 -%>
+        <tr><td align='center'>Sorry, no matches found.</td></tr>	
+      <% end -%>
+
+      <tr><td colspan='4' align='left'><%= select_tag "user[state]", options_for_select(['active', 'passive', 'pending']) %>&nbsp;<%= submit_tag 'submit' %></td></tr>
+    <% end -%>
+    
+    <tr><td align='center' colspan='5'><%= will_paginate @users, :params => params %></td></tr>
+  </table>
+</div>

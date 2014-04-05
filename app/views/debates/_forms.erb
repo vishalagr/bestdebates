@@ -1,0 +1,20 @@
+<div class="d_tags_top_bg" id="forms_borders<%= debate.id %>" style="display:none;">
+  <div class="d_tags_bottom_bg">
+    <div class="d_tags_container">     
+      <% if edit_tab?(debate) -%>
+        <div id="<%= tab_div_id(:edit, debate) %>" style="display:none;clear:both;" ><br /></div>
+      <% end -%>
+      <div id="<%= tab_div_id(:tags, debate) %>" style="display:none;" class="d_tags_form_box"><br /><br /></div>
+      <div id="<%= tab_div_id(:reply, debate) %>" style="display:none;" class="d_tags_form_box"><br /><br /></div>
+      <% if bookmark_tab? -%>
+        <div id="<%= tab_div_id(:bookmark, debate) %>" style="display:none;clear:both;" ><br /></div>
+      <% end -%>
+      <div id="<%= tab_div_id(:watching, debate) %>" style="margin-left:20px;display:none;"></div>
+       <div class="d_tags_cancel_button_box">
+        <%= image_submit_tag 'close_button_small_red.gif',
+          :class => 'cancel_button', :name => "close", :style => 'border: none;',
+          :onclick => "toggle_div_cancel('#{debate.id}');return false;" %>
+      </div>
+    </div>
+  </div>
+</div>

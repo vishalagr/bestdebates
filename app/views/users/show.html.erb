@@ -1,0 +1,174 @@
+<%#= include_stylesheets 'mytabz' %>
+<%=stylesheet_link_tag 'myTabz'%>
+<%=javascript_include_tag 'myTabz'%>
+<%#= include_javascripts 'mytabz' %>
+
+<script type="text/javascript">
+    document.observe("dom:loaded", function() {
+        var myTabs = new mt('user_profile_tabs', 'div.tabs');
+
+        if( $('bookmarks-tab' )  ) myTabs.addTab('bookmarks-tab', 'Bookmarks');
+        myTabs.addTab('debates-tab', 'Debates');
+        myTabs.addTab('arguments-tab', 'Arguments');
+        if( $('drafts-tab') ) myTabs.addTab('drafts-tab', 'Drafts');
+        if( $('temp-tab') ) myTabs.addTab('temp-tab','Temp');
+        if( $('invitations-tab') ) myTabs.addTab('invitations-tab', 'Invitations');
+        if( $('watching-tab') ) myTabs.addTab('watching-tab', 'Watching');
+        if($('messages-tab')) myTabs.addTab('messages-tab', 'Messaging')
+        myTabs.makeActive(myTabs.tabs[<%=@tab_value%>].id);
+    });
+</script>
+
+<div id="content_top_box">
+  <p class="page_title"><%= profile_user_name(@user) %></p>
+</div>
+
+<div id="content_box" style="width:618px;padding:0px 48px 0px 36px;">
+  <div style="float:right; padding:20px;">
+    <% if user_editable? %>
+      <%= link_to 'Edit Profile', edit_user_path(@user) %><br/>
+    <% end %>
+    <% if !the_same_user?(@user) %>
+      <%= link_to "Private Message #{@user.name.titleize}", new_private_message_path(:login=>@user.login) %>
+    <% end %>
+      <% if the_same_user?(@user) -%>
+    <%= link_to "Auto Tweet" , auto_tweet_user_path(current_user) %>
+      <% end %>
+  </div>
+ 
+
+  <div class="mypage-listings">
+   <%= render :partial => 'tooltip', :locals => {:user => @user, :skip_profile_link => true} %>    
+  </div>
+ <div class="user_score"> user score : <%= @user_score %></div>
+ 
+  <div id="user_profile_tabs">
+
+    <% if the_same_user?(@user) -%>
+      <div id="bookmarks-tab" class="tabs scr">
+        <div class="mypage-listings">
+          <h3 style="clear:both">My Bookmarks:</h3>
+          <% for bookmark in @user.bookmarks -%>
+            <dl>
+              <dd class="name">
+              <%= bookmark.debate ? debate_title(bookmark.debate) : link_to_argument(bookmark.argument) -%>
+              </dd>
+              <dd><%= bookmark.created_at.strftime('%b. %d, %Y %H:%M') %> <% if !bookmark.bookmark_text.blank? %><%=link_to bookmark.bookmark_text, "#", :id => bookmarktext_dom_id(bookmark) ,:class => "bookmark_text" %> <%#= bookmark_text_tooltip_script(bookmark) %><% end %> </dd>
+            </dl>
+          <% end -%>
+        </div>
+      </div>
+    <div id="messages-tab" class="tabs scr">
+      <div class="mypage-listings">
+     <h3 style="clear:both">Private Messages</h3>
+     <div class="messages_tabs_container">
+        <div class="d_tabs_box">
+          <span class="tab" ><span id="Incoming"><%= tab_link_messages_to_remote('Incoming') %></span></span>
+          <span class="tab" ><span id="Sent"><%= tab_link_messages_to_remote('Sent') %></span></span>
+         </div>
+     </div>
+        <div id="private_messages">
+       	<%= render :partial => "private_messages/messaging_block" , :locals => {:messages => @messages , :order => @order} %>
+        </div>
+      </div>
+    </div>
+    <% end -%>
+
+    <div id="debates-tab" class="tabs scr">
+      <%= render_profile_debates_list(@user) %>
+
+      <% if the_same_user?(@user) %>
+        <%#= profile_debates_list @user, 'Private Debates I can Read',  @user.writable_authored_debates %>
+        <%#= profile_debates_list @user, 'Private Debates I can Write', @user.readable_authored_debates %>
+      <% end %>
+    </div>
+
+    <div id="arguments-tab" class="tabs scr">
+      <div class="mypage-listings">
+        <%= render_profile_arguments_list(@user) %>
+        <br style="clear:both;"/><br />
+      </div>
+    </div>
+    <% if the_same_user?(@user) or admin_user? %>
+    <div id="drafts-tab" class="tabs scr">
+      <div class="mypage-listings">
+       <%= render_profile_private_debates_list(@user) %>
+        <br style="clear:both;"/><br />
+        <%=render_profile_private_arguments_list(@user)%>
+      </div>
+    </div>
+
+     <div id="temp-tab" class="tabs scr">
+      <div class="mypage-listings">
+      
+            <% if @arguments.empty? %>
+              <br/>
+              <span class="draft-title">NO DRAFT ARGUMENTS CREATED BY YOU.</span>
+            <%  else %>
+              <span class="draft-title">LIST OF DRAFT ARGUMENTS</span>
+              <div class="draft-argument">               
+		<table>                
+		  <% @arguments.each do |argument| %>
+		<tr><td>
+                  <span class="draft_line" style="width:95%;">
+                   <%=  link_to_function argument.title, :href=> firefox_argument_show_argument_path(argument, :show_layout => true), :onclick => 'return true', :id => arg_popup_dom_id(argument) ,:class => "draft_arg_tooltip" %>		  
+                  </span> </td>
+		  <td><%= link_to 'Edit', temp_arg_edit_argument_path(argument)  %> &nbsp; </td>
+		  <td><%= link_to 'Delete', firefox_delete_argument_path(argument), :confirm => 'Really destroy temporary argument?', :method => :delete %> </td></tr>
+                  <% end  %>
+</table>
+                
+              </div>
+            <% end %>
+         
+      </div>
+    </div>
+
+
+
+
+   <% end  %>
+    <% if the_same_user?(@user) %>
+    <div id="watching-tab" class="tabs">
+      <% if !@watchings.blank? %>
+       <table cellpadding="0" cellspacing="0" border="0" class="list_watching">
+        <tr>
+          <td class="w_title_box"><%= sort_link('Title', :argument_id, {}, params[:d] == 'up' ? 'down' : 'up', {:id => "d_category_label"}) %></td>
+          <td class="w_debate_box "><%= sort_link('Debate',    :debate_id,       {}, nil, {:id => "d_title_label"}) %></td>
+          <td class="w_deep_box" style="color:#0000EE;font-weight:normal;">Deep</td>
+
+          <td class="w_status_box"><%= sort_link('Suspend',     :status,        {}, nil, {:id => "d_type_label"})  %></td>
+        </tr>
+      </table>
+      <div class="mypage-listings scr">
+      <% form_for("watching" , :url =>{:action =>"watching",:controller =>"users"} ,:html => {:method => :put, :name =>"watching"}) do %>
+      <%= render :partial => 'watching', :collection => @watchings %>        
+        <% end %>
+      </div>
+      <% else %>
+      <div class="mypage-listings scr">
+       <h3 style="clear:both"> No Watching Emails</h3>
+      </div>
+      <% end %>
+    </div>
+   <% end  %>
+
+    <%# if false -%>
+      <div id="invitations-tab" class="tabs">
+        <div class="mypage-listings">
+          <h3>My Invitations:</h3>
+          <% for invitation in @user.invitations_to -%>
+            <dl>
+              <dd class="name"><%= link_to invitation.resource.title, (invitation.resource_type == "Debate" ? debate_url(invitation.resource, :code => invitation.code.unique_hash) : argument_url(invitation.resource, :code => invitation.code.unique_hash)) %></dd>
+            </dl>
+          <% end -%>
+          <br style="clear:both;"/><br />
+        </div>
+      </div>
+    <%# end -%>
+
+  </div>
+
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

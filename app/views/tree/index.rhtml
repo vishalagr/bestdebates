@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>YUI Tester: <%= controller.action_name %></title>
+  <%= javascript_include_tag "yui/yahoo",
+                             "yui/dom",
+                             "yui/event",
+                              "yui/treeview-min.js",
+                             "yui/connection",
+                             "yui/dragdrop",
+                             "yui/treeview"%>
+  <%= stylesheet_link_tag  'yui/fonts-min', 'yui/treeview'%>
+  <%= stylesheet_link_tag 'appstylesheet'%>  
+  <%= javascript_include_tag 'prototype', 'scriptaculous', 'prototip' %>
+  <%= stylesheet_link_tag 'prototip' %>
+ </head>
+
+<body>
+
+This is a test
+
+
+    <div id="mytree"></div>
+
+
+
+<script type="text/javascript">
+  new Tip('<%= "test123" %>',
+  { hook: { tip: 'topLeft', mouse: true },
+    stem: 'topLeft',
+    hideOn: false,
+    hideAfter: 1,
+    ajax: {url: '<%= tooltip_argument_url(Argument.find(49)) %>'}
+    }
+  );
+</script>
+
+
+</body>
+</html>
+

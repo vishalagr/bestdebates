@@ -1,0 +1,24 @@
+<dl style="clear:both">
+  <dd style="width:28px">
+    <%= member_counter  %>
+  </dd>
+  <dd style="width: 220px;">
+    <%= member.name %>
+  </dd>
+  <dd style="width: 300px;">
+    <%= member.email %>
+  </dd>
+
+  <dd style="width:32px;">
+    <%= link_to "Show", member %>
+  </dd>
+  
+<% if false %>
+  <dd style="width:32px;">
+    <%= link_to "Edit", edit_admin_member_path(member) %>
+  </dd>
+  <dd>
+    <%= link_to "Delete", member, :confirm => "Are you sure?", :method => :delete %>
+  </dd>
+<% end %>
+</dl>

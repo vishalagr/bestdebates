@@ -1,0 +1,34 @@
+<div class="debate-listings">
+  <div class="debate-detail-header-bg">
+    <div class="argument-form-inner">
+      <div class="debate-form-wrapper">
+        <span class="created" style="padding-right:24px;">
+          Group ID <%= @group.id %>, <%= @group.name  %> , Created <%#= @debate.created_at.strftime('%b. %d, %Y') %>
+        </span>
+        
+        <div class="argument-listings" >
+          <dl class="listing-labels" style="width:620px">
+            <dd  style="width: 32px">&nbsp;</dd>
+            <dd style="width: 120px;" >
+              <%= sort_link 'Name', :member %>
+            </dd>
+            <dd style="width: 200px;">
+              <%= sort_link 'Email', :email  %>
+            </dd>
+          </dl>
+          <dl>
+            <dd class="listings" id="members">
+              <%= render :partial => 'groups/member', :collection => @members %>
+            </dd>
+          </dl>
+          <div class="right" style="padding:20px;">
+            <%= link_to 'Create Member', new_group_member_path(@group) if logged_in? && @group.owner?(current_user) %>
+          </div>
+        </div><br /><br />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="debate-listing-inner-footer"></div>
+<div class="debate-listing-footer"></div>

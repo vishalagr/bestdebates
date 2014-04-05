@@ -1,0 +1,6 @@
+page.reload_flashes!
+
+#page.replace_html      arguments_errors(params[:parent_id]), :text => ''# stupid hack. replace_html can't correct render the helper method
+#page.insert_html :top, arguments_errors(params[:parent_id]), errors_box(@argument.errors)
+
+page.replace_html arguments_errors(params[:parent_id]), errors_box(@argument.errors)

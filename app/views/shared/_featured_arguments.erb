@@ -1,0 +1,21 @@
+<% unless @debate_of_the_day.blank? %>
+  <p class="top_text">
+    <span class="blue_text"><%= @category.name if @category %> Debate of the Day:</span>
+    <%= debate_title(@debate_of_the_day) %>
+    <%#= debate_tooltip_script(@debate_of_the_day) %>
+  </p>
+<% end %>
+
+<% unless @best_pro_argument.blank? -%>
+  <p class="top_text">
+    <span class="green_text">Best Pro Argument:</span>
+    <%= argument_tooltip_script(@best_pro_argument) %>
+  </p>
+<% end -%>
+
+<% unless @best_con_argument.blank? %>
+  <p class="top_text">
+    <span class="red_text">Best Con Argument:</span>
+    <%= argument_tooltip_script(@best_con_argument) %>
+  </p>
+<% end %> 

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=7" />
+  <meta name="generator" content="HTML Tidy, see www.w3.org" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title><%= @title || 'BestDebates.com | Your opinion changes the debate. Join, judge, or create a debate today!' %></title>
+
+  <%= yield :before_header -%>
+  <%#= include_stylesheets :base %>
+  <%#= include_stylesheets 'facebox' %>
+  <%= stylesheet_link_tag    'prototip', 'application', 'facebox' %>
+ 
+  <!--[if IE ]>
+    <%= javascript_include_tag "#{http_protocol}ie7-js.googlecode.com/svn/version/2.0(beta3)/IE7.js" %>
+    <style type="text/css" media="screen">
+      body{behavior:url(/javascripts/csshover.htc); font-size:100%;}
+    </style>
+  <![endif]-->
+  <!--[if lt IE 8]>
+    <%= stylesheet_link_tag    'ie8.css' %>
+    <%= javascript_include_tag "#{http_protocol}ie7-js.googlecode.com/svn/version/2.0(beta3)/IE8.js" %>
+  <![endif]-->
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
+  <!--[if lt IE 7]>
+    <%=javascript_include_tag "pngfix"%>
+    <%#= include_javascripts :pngfix %>
+  <![endif]-->
+
+  <!--[if IE 7]>
+    <style type="text/css">
+
+      div#main #top_main_bg {
+      padding-top:42px;
+      background-image:url(/images/main_top_bg.gif);
+      background-repeat:no-repeat;
+      background-position:bottom left;
+      }
+
+      ul.sub_nav { margin-left: -95px; }
+
+      #footer_text div {margin-top: -6px;}
+
+      ul.mktree li { margin-top: -19px; margin-bottom: -19px }
+
+      ul.mktree li.liBullet .pro,
+      ul.mktree li.liBullet .con,
+      ul.mktree li.liOpen .pro,
+      ul.mktree li.liOpen .con,
+      ul.mktree li.liClosed .pro,
+      ul.mktree li.liClosed .con
+      { top: 27px; left: 14px; position: absolute; }
+    </style>
+  <![endif]-->
+<%= javascript_include_tag "prototype.js" %>
+<%= javascript_include_tag "application.js" %>
+<%= javascript_include_tag "scriptaculous.js" %>
+
+</head>
+<body>
+  
+  <div id="main">
+    <!-- header -->
+    <div id="header">
+      <div id="logo_box"><%= link_to image_tag("header_title.gif", :id => "logo"), root_url %></div>
+      <div id="auth_box">
+        <%= render_member_login_menu %>
+        <% if include_fb_script? %>
+          <div id="fb_connect" <%= 'style="padding:0"' if fb_user? %>>
+            <% if fb_app_perm? %>
+            <%= "You are connected to Facebook" %>
+            <% else %>
+            <%= fb_prompt_permissions(['create_event', 'publish_stream'], 'Set Facebook Permissions' ,"window.location = '#{root_url}'") if fb_user? %>
+            <% end %>
+            <%= render_connect_with_facebook %>
+          </div>
+        <% end %>
+      </div>
+      <div class="clear_both"></div>
+      
+      <!-- menu -->
+      <%= render :partial => '/shared/navigation_menu' %>
+    </div>
+
+    <%= yield :home_image %>
+      
+    <!-- middle -->
+    <div id="top_main_bg">&nbsp;</div>
+    <div id="middle">
+
+      <!-- content -->
+      <div id="content">
+        <div id="flash">
+          <%# flash[:error] = flash[:notice] = flash[:warning] = flash[:info] = 'blasssssssss' %>
+          <%= flash_messages({:fade => 6}) %>
+        </div>
+        <%= yield %>
+      </div>
+
+      <!-- right column -->
+      <div id="right_column"><%= render :partial => '/shared/feature_content'%></div>
+      <div class="clear_both"></div>
+    </div>
+    <%= image_tag "main_bottom_bg.gif", :id => "bottom_main_bg" %>
+      
+    <!-- footer -->
+    <div id="footer">
+      <div id="footer_text">
+        <%= image_tag "footer_top_bg.gif", :id => "bottom_main_bg" %>
+        <div style="text-align:center">
+          YOU HAVE THE POWER TO CREATE DEBATES, ADD ARGUMENTS, CRAFT REBUTTALS AND VOTE WITH YOUR CLICK.
+        </div>
+        <%= image_tag "footer_bottom_bg.gif", :id => "bottom_main_bg" %>
+      </div>
+      <div id="copyright">
+        &copy; 2008,2009 BestDebates.com<br />
+        All Rights Reserved <a href="http://www.facebook.com/pages/Best-Debates/105991627895" title=""><img src="/images/facebook_icon.gif" alt="Facebook" title="" /></a>
+      </div>
+      <div class="clear_both"></div>
+    </div>
+
+    <%= render(:partial => 'shared/just_registered') if session[:just_registered] %>
+  </div>
+  <%#= include_javascripts :base %>
+  <%#= include_javascripts 'facebox' %>
+  <%= javascript_include_tag 'prototip', 'facebox', 'debates' %>
+  <%#= include_javascripts 'debates' %>
+  <%= show_defaults(@debate) if !@debate.blank?%>
+  <% fb_include! %>
+  <script type="text/javascript">
+ if(document.getElementById("login")){
+	new Tip('login', {
+    closeButton: true,
+    title: 'Login',
+	width: 250,
+    hook: { target: 'bottomLeft', tip: 'topRight'},
+    stem: 'topRight',
+    hideOn: false,
+    hideAfter: 1,
+    ajax: {url: '<%= new_session_path %>?url=' + location.href, options: {method: 'get'}}});
+}
+</script>
+<script type="text/javascript">
+    if(document.getElementById("user_login")){
+            new Tip('user_login', 'use "_" for space',{
+              hook: { target: 'rightMiddle', tip: 'leftMiddle' },
+              stem: 'leftMiddle',
+              showOn: 'nothing',
+              hideOn: 'blur',
+              viewport: 'true'
+            });
+            var objUserLogin = document.getElementById("user_login");
+            showOrHideTip = function (event) {
+              obj = Event.element(event);
+              if(obj.value.indexOf(' ') > -1) obj.prototip.show(); else obj.prototip.hide();
+            }
+            Event.observe(objUserLogin, 'focus',   showOrHideTip)
+            Event.observe(objUserLogin, 'keydown', showOrHideTip)
+            Event.observe(objUserLogin, 'change',  showOrHideTip)}
+</script>
+
+  <%= yield :b_header -%>
+  <%= yield :header -%>
+  <%= yield :after_header -%>
+
+</body>
+
+</html>

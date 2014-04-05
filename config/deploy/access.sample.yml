@@ -1,0 +1,8 @@
+:production_user: 
+:production_password: 
+
+:staging_user:
+:staging_password:
+
+:server_dev_user:
+:server_dev_password:

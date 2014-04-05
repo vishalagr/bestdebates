@@ -1,0 +1,6 @@
+<h2>Rating Config Page</h2>
+
+<% form_for @rating_variable, :url => admin_rating_variable_path(@rating_variable) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <p style="margin-left:45px;margin-top:10px;"><%= f.submit "Update" %></p><br /><br />
+<% end %>

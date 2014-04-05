@@ -1,0 +1,11 @@
+link1:
+  id: 1
+  argument_id: 1
+  url: gmail.com
+  title: Gmail Website
+
+link2:
+  id: 2
+  argument_id: 1
+  url: facebook.com
+  title: Facebook Website

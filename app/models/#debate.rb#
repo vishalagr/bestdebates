@@ -1,0 +1,300 @@
+class Debate < ActiveRecord::Base
+
+  # Field to be searched when user begins to type in the auto_complete search field
+  AUTO_COMPLITE_FIELD = :title
+
+  # Available tabs for debates' list
+  TABS = {:watching => 0, :tags => 1, :edit => 2, :bookmark => 3,:reply => 4}
+
+  # Practice Debate tag
+  PRACTICE_DEBATE_TAG = 'Practice Debate'
+
+  # RSS Unlimited depth
+  RSS_UNLIMITED_DEEP  = 0
+
+  # RSS default depth
+  RSS_DEFAULT_DEEP    = RSS_UNLIMITED_DEEP
+
+  # Available RSS depths
+  RSS_AVAIVABLE_DEEPS = [RSS_UNLIMITED_DEEP, 1,2,3, 5, 10, 25]
+
+  
+  concerned_with :callbacks, :access
+  
+  default_value_for :is_live, true
+
+  # Thinking Sphinx indexing
+  define_index do
+    indexes [:title, :body]
+    has category_id, priv, :id
+    where "is_live=1"
+
+  set_property :enable_star => true
+  set_property :min_prefix_len => 3
+  end
+  
+	belongs_to :user
+	belongs_to :category
+	
+  with_options :dependent => :destroy do |d|
+    d.has_many :arguments
+    d.has_many :invitations, :as => :resource
+  end
+  
+  has_many :bookmarks,    :dependent => :delete_all
+  has_many :joined_users, :class_name => 'UserResource', :as => :resource, :dependent => :delete_all do
+    def add!(invitation)
+      create! :user => invitation.user, :is_writable => invitation.is_writable
+    end
+  end
+  
+  has_one :debate_twitter_account
+  # invited, but not respond yet to an invitation
+  has_many :invited_users, 
+           :select  => 'users.*, invitations.id as invitation_id, invitations.is_writable',
+           :through => :invitations,
+           :source => :user,
+           :conditions  => 'user_id IS NOT NULL'
+
+  has_many :invite_links, :as => :resource
+
+  named_scope :priv, lambda{|*is_not| 
+    is_not[0] = true if is_not[0].nil?
+    {:conditions => {:priv => is_not[0]}} 
+  }
+
+  named_scope :is_live, lambda{|*is_not| 
+    is_not[0] = true if is_not[0].nil?
+    {:conditions => {:is_live => is_not[0]}} 
+  }
+  
+  named_scope :draft, lambda{|*is_not| 
+    is_not[0] = true if is_not[0].nil?
+    {:conditions => {:draft => is_not[0]}} 
+  }
+  
+  named_scope :public, lambda { |*is_not|
+    {:conditions => { :draft => false, :priv => false, :is_live => true }}
+  }
+
+  named_scope :without_practice_debate, lambda{{:conditions => ["category_id != ?", Category.practice_debate]}}
+
+	acts_as_taggable
+	
+  validates_presence_of :user_id
+  
+	validates_presence_of :title, :category
+	validates_length_of   :title, :maximum => 180, :allow_blank => true
+	
+	validates_presence_of :body
+	validates_format_of :link, 
+											:with => /\Ahttps?:\/\/([-a-z0-9]+\.)+[a-z]{2,}(:[0-9]{2,4})?/i,
+											:allow_blank => true
+
+  before_validation :normalize_uri
+  
+  validate do |deb|
+    chk_body = Sanitize.clean(deb.body,  Sanitize::Config::BASIC) unless deb.body.blank?
+   if chk_body == DEFAULT_DEBATE_TEXT
+     deb.errors.add("Please Enter Debate clarification,It is empty or ")    
+   end
+ end
+ 
+
+  # Normalizes the link i.e., adds protocol to the URL if it is not already present
+  # Example:-
+  #   'http://www.google.com/' gives 'http://www.google.com/'
+  #   'www.google.com/' gives 'http://www.google.com/'
+  def normalize_uri
+    self.link = Addressable::URI.heuristic_parse(self.link).normalize!.to_s if self.link
+  end
+											
+  alias author user
+  
+  class << self
+
+    # Returns all featured debates -- excluding practice debates
+    def featured
+      public.without_practice_debate.all(:order => 'debates.created_at desc', :limit => 3)
+    end
+n
+    # Returns all debates which are not drafts
+    def not_draft
+      is_live.draft(false)
+    end
+
+    def debate_daily_digest
+     subscriptions = Subscription.find(:all , :conditions => ['status = 1 && daily_digest = 1 && argument_id is null'])
+     subscriptions.each do |sub|
+       Mailers::Debate.deliver_debate_send_email(sub.debate, sub.deep, sub.email,HOST_DOMAIN)
+     end
+    end
+
+
+    # Returns all debates whose body or title attributes contains
+    # the given search_term or debates that are tagged by the search_term
+    def all_with_search_term(search_term)
+      results = self.search(search_term.to_s+'*', :field_weights => {:title => 5, :body => 1},:enable_star => true,:min_prefix_len => 3)
+
+      for debate in Debate.find_tagged_with(search_term, :conditions => ["debates.id NOT IN (?)", results.collect(&:id)])
+        results << debate
+      end
+      
+      results
+    end
+    
+    # Returns debate of the day
+    # w/o practice debates category
+    def of_the_day(is_of_a_day = true)
+      public.without_practice_debate.scoped(:conditions => {:is_debate_of_day => is_of_a_day}, :limit => 1, :order => 'created_at DESC')
+    end
+
+    # Returns 'eager loaded' stats for displaying for administrator
+    def stats(page_num, per_page, conditions, order_by)
+      Debate.paginate(
+        :page => page_num, :per_page => per_page,
+        :select     => 'debates.*, debates.title as debate_title, count(arguments.id) as arguments_count,
+                        count(ratings.id) as ratings_count, debates.updated_at as debate_updated_at',
+        :joins      => "LEFT OUTER JOIN arguments on debates.id = arguments.debate_id
+                        LEFT OUTER JOIN ratings on arguments.id = ratings.argument_id",
+        :conditions => conditions,
+        :group      => "debates.id",
+        :order      => order_by
+      )
+    end
+  end
+  
+  # Returns invitations (guests) corresponding to the debate +self+
+  def guests(extra_conditions=nil)
+    conditions = 'user_id is NULL'
+    
+    if extra_conditions.is_a?(Array)
+      conditions = extra_conditions.first << ' AND ' << conditions 
+      #conditions = extra_conditions
+    end
+    
+    invitations.all(:conditions => conditions)
+  end
+
+  def most_accessed!
+    increment! :most_accessed
+  end
+  # Returns all arguments of the debate which are not definable
+  def undefinable_arguments
+    @undefinable_arguments ||= arguments.all_not_definable
+  end
+  
+  {'live' => true, 'retire' => false}.each do |m, v|
+    define_method(m+'!') do          # def live!(v)
+      update_attribute(:is_live, v)
+    end
+    
+    define_method(m) do              # def live(v)
+      self.send(:is_live=, v)
+    end
+  end
+  	
+  # Recalculates rating by taking into consideration all the
+  # arguments belonging to the debate and updates +rating+ attribute
+  # with the resultant value
+  def recalculate_rating
+    return nil if undefinable_arguments.empty?
+    args = undefinable_arguments.select {|e| e.vetting_percentage.to_f > 0}    
+    update_attribute(:rating, ((args.collect{|e| e.cascaded_score * e.vetting_percentage * 100}).sum) / undefinable_arguments.size )
+    #update_attribute(:rating, ((args.collect{|e| e.cascaded_score * e.vetting_percentage }).sum) * undefinable_arguments.size / 100 )
+  end
+    
+  # Checks whether the debate is public
+  def public?
+    is_live and !priv? and !draft?
+  end
+
+  # Checks whether the debate is a practice_debate
+  def practice_debate?
+    self.category_id == Category.practice_debate.id
+  end
+  
+  # Returns humanized_rating of the debate
+  def humanized_rating
+    rating.to_f > 0 ? sprintf("%.1f", rating) : nil
+  end
+  
+  # Sets the debate's status
+  # publishes or saves_as_draft +self+ depending on certain keys in +params+ hash
+  def set_status_from_buttons(params, draft_check=false)
+    if(draft_check and params['savedraft.x'])
+      self.draft = true
+    elsif params['publish.x']   || params[:clicked_button] == 'publish' || params['makepublic.x']
+      self.priv  = false
+      self.draft = false
+    elsif params['unpublish.x'] || params[:clicked_button] == 'unpublish'
+      self.priv  = true
+      self.draft = false
+    else
+      # nothing
+    end
+  end
+    
+  # Checks whether the debate is bookmarked by the given user +u+
+  def bookmark_by(u)
+    Bookmark.bookmark_by(u, self)
+  end
+  
+  # Return login name of the creator/author of the debate
+  def author_login
+    user.login if user
+  end
+      
+  # Sets the user with given login name as the creator/author of the debate
+  def author_login=(name)
+    self.user = User.find_by_login(name)
+  end
+
+  # using in FB stuff
+  # Returns the outer_url of the debate
+  def outer_url
+    "http://#{HOST_DOMAIN}/debates/#{self.id}"
+  end
+
+  # Freezes the debate
+  # sets the +is_freezed+ attribute to true
+  def freeze
+    self.update_attribute(:is_freezed, true)
+  end
+
+  # Freezes the debate
+  # sets the +is_freezed+ attribute to false
+  def unfreeze
+    self.update_attribute(:is_freezed, false)
+  end
+
+  # ThinkingSphinx Search
+  def self.sphinx_search(category_id, query, current_user)
+    begin
+      # for category pages
+      with            = (category_id.blank? ? {} : {:category_id => category_id})
+
+      # for admin
+      with[:priv]     = false unless ((current_user != :false) and current_user.admin?)
+
+      # exclude practice_debates on /debates page
+      without         = (category_id.blank? ? {:category_id => Category.practice_debate.id} : {})
+
+      
+      # exclude debates which are not visible to current_user
+      visible_debates = Debate.all.select {|d| !d.searchable_to?(current_user)}.collect &:id
+      without[:id]    = visible_debates unless visible_debates.empty?
+
+      debates      = Debate.search(query+'*',
+        :field_weights => {:title => 4, :body => 1},
+        :with          => with,
+        :without       => without        
+      )
+
+    # - when thinking_sphinx daemon is not running
+    rescue Riddle::ConnectionError
+      debates = []
+    end
+    debates
+  end
+end

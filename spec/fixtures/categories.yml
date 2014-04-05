@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+politics:
+  name: Politics
+  description: Government Happenings
+
+religion:
+  name: Religion
+  description: Talk about God
+
+support:
+  name: Support
+  description: Support Description
+
+practice_debates:
+  name: Practice Debates
+  description: Just a category to store all debates while testing

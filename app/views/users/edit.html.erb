@@ -1,0 +1,10 @@
+<div id="content_top_box">
+  <p class="page_title">Edit Profile</p>
+</div>
+<div id="content_box" style="width:618px;padding:0px 48px 0px 36px;">
+  <% form_for @user, :html => {:multipart => true} do |f| -%>
+    <%= render :partial => 'users/form', :locals => {:f => f, :user => @user} %>
+  <% end -%>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

@@ -1,0 +1,11 @@
+<h3>Debate: <br /><%= debate.title.clean %></h3>
+<p><%= debate.body.clean %></p>
+<p style="text-align:right;">
+  <%= link_to 'Go To Debate', debate_url(debate.id, :canvas => false) %> |
+  <%= link_to 'Add argument to debate' , new_debate_argument_url(debate.id, :canvas => false) %> |
+  <%= link_to 'Invite', debate_invitations_url(debate.id, :canvas => false) %> 
+  <% unless debate.fb_event_id.nil? %> |
+    <%= fb_facebook_event_link(debate.fb_event_id, 'debate event link')  %>
+  <% end %> |
+  <%= fb_facebook_share_link debate_url(debate.id, :canvas => false), debate.title.clean %>
+</p>

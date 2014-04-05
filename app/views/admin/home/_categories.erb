@@ -1,0 +1,55 @@
+<dl class="listing-labels">
+  <dd style="width:35px;text-align:left;">&nbsp;</dd>
+  <dd style="width:140px;text-align:left;">
+    <%= sort_link_to_remote 'Category', :categories, :update => 'div-users' %>
+  </dd>
+  <dd style="width:140px;text-align:left;">
+    <%= sort_link_to_remote 'Debates', :debates, :update => 'div-users' %>
+  </dd>
+  <dd style="width:70px;">
+    <%= sort_link_to_remote 'Arguments', :arguments, {:update => 'div-users'}, 'down' %>
+  </dd>
+  <dd style="width:70px;">
+    <%= sort_link_to_remote 'Ratings', :ratings, {:update => 'div-users'}, 'down' %>
+  </dd>
+  <dd style="text-align:left;">
+    <%= sort_link_to_remote 'last updated', :updated_at, {:update => 'div-users'}, 'down' %>
+  </dd>
+</dl>
+
+
+<dl>
+  <dd class="listings" id="users" style="height:360px;border:1px solid #CCCCCC;border-top:0;">
+  <% i = 0 %>
+  <% for category in @categories %><% i += 1 %>
+  <dl style="clear:both;">
+      <dd style="width:30px;text-align:left;">
+        <%= i %>
+      </dd>
+      <dd style="width:140px;text-align:left;">
+        <%= category.name %>
+      </dd>
+      <dd style="width:140px;text-align:left;">
+        <%= category.debates_count %>
+      </dd>
+      <dd style="width:70px;">
+        <%= category.arguments_count %>
+      </dd>
+      <dd style="width:70px;">
+        <%= category.ratings_count %>
+      </dd>
+      <dd style="text-align:left;width:85px;">
+        <%= category.updated_at.to_date.strftime('%b. %d, %Y') %>
+      </dd>
+  </dl>
+  <% end %>
+  </dd>
+</dl>
+
+<dl style="clear:both;">
+  <dd>
+    <%= will_paginate(@categories, :renderer => 'RemoteLinkRenderer' ,
+      :remote => {:with => "'usersonly=true&amp;start_time=#{params[:start_time]}&amp;c=#{params[:c]}&amp;d=#{params[:d]}&amp;\'",
+        :update => 'div-users'}) %>
+  </dd>
+</dl>

@@ -1,0 +1,182 @@
+div.argument-form-wrapper h4, div.argument-form dl dd dl dd p {
+font-size: 5px;
+}
+
+.debate-argument-title-background {
+    background: url(/images/debate_argument_title_bg.png) no-repeat;
+    height: 60px;
+    width: 702px;
+}
+
+.argument-form dl dd dl dd {
+    float: left;
+    margin: 3px 20px 0 0;
+    width: 110px;
+    font-size: 80%;
+}
+
+.argument-form dl dd dl {
+    clear: both;
+    overflow: hidden;
+    padding: 2px 0pt;
+}
+
+.argument-form {
+    padding: 0 0 0 15px;
+}
+.argument_txtbox {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #333333;
+	text-decoration: none;
+	height: 17px;
+	width: 175px;
+	border: 1px solid #CCCCCC;
+}
+
+div.home-argument {
+	background-color: whitesmoke;
+	margin: 0px;
+	width: 603px;
+}
+/*
+textarea, .argument-form input, .argument-form select {
+    text-transform: none;
+    background-color: #fff;
+    border: 1px solid #6a6a6a;
+}
+*/
+.private {
+    color: red;
+    font-size: 140%;
+}
+
+.argument-meta {
+    font-size: 140%;
+    margin: 15px 0;
+}
+
+.argument-login dl dd dl dd {
+    width: 80px;
+}
+.argument-login label{
+    font-size: 12px;
+}
+
+.argument-form-textbox {
+    margin: 20px 0pt 25px;
+}
+
+
+.argument-list-wrapper {
+    overflow: auto;
+    height:555px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.argument-form-inner {
+	font-size: 13px;
+	background: url(/images/argument_form_inner.png) repeat-y;
+	width: 701px;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 1px;
+}
+
+
+div.debate-argument-inner-footer {
+    position: relative;
+    margin: 0 auto;
+    left: 4px;
+    background: url(/images/argument_form_footer.png);
+    width: 703px;
+    height: 19px;
+}
+
+div.argument-ancestors {
+    font-size: 7px;
+}
+
+div.argument-children {
+    font-size: 7px;
+}
+
+.argument-form-wrapper {
+    padding: 0pt 36px 0pt 30px;
+}
+
+div.debate-argument div.debate-listing-footer  div.argument-footer {
+    position: static;
+    margin: 0pt 0pt 0pt 5px;
+}
+
+.create-button, .cancel-button {
+    /*width: 84px;
+    height: 33px;
+    border: 0;
+    float: left;
+    margin: 0 8px 0 0;*/
+}
+
+div.search-results-wrapper  {
+    overflow: auto;
+    width: 632px;
+    height: 383px;
+    font-size: 90%;
+    margin-left: 27px;
+}
+
+.argument-tooltip {
+    font-size: 11px;
+    padding-left: 7px;
+    width: 440px;
+}
+
+.argument-tooltip hr {
+    color: lightgray;
+}
+
+.argument-form-buttons {
+    overflow: hidden;
+}
+
+div.argument-form-wrapper h4, div.argument-form dl dd dl dd {
+    font-size: 90%;
+}
+
+.message{text-align:center;width:100%;margin:2px;}
+.rating-widgets {overflow: hidden; font-size: 18px; padding:0px 4px 0px 4px;}
+.rating-widgets dd a {color: #551A8B;margin: 0; font-size: 100%;}
+.rating-category{width:110px;float:left;}
+.rating-category A{text-decoration:none;font-size:12px;}
+.rating-category A .question-mark{position:relative;top:2px;}
+.rating-select{float:right;height:22px;}
+.argument-tooltip{}
+.argument-tooltip .blue{color:#3366ff;}
+.argument-tooltip .title{font-weight:bold;}
+.argument-tooltip .black{color:black;font-weight:bold;}
+/*
+.argument-tooltip .right-rate{clear:both;height:0;}
+.argument-tooltip .right-rate div{position:relative;top:-15px;text-align:right;}*/
+
+.argument-form-edit{width:602px;height:24px;clear:both}
+.argument-form-edit .d-small{width:120px;}
+.argument-form-edit .d-medium{width:140px;}
+.argument-form-edit .d-large{width:204px;}
+
+.corner-content .argument-form-edit{width:572px;height:24px;clear:both}
+.corner-content .argument-form-edit .d-small{width:108px;}
+.corner-content .argument-form-edit .d-large{width:174px;}
+
+.argument-listings .argument-form-edit{width:572px;height:24px;clear:both}
+.argument-listings .argument-form-edit .d-small{width:90px;}
+.login-tip .argument-form {padding:0 20px 0 20px; }
+.login-tip .argument-form dl {margin:0px;}
+.login-tip .argument-form dl dd dl dd { margin: 3px 0px 0 0; width: 80px; font-size: 12px; }
+.login-tip .argument-form br {font-size: 12px; }

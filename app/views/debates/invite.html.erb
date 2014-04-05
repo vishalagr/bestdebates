@@ -1,0 +1,50 @@
+<div class="debate-argument">
+  <div class="debate-listings">
+    <div class="debate-argument-title-background">
+      <h2>Invite to debate</h2> 
+    </div>
+     <div class="argument-form-inner">
+        <div class="argument-form-wrapper">
+          <span class="created" style="padding-right:4px;">
+            Debate ID <%= @debate.id %>, Created <%= @debate.created_at.strftime('%b. %d, %Y') %>
+          </span><br /><br />
+          <div>
+            <div class="argument-listings left" style="width:310px; padding-left:4px;">
+              <dl>
+                <dd><b>&nbsp;&nbsp;INVITE EXISTING USERS</b></dd>
+              </dl>
+              <dl>
+              <dd style="padding:10px;">
+                  <%= render :partial => 'invitations/user_form' %>
+                </dd>
+              </dl>
+            </div>
+            <div class="argument-listings right" style="width:310px; padding-right:4px;">
+              <dl>
+                <dd><b>&nbsp;&nbsp;INVITE NEW USERS</b></dd>
+              </dl>
+              <dl>
+                <dd style="padding:10px;">
+                  <%= render :partial => 'invitations/guest_form' %>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          
+        <% remote_form_for(@debate, :url => update_invitations_debate_url(@debate), :update => 'users_and_guests') do |f| %>
+          <div>
+            <div id="users_and_guests">
+              <%= render :partial => 'invitations/users_and_guests' %>
+            </div>
+          </div>
+          <div style="clear:both;padding-left:250px;"><br />
+            <%= link_to image_tag('green-return-to-debate-button.png', :name => 'return-to-debate', :alt => 'return-to-debate',:style => 'border: none;'), @debate %>
+            <%= image_submit_tag 'green-save-changes-button.png', :name => 'save-changes', :style => 'border: none;' %><br />
+          </div><br />
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="debate-listing-inner-footer"></div>
+<div class="debate-listing-footer"></div>

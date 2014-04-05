@@ -1,0 +1,10 @@
+<h3>Invitees</h3>
+<h4 style="text-align:center;color:#666;font-size:11px;"><%= invite_link ? "for `#{invite_link.display_title}`" : '' %></h4>
+
+<% if users.empty? %>
+  <div>No Users</div>
+<% else %>
+  <% users.each do |user| %>
+    <div><%= user.name %></div>
+  <% end %>
+<% end %>

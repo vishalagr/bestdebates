@@ -1,0 +1,11 @@
+<dl style="clear:both">
+  <dd style="width: 28px;">
+    <%= group_counter  %>
+  </dd>
+  <dd style="width: 300px;">
+    <%= link_to group.name, admin_group_url(group) %>
+  </dd>
+  <dd style="width: 160px;">
+    <%= group.members.count %>
+  </dd>
+</dl>

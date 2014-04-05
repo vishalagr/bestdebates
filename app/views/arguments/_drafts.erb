@@ -1,0 +1,11 @@
+<div id='arguments' class='drafts' <% if !@arguments.empty? && @arguments.size > 15 %> style="overflow-y:scroll;height: 450px;" <% end %> >
+  <% if @arguments.empty? %>
+  <br/>
+  <span class="draft-title">NO DRAFT ARGUMENTS CREATED BY YOU.</span>
+  <%  else %>
+  <span class="draft-title">LIST OF DRAFT ARGUMENTS</span>
+  <%=  render :partial => 'shared/argument',:collection =>  @arguments ,:locals => {:active_argument => @argument} %>
+<% end %>
+</div>
+<br/>
+<br/>

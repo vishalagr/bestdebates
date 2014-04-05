@@ -1,0 +1,38 @@
+<div id="invite_links" >
+
+  <h2>Invitations Tracking</h2>
+
+  <p>Click on any invitation title to view user invited through it in the right side box</p>
+
+  <div id="unique_ids">
+    <h3>Invitation Titles</h3>
+
+    <% if @invite_links.empty? %>
+      <div>No Invite Links</div>
+    <% else %>
+      <% @invite_links.each do |invite_link| %>
+        <div>
+        <%= link_to_remote(
+          invite_link.display_title,
+          :url      => self.send("invited_users_#{@resource_type.downcase}_invite_link_path", @resource, invite_link),
+          :method   => :post,
+          :update   => 'invited_users',
+          :before   => "$('invite_links_spinner').style.display = 'block';",
+          :complete => "$('invite_links_spinner').style.display = 'none';"
+        )%>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="invited_users">
+    <%= render :partial => 'invited_users', :locals => {:users => [], :invite_link => nil} %>
+  </div>
+
+  <div class="clear_both"></div>
+
+  <div style="height:32px">
+    <img src="/images/loading.gif" id="invite_links_spinner" style="margin:auto;display:none" />
+  </div>
+
+</div>

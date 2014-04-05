@@ -1,0 +1,4 @@
+<% parent = @argument.parent; 
+   parent = parent.parent if parent.parent; 
+   parent = parent.parent if parent.parent %>
+<%= render_arguments [parent] , :class => 'mktree', :name => 'parent_tree', :only_parent_of => @argument %>

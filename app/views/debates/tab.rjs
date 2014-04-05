@@ -1,0 +1,31 @@
+tab = params[:tab].to_i
+tab_validate!(@debate, tab)
+
+out = 
+  case tab
+  when Debate::TABS[:tags]
+    tags_div_and_or_add_tag_form(@debate)
+#  when Debate::TABS[:edit]
+#    render :partial => 'debates/debate_form', :locals => {:debate => @debate} if edit_tab?(@debate)
+  when Debate::TABS[:watching]
+    render :partial => 'debates/rss', :locals => {:debate => @debate}
+  when Debate::TABS[:bookmark]
+    bookmark_link(@debate, params[:short_title])+"<br/><br/>"
+
+   when Debate::TABS[:reply]
+    if !logged_in?
+      tab_login_link 'reply'
+    elsif can_create_argument?(@debate)
+      new_argument = Argument.new;      
+      new_argument.debate_id = @debate.id;
+      render :partial => 'reply_form_debate', :locals => {:argument => new_argument,:debate => @debate}
+    else
+      'You hav\'nt permissions to reply to this argument'
+    end
+end
+
+page.replace_html tab_div_id(get_tab_name(@debate, tab), @debate), :inline => out
+page << <<-STR
+  $('#{[tab_link_id(@debate, get_tab_name(@debate, tab))]}').onclick = function(){toggle_div(this); return false;};
+  $('#{[tab_link_id(@debate, get_tab_name(@debate, tab))]}').onclick();
+STR

@@ -1,0 +1,13 @@
+<div style="position:relative;margin-left: -6px;">
+  <%# if !@argument.rated? %>
+    <!--unscored-->
+  <%# else %>
+    <div style="height:40px">
+      <div style="position:absolute;top:13px;"><%= image_tag "rating_gradient.png" %> </div>
+      <div id="score_<%=@argument.id%>" style="position:absolute;left:7px;top:7px;">Score: <%= sprintf("%.2f",  @argument.cascaded_score) %> </div>
+      <div id="vis_score_<%=@argument.id%>"><div style="position:absolute;left:<%= (77 + 33 * @argument.cascaded_score).to_i %>px;top:9px;"><%= image_tag 'vee.png' %> </div></div>
+      <div id="vetted_<%=@argument.id%>" style="position:absolute;left:8px;top:22px;">Vetted: <%= @argument.v %><%= '%' unless @argument.v.to_s == 0 %></div>
+      <div id="vis_vetted_<%=@argument.id%>"><div style="position:absolute;left:<%= ( 77 + 33 * @argument.v / 10).to_i %>px;top:21px;"><%= image_tag 'eev.png' %>  </div></div>
+    </div>
+  <%# end %>
+</div>

@@ -1,0 +1,87 @@
+<%= fckeditor_include! %>
+<%#= show_defaults(@debate) %>
+
+<div id="content_top_bg">&nbsp;</div>
+<div id="content_box">
+
+  <div id="dd_top_left_text">
+    Category: <%= link_to @debate.category.name, debates_path(:category_id => @debate.category_id) %>
+    <% if @debate.rating.to_f > 0 -%>
+      <div style="" class="dd_<%= @debate.priv? ? 'grey' : 'blue' %>_title">
+        overall debate score <%= sprintf("%.1f", @debate.rating) if @debate.rating.to_f > 0 %> 
+      </div>
+    <% end -%>
+  </div>
+
+  <div id="dd_top_right_text">
+    Debate ID <%= @debate.id %>, Created <%= @debate.created_at.strftime('%b. %d, %Y') %>
+  </div>
+
+  <div class="clear_both"></div>
+
+  <%- if debate_show_private_info?(@debate) -%>
+    <h3 style="text-align:center;margin-top:8px;margin-bottom:-8px;">This debate is private. Only those you invite can see it or its child arguments.</h3>
+  <% end -%>
+  
+  <%- if debate_show_draft_info?(@debate) -%>
+    <h3 style="text-align:center;margin-top:8px;margin-bottom:-8px;">This debate saved as draft. <%= link_to 'Publish it', [:edit, @debate] %></h3>
+  <% end -%>
+
+  <div class="dd_red_title">Debate: <%= @debate.title %></div>
+  <div class="dd_arg">
+    <%= debate_body(@debate) %><br />
+    <%= fb_facebook_event_link(@debate.fb_event_id) %>
+  </div>
+
+  <div class="dd_buttons">
+    <div class="button_bottom" >
+      <%= render :partial => "buttons", :locals => {:debate => @debate} %>
+      <div class="clear_both"></div>
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td style="width:440px;vertical-align:bottom;text-align:left;word-wrap:break-word; padding-top: 12px;">
+          <%= tags_div_and_or_add_tag_form(@debate) %>
+        </td>
+        <td style="vertical-align:top;text-align:right;word-wrap:break-word;">
+          <%= render :partial => "shared/key_definitions" %>
+        </td>
+      </tr>
+    </table>  
+  </div>
+
+  <div class="dd_grey_box">
+    <span class="green left">Sponsor: <%= render_author(@debate.author) %></span>
+    <span class="right">
+      <%= link_to 'Invite', debate_invitations_url(@debate) if (logged_in? && @debate.public?) or @debate.can_create_invitation?(current_user) %>  |
+      <span><%= link_to 'Watching',"#" , :id => "#{watching_debate_url(@debate)}" , :class => "watching" %><%#=watching_script(@debate)%></span> |
+      <%- if @debate.can_be_modified_by?(current_user) -%>
+        <%= link_to 'Edit', edit_debate_path(@debate) %> |
+        <%= link_to 'Retire', @debate, 
+          :confirm => "Are you sure?\nOnce debate id #{@debate.id} has been retired, 
+          only the system administrator can restore it.", :method => :delete %> |
+      <% end -%>
+      <%= bookmark_link(@debate, true) %>
+    </span>
+  </div>
+
+  <div class="details">
+    <%= render_partial "arguments/children" %><br />
+  </div>
+  <% if admin_user? %>
+  <div class="details">  
+  <div class="sub_arguments">
+  <div class="dd_purple">    
+   Debate Statistics
+  <div class="clear_both"></div>
+ <br/> 
+</div> 
+ <%= link_to "Debate Statistics For #{@debate.title}" , user_debate_stat_url(@debate) %>
+</div>
+ 
+  <%#= render :partial => "debate_statistics" %><br />
+  </div>
+  <% end %>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

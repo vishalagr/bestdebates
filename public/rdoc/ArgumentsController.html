@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: ArgumentsController</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./app/controllers/arguments_controller_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="app/controllers/arguments_controller.rb">app/controllers/arguments_controller.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="ApplicationController.html">ApplicationController</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000302">#add_tag</a></li>
+					
+					<li><a href="#M000313">#argument_create_permission_check</a></li>
+					
+					<li><a href="#M000295">#bookmark</a></li>
+					
+					<li><a href="#M000314">#check_freezed</a></li>
+					
+					<li><a href="#M000292">#create</a></li>
+					
+					<li><a href="#M000311">#find_parent</a></li>
+					
+					<li><a href="#M000291">#index</a></li>
+					
+					<li><a href="#M000310">#is_visible_for?</a></li>
+					
+					<li><a href="#M000300">#publish</a></li>
+					
+					<li><a href="#M000298">#rate</a></li>
+					
+					<li><a href="#M000312">#rating_pane</a></li>
+					
+					<li><a href="#M000308">#recursive_insert</a></li>
+					
+					<li><a href="#M000306">#report_offensive</a></li>
+					
+					<li><a href="#M000303">#rss</a></li>
+					
+					<li><a href="#M000304">#send_email</a></li>
+					
+					<li><a href="#M000305">#tab</a></li>
+					
+					<li><a href="#M000297">#tooltip</a></li>
+					
+					<li><a href="#M000296">#unbookmark</a></li>
+					
+					<li><a href="#M000301">#unpublish</a></li>
+					
+					<li><a href="#M000293">#update</a></li>
+					
+					<li><a href="#M000307">#xml_import</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./lib/tasks/app_rake.html">app.rake</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./Admin.html">Admin</a></li>
+				
+					<li><a href="./Admin/BaseController.html">Admin::BaseController</a></li>
+				
+					<li><a href="./Admin/CategoriesController.html">Admin::CategoriesController</a></li>
+				
+					<li><a href="./Admin/DebatesController.html">Admin::DebatesController</a></li>
+				
+					<li><a href="./Admin/DefinitionsController.html">Admin::DefinitionsController</a></li>
+				
+					<li><a href="./Admin/GroupsController.html">Admin::GroupsController</a></li>
+				
+					<li><a href="./Admin/HomeController.html">Admin::HomeController</a></li>
+				
+					<li><a href="./Admin/TagsController.html">Admin::TagsController</a></li>
+				
+					<li><a href="./Admin/UsersController.html">Admin::UsersController</a></li>
+				
+					<li><a href="./Admin/UsersSearch.html">Admin::UsersSearch</a></li>
+				
+					<li><a href="./Admin/VariablesController.html">Admin::VariablesController</a></li>
+				
+					<li><a href="./Facebook.html">Facebook</a></li>
+				
+					<li><a href="./Facebook/BaseController.html">Facebook::BaseController</a></li>
+				
+					<li><a href="./Facebook/DebatesController.html">Facebook::DebatesController</a></li>
+				
+					<li><a href="./Facebook/MyFacebookController.html">Facebook::MyFacebookController</a></li>
+				
+					<li><a href="./Facebook/ProfilePublisherController.html">Facebook::ProfilePublisherController</a></li>
+				
+					<li><a href="./Facebook/Publisher.html">Facebook::Publisher</a></li>
+				
+					<li><a href="./Facebook/Tasks.html">Facebook::Tasks</a></li>
+				
+					<li><a href="./Mailers.html">Mailers</a></li>
+				
+					<li><a href="./Mailers/App.html">Mailers::App</a></li>
+				
+					<li><a href="./Mailers/BaseMailer.html">Mailers::BaseMailer</a></li>
+				
+					<li><a href="./Mailers/Debate.html">Mailers::Debate</a></li>
+				
+					<li><a href="./Mailers/User.html">Mailers::User</a></li>
+				
+					<li><a href="./ActiveRecord.html">ActiveRecord</a></li>
+				
+					<li><a href="./ActiveRecord/Validations.html">ActiveRecord::Validations</a></li>
+				
+					<li><a href="./ActiveRecord/Validations/ClassMethods.html">ActiveRecord::Validations::ClassMethods</a></li>
+				
+					<li><a href="./AuthenticatedSystem.html">AuthenticatedSystem</a></li>
+				
+					<li><a href="./AuthenticatedSystem/ActiveRecordExtension.html">AuthenticatedSystem::ActiveRecordExtension</a></li>
+				
+					<li><a href="./ApplicationController.html">ApplicationController</a></li>
+				
+					<li><a href="./Argument.html">Argument</a></li>
+				
+					<li><a href="./ArgumentLink.html">ArgumentLink</a></li>
+				
+					<li><a href="./ArgumentLinksController.html">ArgumentLinksController</a></li>
+				
+					<li><a href="./ArgumentsController.html">ArgumentsController</a></li>
+				
+					<li><a href="./AuthenticatedTestHelper.html">AuthenticatedTestHelper</a></li>
+				
+					<li><a href="./Bookmark.html">Bookmark</a></li>
+				
+					<li><a href="./Category.html">Category</a></li>
+				
+					<li><a href="./Code.html">Code</a></li>
+				
+					<li><a href="./Debate.html">Debate</a></li>
+				
+					<li><a href="./DebatesController.html">DebatesController</a></li>
+				
+					<li><a href="./Definition.html">Definition</a></li>
+				
+					<li><a href="./Dest.html">Dest</a></li>
+				
+					<li><a href="./FacebookPermission.html">FacebookPermission</a></li>
+				
+					<li><a href="./Group.html">Group</a></li>
+				
+					<li><a href="./HomeController.html">HomeController</a></li>
+				
+					<li><a href="./Invitation.html">Invitation</a></li>
+				
+					<li><a href="./InvitationEngine.html">InvitationEngine</a></li>
+				
+					<li><a href="./InvitationsController.html">InvitationsController</a></li>
+				
+					<li><a href="./InviteLink.html">InviteLink</a></li>
+				
+					<li><a href="./InviteLinksController.html">InviteLinksController</a></li>
+				
+					<li><a href="./Login.html">Login</a></li>
+				
+					<li><a href="./Message.html">Message</a></li>
+				
+					<li><a href="./Rating.html">Rating</a></li>
+				
+					<li><a href="./RemoteLinkRenderer.html">RemoteLinkRenderer</a></li>
+				
+					<li><a href="./SearchController.html">SearchController</a></li>
+				
+					<li><a href="./SearchResult.html">SearchResult</a></li>
+				
+					<li><a href="./SessionsController.html">SessionsController</a></li>
+				
+					<li><a href="./TimeSpec.html">TimeSpec</a></li>
+				
+					<li><a href="./TreeController.html">TreeController</a></li>
+				
+					<li><a href="./User.html">User</a></li>
+				
+					<li><a href="./UserDebate.html">UserDebate</a></li>
+				
+					<li><a href="./UsersController.html">UsersController</a></li>
+				
+					<li><a href="./Variable.html">Variable</a></li>
+				
+					<li><a href="./Video.html">Video</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">ArgumentsController</h1>
+
+		<div id="description">
+			
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="argument-create-permission-check-method" class="method-detail ">
+				<a name="M000313"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">argument_create_permission_check</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+before_filter to prevent unauthorized users from creating arguments
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="argument-create-permission-check-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 340</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">argument_create_permission_check</span>
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">can_create_argument?</span>(<span class="ruby-ivar">@debate</span>)
+      <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-value str">'You have\'nt permission to create argument'</span>
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@debate</span>
+    <span class="ruby-keyword kw">end</span>    
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="check-freezed-method" class="method-detail ">
+				<a name="M000314"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">check_freezed</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+before_filter to prevent any non-admin user from making any changes to an
+argument which is freezed
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="check-freezed-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 349</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">check_freezed</span>
+    <span class="ruby-ivar">@debate</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Argument</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>]).<span class="ruby-identifier">debate</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@debate</span>.<span class="ruby-identifier">is_freezed</span>
+
+    <span class="ruby-identifier">flash_error</span> = <span class="ruby-value str">'The argument you are trying to edit belongs to a freezed debate and thus is freezed'</span>
+
+    <span class="ruby-keyword kw">if</span> [<span class="ruby-identifier">:new</span>, <span class="ruby-identifier">:create</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:action</span>].<span class="ruby-identifier">to_sym</span>)
+      <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">flash_error</span>
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">debate_path</span>(<span class="ruby-ivar">@debate</span>)
+      <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">elsif</span> [<span class="ruby-identifier">:edit</span>, <span class="ruby-identifier">:update</span>, <span class="ruby-identifier">:rate</span>, <span class="ruby-identifier">:add_tag</span>, <span class="ruby-identifier">:destroy</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:action</span>].<span class="ruby-identifier">to_sym</span>)
+      <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">flash_error</span>
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">argument_path</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+      <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:action</span>].<span class="ruby-identifier">to_sym</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:destroy</span>) <span class="ruby-keyword kw">or</span> ((<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:action</span>].<span class="ruby-identifier">to_sym</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:tab</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-operator">!</span>[
+      <span class="ruby-constant">Argument</span><span class="ruby-operator">::</span><span class="ruby-constant">TABS</span>[<span class="ruby-identifier">:video</span>], <span class="ruby-constant">Argument</span><span class="ruby-operator">::</span><span class="ruby-constant">TABS</span>[<span class="ruby-identifier">:bookmark</span>],
+      <span class="ruby-constant">Argument</span><span class="ruby-operator">::</span><span class="ruby-constant">TABS</span>[<span class="ruby-identifier">:watching</span>], <span class="ruby-constant">Argument</span><span class="ruby-operator">::</span><span class="ruby-constant">TABS</span>[<span class="ruby-identifier">:sendemail</span>] ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:tab</span>].<span class="ruby-identifier">to_i</span>))
+
+      <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">flash_error</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:update</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">reload_flashes!</span>} }
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="find-parent-method" class="method-detail ">
+				<a name="M000311"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">find_parent</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Finds the parent argument if its id is supplied through
++params[:parent_id]+
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="find-parent-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 326</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_parent</span>
+    <span class="ruby-identifier">arg</span> = <span class="ruby-ivar">@argument</span>  <span class="ruby-comment cmt"># Preserve @argument !! It'll be overridden by find_argument()</span>
+    <span class="ruby-ivar">@argument_parent</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">find_argument</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:parent_id</span>]) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:parent_id</span>].<span class="ruby-identifier">blank?</span>
+    <span class="ruby-ivar">@argument</span> = <span class="ruby-identifier">arg</span>
+
+    <span class="ruby-ivar">@argument_parent</span>
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="is-visible-for--method" class="method-detail ">
+				<a name="M000310"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">is_visible_for?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Checks the visibility of the argument to the <tt>current_user</tt>
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="is-visible-for--source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 321</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_visible_for?</span>
+    <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">root_url</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">find_argument</span>.<span class="ruby-identifier">visible_to?</span>(<span class="ruby-identifier">current_user</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="rating-pane-method" class="method-detail ">
+				<a name="M000312"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">rating_pane</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+<a href="Rating.html">Rating</a> pane (rating pane in a tooltip)&#8230; not
+used presently.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="rating-pane-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 335</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rating_pane</span>
+          <span class="ruby-ivar">@debate</span> = <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">debate</span>
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="recursive-insert-method" class="method-detail ">
+				<a name="M000308"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">recursive_insert</span><span
+						class="method-args">(arg, parent_id)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+A recursive method used by the <a
+href="ArgumentsController.html#M000307">xml_import</a> method to insert the
+xml argument response
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="recursive-insert-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 303</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">recursive_insert</span>(<span class="ruby-identifier">arg</span>, <span class="ruby-identifier">parent_id</span>)
+
+    <span class="ruby-identifier">argument</span> = <span class="ruby-constant">Argument</span>.<span class="ruby-identifier">create</span>(
+      <span class="ruby-identifier">:title</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">'./title'</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">content</span>,
+      <span class="ruby-identifier">:body</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">'./body'</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">content</span>,
+      <span class="ruby-identifier">:argument_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">'./argument_type'</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">content</span>,
+      <span class="ruby-identifier">:debate</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@debate</span>,
+      <span class="ruby-identifier">:draft</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+      <span class="ruby-identifier">:user</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>
+    )
+    <span class="ruby-identifier">argument</span>.<span class="ruby-identifier">move_to_child_of</span>(<span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">to_i</span>)
+
+    <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">'./child_args/argument'</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">recursive_insert</span>(<span class="ruby-identifier">child</span>, <span class="ruby-identifier">argument</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="add-tag-method" class="method-detail ">
+				<a name="M000302"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_tag</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Adds tags given in +params[:tag]+ to the tag_list of the argument
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="add-tag-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 202</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_tag</span>
+    <span class="ruby-identifier">flash_success</span> = <span class="ruby-value str">'The tags were successfully added.'</span>
+    <span class="ruby-identifier">flash_error</span>   = <span class="ruby-value str">'Can\'t add the tag'</span>
+    
+    <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">tag_list</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:tag</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>))
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>{<span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>]     = <span class="ruby-identifier">flash_success</span>; <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">argument_url</span>(<span class="ruby-ivar">@argument</span>)}
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>  {<span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">flash_success</span>}
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> {<span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@debates</span> }
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>{<span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>]     = <span class="ruby-identifier">flash_error</span>; <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">argument_url</span>(<span class="ruby-ivar">@argument</span>)}
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>  {<span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">flash_error</span>}
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> {<span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@argument</span> }
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="bookmark-method" class="method-detail ">
+				<a name="M000295"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">bookmark</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Bookmarks the argument for the <tt>current_user</tt>
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="bookmark-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 135</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">bookmark</span>
+    <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">bookmark</span>(<span class="ruby-ivar">@argument</span>)
+    
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>  
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { 
+        <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:update</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">bookmark_link_reload!</span>(<span class="ruby-ivar">@argument</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:short_title</span>])}
+      }
+    <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="create-method" class="method-detail ">
+				<a name="M000292"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">create</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Create an argument
+</p>
+<pre>
+  - either as a root argument i.e., which doesn't have a parent
+  - or as a child argument to the argument with id +params[parent_id]+
+</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="create-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 86</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+    <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@parent</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">argument_url</span>(<span class="ruby-ivar">@parent</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">debate_url</span>(<span class="ruby-ivar">@debate</span>)) <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value str">'cancel.x'</span>]
+    
+    <span class="ruby-identifier">flash_success</span> = <span class="ruby-value str">'Argument has been saved successfully.'</span>
+    <span class="ruby-identifier">flash_error</span>   = <span class="ruby-value str">'Can\'t create a new argument'</span>
+    
+    <span class="ruby-constant">Argument</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-ivar">@argument</span> = <span class="ruby-constant">Argument</span>.<span class="ruby-identifier">create_child</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:argument</span>].<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">:debate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">find_debate</span>), <span class="ruby-identifier">find_parent</span>)
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-comment cmt"># .valid? clear an exists errors</span>
+        <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">set_status_from_buttons</span>(<span class="ruby-identifier">params</span>)
+
+        <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>]     = <span class="ruby-identifier">flash_success</span>; <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">debate_url</span>(<span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">debate</span>, <span class="ruby-identifier">:anchor</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">view_helpers</span>.<span class="ruby-identifier">arg_popup_dom_id</span>(<span class="ruby-ivar">@argument</span>))}
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>   { <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">flash_success</span> }          
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@argument</span> }
+        <span class="ruby-keyword kw">end</span>      
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@argument</span> = <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">destroy_unfreeze_errors_keep</span>  <span class="ruby-comment cmt"># remove unvalid record</span>
+        <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">flash_error</span>; <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'new'</span>}
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>   { <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">flash_error</span>; <span class="ruby-identifier">render</span> <span class="ruby-identifier">:template</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'arguments/create_failed'</span>}
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@argument</span> }
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="index-method" class="method-detail ">
+				<a name="M000291"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">index</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="index-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 79</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+          <span class="ruby-ivar">@arguments</span> = <span class="ruby-constant">Argument</span>.<span class="ruby-identifier">recent</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">params</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="publish-method" class="method-detail ">
+				<a name="M000300"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">publish</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Publish the argument
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="publish-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 190</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">publish</span>
+          <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">publish</span>
+          <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">argument_url</span>(<span class="ruby-ivar">@argument</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="rate-method" class="method-detail ">
+				<a name="M000298"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">rate</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Rate the argument based on three parameters &#8212; clarity, accuracy and
+relevance
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="rate-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 164</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rate</span>
+    <span class="ruby-comment cmt"># TODO refactor</span>
+    <span class="ruby-ivar">@unique_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:unique_id</span>]
+
+    <span class="ruby-ivar">@rating</span> = <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">rate!</span>(<span class="ruby-identifier">current_user</span>,
+                  {<span class="ruby-identifier">:clarity</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;clarity#{@unique_id}_average&quot;</span>], <span class="ruby-comment cmt">#_rated</span>
+       <span class="ruby-identifier">:accuracy</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;accuracy#{@unique_id}_average&quot;</span>],
+       <span class="ruby-identifier">:relevance</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-node">&quot;relevance#{@unique_id}_average&quot;</span>]}) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">can_rate_argument?</span>(<span class="ruby-ivar">@argument</span>)
+
+    <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">'Rating Saved'</span>         
+                <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>  {}
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> {<span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@rating</span>}
+    <span class="ruby-keyword kw">end</span>
+    
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordInvalid</span>, <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotSaved</span>
+    <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-value str">&quot;Please select a choice for all parameters&quot;</span>
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> <span class="ruby-keyword kw">do</span>
+                        <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:update</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">reload_flashes!</span>}
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@rating</span> }
+    <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="report-offensive-method" class="method-detail ">
+				<a name="M000306"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">report_offensive</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Report to the administrator that the argument is offensive (through email)
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="report-offensive-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 262</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">report_offensive</span>
+    <span class="ruby-constant">Mailers</span><span class="ruby-operator">::</span><span class="ruby-constant">Debate</span>.<span class="ruby-identifier">deliver_offensive_report</span>(<span class="ruby-ivar">@argument</span>, <span class="ruby-identifier">current_user</span>)
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">:update</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Thank You. This has been reported to our administrative review&quot;</span>
+          <span class="ruby-identifier">page</span>.<span class="ruby-identifier">reload_flashes!</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">rescue</span>
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">:update</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-value str">&quot;Couldn't report as offensive. Contact your administrator&quot;</span>
+          <span class="ruby-identifier">page</span>.<span class="ruby-identifier">reload_flashes!</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="rss-method" class="method-detail ">
+				<a name="M000303"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">rss</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Generates RSS feed of the argument and its descendants upto depth
++params[:deep]+
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="rss-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 223</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rss</span>
+    <span class="ruby-ivar">@deep</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:deep</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Argument</span><span class="ruby-operator">::</span><span class="ruby-constant">RSS_DEFAULT_DEEP</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">Argument</span><span class="ruby-operator">::</span><span class="ruby-constant">RSS_DEFAULT_DEEP</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="send-email-method" class="method-detail ">
+				<a name="M000304"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">send_email</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Same as rss but formats the feed in HTML and sends an email with it
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="send-email-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 229</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_email</span>
+    <span class="ruby-identifier">depth</span>, <span class="ruby-identifier">email</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:depth</span>].<span class="ruby-identifier">to_i</span>), <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:email</span>]
+
+    <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">email</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">User</span><span class="ruby-operator">::</span><span class="ruby-constant">RE_EMAIL_OK</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-identifier">:depth</span>].<span class="ruby-identifier">nil?</span>
+      <span class="ruby-constant">Mailers</span><span class="ruby-operator">::</span><span class="ruby-constant">Debate</span>.<span class="ruby-identifier">deliver_send_email</span>(<span class="ruby-ivar">@argument</span>, <span class="ruby-identifier">depth</span>, <span class="ruby-identifier">email</span>)
+      <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">render</span> <span class="ruby-identifier">:update</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Email successfully sent!&quot;</span>
+            <span class="ruby-identifier">page</span>.<span class="ruby-identifier">reload_flashes!</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">render</span> <span class="ruby-identifier">:update</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-value str">&quot;Invalid email address&quot;</span>
+            <span class="ruby-identifier">page</span>.<span class="ruby-identifier">reload_flashes!</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="tab-method" class="method-detail ">
+				<a name="M000305"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">tab</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+All tab actions i.e., reply, edit, etc., (listed in Argument::TABS) are
+handled by this action/method. What has to be done for each action is
+present in rjs (tab.rjs) corresponding to this method
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="tab-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 258</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tab</span>
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="tooltip-method" class="method-detail ">
+				<a name="M000297"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">tooltip</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Gets the tooltip related to the <tt>current_user</tt>
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="tooltip-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 157</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tooltip</span>
+<span class="ruby-comment cmt">#    rating_pane # we use rating_pane for combination of rating and tooltip</span>
+    <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span> <span class="ruby-comment cmt">#we we need a @user in the view to check if the user can Edit, Delete and if the user can bookmark it or not</span>
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="unbookmark-method" class="method-detail ">
+				<a name="M000296"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">unbookmark</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Unbookmarks the argument for the <tt>current_user</tt>
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="unbookmark-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 146</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unbookmark</span>
+    <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">unbookmark</span>(<span class="ruby-ivar">@argument</span>)
+    
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>  
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { 
+        <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:update</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">bookmark_link_reload!</span>(<span class="ruby-ivar">@argument</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:short_title</span>])}
+      }
+    <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="unpublish-method" class="method-detail ">
+				<a name="M000301"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">unpublish</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Unpublish the argument
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="unpublish-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 196</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unpublish</span>
+          <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">unpublish</span>
+          <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">argument_url</span>(<span class="ruby-ivar">@argument</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="update-method" class="method-detail ">
+				<a name="M000293"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Updates the argument
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="update-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 115</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+    <span class="ruby-identifier">flash_success</span> = <span class="ruby-value str">'Argument has been saved successfully.'</span>
+    <span class="ruby-identifier">flash_error</span>   = <span class="ruby-value str">'Can\'t update the argument'</span>
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:argument</span>])
+      <span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">set_status_from_buttons</span>(<span class="ruby-identifier">params</span>)
+      
+      <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>  
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>]     = <span class="ruby-identifier">flash_success</span>; <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">debate_url</span>(<span class="ruby-ivar">@argument</span>.<span class="ruby-identifier">debate</span>, <span class="ruby-identifier">:anchor</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">view_helpers</span>.<span class="ruby-identifier">arg_popup_dom_id</span>(<span class="ruby-ivar">@argument</span>))}
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>   {<span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">flash_success</span>}
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>]     = <span class="ruby-identifier">flash_error</span>; <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:edit</span>}
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>   {<span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">flash_error</span>; <span class="ruby-identifier">render</span> <span class="ruby-identifier">:template</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'arguments/update_failed'</span>}
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="xml-import-method" class="method-detail ">
+				<a name="M000307"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">xml_import</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Response to an argument can be given in XML format in addition to normal
+reply. Infact, an argument tree with structure can be imported. The format
+of the allowed xml trees can be seen @ /argument/:id.xml
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="xml-import-source">
+<pre>
+<span class="ruby-comment cmt"># File app/controllers/arguments_controller.rb, line 286</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">xml_import</span>
+    <span class="ruby-identifier">xml</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:xml_file</span>].<span class="ruby-identifier">read</span>)
+
+    <span class="ruby-constant">Argument</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-identifier">recursive_insert</span>(<span class="ruby-identifier">xml</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-value str">'/argument'</span>).<span class="ruby-identifier">first</span>, <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:parent_id</span>])
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">'Arguments successfully imported'</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">debate_path</span>(<span class="ruby-ivar">@debate</span>)
+  <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-value str">'Invalid XML'</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">debate_path</span>(<span class="ruby-ivar">@debate</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+<h2><%= variable_title(@variable) %></h2>
+<table>
+  <% for arg in Argument.all.reverse.reject {|a| a.score  == ( a.ky_value(@variable ))} %>
+    <tr>
+      <td colspan=7><font size=1>Arg <%= arg.id %> <b><%= link_to arg.title,argument_url(arg) %></b> in debate <%= arg.debate.id %>, <%= arg.debate.title %></font><td></tr>
+      <tr><td>Score: <%= arg.score%> <td>
+      <td>KYValue: <%= arg.ky_value(@variables)  %> <td></tr>
+    </tr>
+    <% for rating in arg.ratings %>
+      <tr>
+        <td width=155px> <%= rating.user.login %> </td>
+        <td width=101px> score: <%= rating.score %> </td>
+        <td width=75px> acc: <%= rating.accuracy %> </td>
+        <td width=75px> rel: <%= rating.relevance %> </td>
+        <td width=75px> clar: <%= rating.clarity %> </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table> 
+
+<br /><br />
+
+<%= link_to '<- Go Back', admin_variables_path %>

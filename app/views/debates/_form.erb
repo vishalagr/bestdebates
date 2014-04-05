@@ -1,0 +1,62 @@
+<%= fckeditor_include! %>
+
+<% form_for(@debate) do |f| %>
+  <div class="errors"><%= f.error_messages %></div>
+  <table cellpadding="0" cellspacing="0" border="0" id="d_form_box">
+    <tr>
+      <td style="padding-right:20px;width:120px;"><%= f.label 'Debate Proposition:' %></td>
+      <td><%= f.text_field :title, :id => 'debate_title', :style => 'width:454px;' %></td>
+    </tr>
+    <% if admin_user? %>
+      <tr>
+        <td style="padding-right:20px;width:120px;"><%= f.label 'Change Sponsor:' %></td>
+        <td><%= f.select :author_login, User.find_all_active.collect(&:login), {:style => 'width:200px;'} %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="2">
+        <p><%= f.label 'Description:' %></p>
+        <% content_tag :div, :id => fckeditor_div_id('debate', 'body') do %>
+          <%= fckeditor_textarea("debate", "body", :toolbarSet => 'Standard',:cols => "75",:rows=> "12", :width => '602px;', :height => '200px') %>
+        <% end %>
+        <%= javascript_tag "initDebateClarificationField('debate__body_editor')" if @debate.new_record?%>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" id="d_form_box">
+    <tr>
+      <td class="d_form_labels"><%= f.label 'Category:' %></td>
+      <td><%= collection_select :debate, :category_id, categories_list, :id, :name, {:prompt => true}, {:style => 'width:240px;'} %></td>
+    </tr>
+    <tr>
+      <td class="d_form_labels"><%= f.label 'External Link: <font color="brown">http://</font>' %></td>
+      <td><%= f.text_field :link, :style => 'width:430px;' %></td>
+    </tr>    
+    <tr>
+      <td class="d_form_labels"><%= f.label 'Tags (separate by commas):' %></td>
+      <td><%= f.text_field :tag_list, {:size => 30, :maxlength =>120, :style => 'width:430px;'} %></td>
+    </tr>
+  </table> 
+  <table cellpadding="0" cellspacing="0" border="0" id="d_form_box" >
+    <tr>
+      <td class="invite_people_label" style="padding-right:1px;width:215px;vertical-align: middle;"><%= f.label 'Invite people to participate in debate:' %></td>
+      <td style="vertical-align: middle;"><%= check_box_tag :invite_people, '1', params[:invite_people] == '1'  %></td>
+      <td class="closebutton"><%= link_to image_tag('close-button-small-red.gif', :class => 'cancel-button', :style => 'border: none;'), @debate %></td>
+    </tr>
+  </table>
+  <div class="argument-form-edit" style="padding: 1px 9px;margin-bottom: 32px;">
+    <%= debate_form_save_buttons(@debate) %>    
+    <div class="clear_both"></div>
+  </div>
+  <br />
+
+  <script type="text/javascript">
+    // Debate Title Field Handlers
+    var debate_title = $('debate_title');
+    if(debate_title.value == '') {
+        debate_title.value = debate_default_title;
+    }
+    debate_title.observe('focus', function() { if(this.value == debate_default_title){this.value = "";} });
+    debate_title.observe('blur',  function() { if(this.value == ""){this.value = debate_default_title;} });
+  </script>
+<% end %>

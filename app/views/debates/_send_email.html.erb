@@ -1,0 +1,19 @@
+<% form_remote_tag(
+  :url => send_email_debate_path(debate,:close_tab =>"#{params[:action]}"),
+  :before => '$("sendemail-spinner").setStyle({display: "inline"});',
+  :after  => '$("sendemail-spinner").setStyle({display: "none"});',
+  :method => :post
+) do %>
+  Argument deep:
+  <% Debate::RSS_AVAIVABLE_DEEPS.each do |depth| %>
+    <%= depth %> <%= radio_button_tag 'depth', depth, (depth == Debate::RSS_UNLIMITED_DEEP) ? true : false %> &nbsp; &nbsp;
+  <% end %>
+  <%= submit_tag 'Send Email' %> <%= radio_button_tag 'daily_digest', 1, false %> Daily Digest &nbsp; &nbsp;
+  &nbsp;
+  <%#= link_to('Login Here', login_url) unless logged_in? %>
+  <br />
+  Email address:
+  <% value = (logged_in? ? current_user.email : '') %>
+  <%= text_field_tag 'email', value, :size => '35' %>
+  <%= image_tag '/images/spinner-small.gif', :style => 'display:none', :id => 'sendemail-spinner' %>
+<% end %>

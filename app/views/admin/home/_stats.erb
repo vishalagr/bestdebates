@@ -1,0 +1,42 @@
+<style>
+  .argument-listings, .argument-listings a, .argument-listings a:visited, .argument-listings dd{
+    font-size:11px;
+    font-weight:normal;
+  }
+  .argument-listings a, .argument-listings a:visited{
+    font-weight:bold;
+    font-size:10px;
+  }
+  .argument-listings dd, .argument-listings dd dd{
+    margin-left:0px;
+    margin-right:4px;
+    text-align:center;
+  }
+</style>
+<h2 style="font-size:15px;font-weight:bold;">
+From <%= @start.strftime('%b. %d, %Y %H:%M') %> to <%= @stop >= DateTime.now ? 'now' : @stop.strftime('%b. %d, %Y %H:%M') %>
+</h2><br />
+<div style="font-size:12px;display:none;">
+New Users: <%= @new_users_count %> <br />
+Total Users: <%= @total_users_count %> <br />
+Total Minutes: <%= @time_online / 60 %> <br />
+New Arguments: <%= @new_arguments_count %> <br />
+New Debates: <%= @new_debates_count %> <br />
+New Ratings: <%= @new_ratings_count %> <br /> <br />
+</div>
+<% if false %>
+ Session data  <%= '&nbsp;&nbsp;&nbsp;<i><font size=1>* available from 12/28/08</i></font>' if   DateTime.parse('12/28/2008') >= @start %><br />
+<%= @unique_users %> unique users, <%= @logins.size %>  user sessions for <%= @time_online/60/60 %> hours total<br />
+
+<% unless true || @logins.empty? %>
+<div style="overflow:auto">
+Top Sessions: <br />
+<% for login in @logins %>
+  <%= login.created_at %> <%= render_author(User.find_by_login(login.name)) %>&nbsp;<%= (login.duration.to_i) /60 %> minutes <br />
+<% end %>
+</div>
+<% end %>
+<% end %><% params[:usersonly] = 'true' %>
+<div id="div-users" class="argument-listings left">
+  <%= render :partial => 'users' %>
+</div><br style="clear:both" />

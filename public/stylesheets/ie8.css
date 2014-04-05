@@ -1,0 +1,111 @@
+/* CSS Document */
+
+#top_main_bg {
+    background-image:url(/images/main_top_bg.gif);
+    background-position:left top;
+    background-repeat:no-repeat;
+    height:22px;
+    margin-left:-1px;
+    margin-top:0px !important;
+    width:952px;
+}
+div#main #top_main_bg{
+    _padding-top:0px;
+}
+.button_bottom{
+    padding-bottom:30px;
+    margin-bottom: 20px;   
+}
+.dd_blue_title {
+    color:#3366FF;
+    float:right;
+    font-family:Tahoma,Arial,sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    line-height:12px;
+    padding-left:22px;
+    width:50%;
+    margin-top: -12px;
+}
+#dd_top_right_text{           
+    width: 30%;
+}
+
+.dd_arg_vote  {
+    float:left;
+    width:90%;
+}
+
+
+
+.arg_rating_top{
+    width: 50%;float: right;
+    margin-top: -15px;
+}
+
+.access_functions{
+    padding-right: 10px;
+    margin-top: -20px;
+}
+
+.a_buttons_bottom{    
+    margin-bottom: 15px;
+}
+.middle_tag_links{
+    padding-top: 5px;
+}
+
+
+.flag_middle  {
+    padding-left:160px;
+    float: left;
+    margin-top:0px;
+    padding-bottom:0px;
+    width:10%;
+
+}
+.make_public_middle{
+    float: right;
+    margin-bottom:0px;
+    margin-top: -35px;
+    padding-right:261px;
+    margin-right: 50px;
+
+}
+
+#d_form_box td.invite_people_label{
+    padding-right:1px;
+    width:215px;    
+    vertical-align: middle;
+}
+#d_form_box td.closebutton{
+
+    text-align: right;
+}
+ul.mktree li.liOpen .pro{
+    top:0px;
+    padding-top:0px;
+}
+ul.mktree li.liClosed .con {
+    top:0px;
+}
+ul.mktree li.liBullet .pro{
+    top:0px;
+}
+ul.mktree li.liOpen .con {
+    top:0px;
+}
+
+ul.mktree li.liOpen .com {
+	left:16px;
+	position:absolute;
+	margin-top:15px;
+}
+ul.mktree li.liBullet .com{
+}
+
+ul.mktree li.liClosed .com {
+	left:16px;
+	position:absolute;
+	margin-top:15px;
+}

@@ -1,0 +1,33 @@
+<p>
+  <%= @invitor.login %> has invited you to join the <%= @resource_type %> "<%= @resource.title %>".
+</p>
+
+<p><%= @invitation.message_body %></p>
+
+<p>
+  Why You'll Love Best Debates:
+  <ul>
+    <li>
+      It's Free - You can join a <%= @resource_type %>, add arguments, and rate entries
+    </li>
+    <li>
+      Instant Feedback:  You can see the impact of how you rate arguments and how the ratings of your arguments impact the <%= @resource_type %>.
+    </li>
+    <li>
+      Improve you life: The more diverse opinions you can engage, the deeper your judgment and the better your decisions.
+    </li>
+  </ul>
+</p>
+
+<p>
+  Click here<br />
+  <% invitation_link = (@resource.class.to_s == 'Debate') ? debate_with_icode_url(@resource, @code.unique_hash) : argument_with_icode_url(@resource, @code.unique_hash) %>
+  <%=link_to "#{invitation_link}" , invitation_link  %>
+  <br />
+  to view the argument and add your opinions.
+</p>
+
+<p>
+  Debate Staff<br />
+  <%= link_to 'www.BestDebates.com', 'http://www.bestdebates.com/' %>
+</p>

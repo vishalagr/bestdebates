@@ -1,0 +1,48 @@
+
+<div id="content_top_box"><p class="page_title">Messages</p></div>
+<div id="content_box">
+<div id="messages_list_labels">
+  <%= link_to("Incoming", private_messages_path + "?folder=inbox") %> &nbsp;
+  <%= link_to("Sent", private_messages_path + "?folder=outbox") %> &nbsp;
+</div>
+
+<div id="messages_list_container">
+  <table cellpadding="0" cellspacing="0" border="0" class="list_debate">
+    <tr>
+      <th colspan="5">
+	<%= will_paginate @messages %>     
+      </th>
+    </tr>
+    <tr>
+      <th>Sender</th>
+      <th>Recipient</th>
+      <th>Subject</th>
+      <th><%= sortable_column('received', @order[:received]) %></th>
+      <th><%= sortable_column('status', @order[:status] || 'desc') %></th>
+      <th>View</th>
+    </tr>
+    
+    <% for message in @messages %>
+    <tr>
+      <td><%= message.author.login %></td>
+      <td><%= message.cached_recipients.gsub(',','<br>') %></td>
+      <td><%= message.subject %></td>
+      <td><%= time_ago_in_words(message.created_at) %> ago</td>
+      <td><%= message.status.capitalize! %> </td>
+      <td><%= link_to "show" ,private_message_path(message , :folder => params[:folder] || "inbox") %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <th colspan="5">
+	<%= will_paginate @messages %>     
+      </th>
+    </tr>
+  </table>
+</div>
+
+<br />
+
+<%= link_to 'New Message', new_private_message_path , :style => "padding-left: 10px;" %>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

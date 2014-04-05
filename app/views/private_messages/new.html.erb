@@ -1,0 +1,55 @@
+<%= fckeditor_include! %>
+<script type="text/javascript">
+  window.onload = function()
+  {
+    var oFCKeditor = new FCKeditor( 'message_body','580px;', '150px', 'Standard' ) ;
+    oFCKeditor.BasePath = '/javascripts/fckeditor/';
+    oFCKeditor.Config['CustomConfigurationsPath'] = '/javascripts/fckcustom.js';
+    oFCKeditor.ReplaceTextarea() ;
+  }
+</script>
+<div id="content_top_box"><p class="page_title">New Message</p></div>
+<div id="content_box" style="margin-top:-4px;">
+  <div id="messages_list_container">
+<%= error_messages_for :message %>
+<%- form_for :message, :url => private_messages_path do |f| -%>
+
+<br />
+
+<div id="user_search">
+Search user by username:
+<%=
+text_field_with_auto_complete(
+  :user, :login, {:size => 70}, :url => '/users/message_users_mails',
+  :method => :get, :param_name => 'search',
+  :after_update_element => 'function(f, e) { user_login_autocomplete(f, e) }');
+%>
+</div>
+
+<p><%= label_tag "recipient User(s)" -%><br/> 
+<%= text_field :message, :to_users , :size => 70 , :value => params[:login] -%></p>
+
+<p><%= label_tag 'subject' -%><br/>
+<%= text_field :message, :subject , :size => 70 -%></p>
+
+<!--<div id="preview">
+<div id="preview_controls">
+ <input type="button" id="preview_hide_btn" value="Hide Preview"/>
+</div>
+<div id="preview_body"></div>
+</div>-->
+
+<p><%= label_tag 'Message Body' -%><br/>
+<%= text_area :message, :body, :class => "" -%></p>
+
+<!--<%#= check_box :message, :alert_email, { :checked => "checked" } -%> Notify activity via email <br />-->
+
+<p><!--<input type="button" id="preview_show_btn" value="Preview"/> -->&nbsp; <%= submit_tag 'Send' -%></p>
+<%- end -%>
+  </div>
+<br /> <br />
+
+<%= link_to 'Back', private_messages_path, :confirm => "Are you sure? The message will be lost!" , :style => "padding-left: 10px;" -%>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

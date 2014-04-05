@@ -1,0 +1,16 @@
+<div class="debate-argument">
+  <div class="debate-listings">
+    <div class="debate-argument-title-background">
+      <h2>Editing Group</h2>
+    </div>
+    <div class="argument-form-inner">
+      <div class="argument-form-wrapper"><br />
+        <% form_for @group, :url => admin_group_path(@group) do |f| %>
+          <%= render :partial => 'form', :locals => {:f => f, :submit_action => 'Update' } %><br /><br />
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="debate-listing-inner-footer"></div>
+</div>
+<div class="debate-listing-footer"></div>

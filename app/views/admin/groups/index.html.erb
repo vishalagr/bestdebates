@@ -1,0 +1,31 @@
+<div class="debates-list">
+  <div class="debate-listings">
+    <div class="debate-listing-title-background">
+      <h2>Group Listings</h2>
+    </div>
+    <div class="argument-form-inner">
+      <div class="argument-form-wrapper">
+        
+        <div class="argument-listings" >
+          <dl class="listing-labels" style="width:620px">
+            <dd style="text-align:left; margin:0; width:28px;">&nbsp;</dd>
+            <dd style="text-align:left; margin:0; width:300px;"> <%= sort_link 'Name', :group %> </dd>
+            <dd style="text-align:left; margin:0; width:160px;"> <%= sort_link 'Members Count', :num_members %> </dd>
+          </dl>
+          <dl>
+            <dd class="listings" id="groups">
+              <%= render :partial => 'group', :collection => @groups %>
+            </dd>
+          </dl>
+          
+          <div class="right" style="padding:20px;">
+            <%= link_to 'Create Group', new_admin_group_path %>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="debate-listing-inner-footer"></div>
+</div>
+<div class="debate-listing-footer"></div>

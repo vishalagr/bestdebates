@@ -1,0 +1,11 @@
+<br/>
+There are <%= pluralize @arguments.size, 'context' %> in which this argument is used.
+
+<ol>
+<% @arguments.each do |argument| %>
+  <% arg = argument.parent %>
+  <% if arg %>
+    <li> <%= link_to arg.title, argument_path(arg) %> </li>
+  <% end %>
+<% end %>
+</ol>

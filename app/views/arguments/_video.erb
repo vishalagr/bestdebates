@@ -1,0 +1,16 @@
+<br/><span style="vertical-align: top;">  Video : </span>
+<% if argument.video %>
+  <%= image_tag "videocam.jpg" , :id => video_dom_id(argument) , :style => "cursor:pointer;"%>
+<script type="text/javascript">
+  new Tip('<%=video_dom_id(argument)%>' ,'Played <%=  pluralize(argument.video.played_times, "time") %> <br /><%=argument.video.play!%>',{
+            viewport: 'true',
+            closeButton: true,
+            showOn: 'click',
+            hideOn: false,
+            title: 'Video',
+            width: 'auto',           
+            hook: {target: 'rightTop', tip: 'bottomLeft',mouse: true },
+            stem: 'bottomLeft',
+            radius: 16 })
+ </script>
+<% end %>  

@@ -1,0 +1,12 @@
+<h1> Viewing Shortcut </h1>
+
+<div>
+  <p><strong> Resource Type : </strong><%= h current_object.resource_type %> </p>  
+  <p><strong> Resource Id : </strong><%= h current_object.resource_id %> </p>
+
+  <p><strong> Shortcut URL : </strong><a href='<%=(!current_object.resource_url.blank? ? "http://#{HOST_DOMAIN}/i/#{current_object.resource_name}" : "http://#{HOST_DOMAIN}/#{current_object.resource_type.first}/#{current_object.resource_id}")%>'><%=(!current_object.resource_url.blank? ? "http://#{HOST_DOMAIN}/i/#{current_object.resource_name}" : "http://#{HOST_DOMAIN}/#{current_object.resource_type.first}/#{current_object.resource_id}") %> </a>&nbsp;&nbsp;</p>
+
+  <p><strong> Resource Name : </strong><%= h current_object.resource_name %> </p>
+  
+  <%= link_to 'Back', objects_path %>
+</div>

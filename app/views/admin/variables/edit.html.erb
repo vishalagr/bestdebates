@@ -1,0 +1,6 @@
+<h2>Vetting Config Page</h2>
+
+<% form_for @variable, :url => admin_variable_path(@variable) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <p style="margin-left:45px;margin-top:10px;"><%= f.submit "Update" %></p><br /><br />
+<% end %>

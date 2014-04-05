@@ -1,0 +1,43 @@
+<% remote_form_for([@resource, Invitation.new], :success => "deselectAll($('users-select'))", :before => "put_circle('invite_current');",
+    :complete => "remove_circle('invite_current');" , :html => {:id => 'invite-users'}) do |f| %>
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td> Search: </td>
+      <td>
+        <%= text_field_tag( 'query', 'Search Users', :size => 15, :id => 'users-select-search', :onfocus => 'if(this.value == "Search Users") this.value = "";' )%>
+        <%= image_tag 'spinner-small.gif', :id => 'users-select-spinner', :style => 'display:none' %>
+
+        <%= javascript_tag 'ajaxUsersSelect()' %>
+      </td>
+    </tr>
+    <tr>
+      <td class="invite_form_labels">
+        <%= f.label 'Users:' %>
+        <br />
+        <span>(Hold the control key to select multiple users)</span>
+      </td>
+      <td>
+        <div id="users-select">
+          <%= render :partial => 'users_select' %>
+        </div>
+      </td>
+    </tr>
+    <% if @resource.can_be_modified_by?(current_user) %>
+      <tr>
+        <td class="invite_form_labels"><%= f.label 'Write Access:' %></td>
+        <td><%= check_box_tag :is_writable, '1', true %> <%= write_access_question_mark_tooltip %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td class="invite_form_labels"><%= f.label 'Personalized <br />Note:' %></td>
+      <td><%= text_area_tag :message, params[:message], :style => 'width:200px;height:80px;' %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="invite_form_submits">
+        <%= question_mark_tooltip('user_question_mark', '<div style="width:400px;font-size: 12px;">When you click this button, any users you have selected above will receive an invitation to participate in this debate, including your custom text above.</div>') %>
+        <%= image_submit_tag 'Invite-Current-Users-button.gif', :name => 'save', :style => 'border: none;', :id=>'invite_current' %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+

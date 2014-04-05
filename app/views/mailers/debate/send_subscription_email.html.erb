@@ -1,0 +1,15 @@
+<p style="font-family:Arial,Helvetica,sans-serif;">This argument responds to an argument or debate you are "watching" on BestDebates.com
+</p>
+
+<%= render_html_argument(@argument, @depth, 1,@parent_arg) %>
+
+<div style="clear:both;font-size:0px;height:0px;line-height:0px;width:0px;">&nbsp;</div>
+
+<!--<p>Which is in the Debate: <%#= link_to @parent_arg.debate.title, debate_url(@parent_arg.debate) %></p>-->
+
+
+<p style="font-family:Arial,Helvetica,sans-serif;">The argument or debate you are watching is: <%= link_to @subscription.argument.title , argument_url(@subscription.argument) %> </p>
+
+<% user_id = user_link_id(@subscription.email) %>
+<p style="font-size: 10px;font-family:Arial,Helvetica,sans-serif;">This email is from http://BestDebates.com. If you wish to stop receiveing updates for this argument, click here: <%= link_to "Unsubscription", unsubscription_url(@subscription.activation_code) %>. This will not affect other updates you have signed up for. If you wish to change your subcription preferences for this argument, click here:  <% if !user_id.blank? %><%= link_to "change watching preferences" ,user_url(user_id, :tab => "watching") %><% else %> <%= link_to "change watching preferences" ,"#" %> <% end %> . You may change your watching preferences on all arguments or debates you are watching at any time on the "watching" tab on your profile page on BestDebates.com.
+</p>

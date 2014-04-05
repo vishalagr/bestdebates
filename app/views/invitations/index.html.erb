@@ -1,0 +1,61 @@
+<div id="content_top_box">
+  <p class="page_title">Invite to <%= @resource_type %></p>
+</div>
+<div id="content_box">
+  <span class="created" style="padding-right:4px;">
+    <%= @resource_type %> ID <%= @resource.id %>, Created <%= @resource.created_at.strftime('%b. %d, %Y') %>
+  </span>
+  <div class="clear_both"></div>
+  <div id="existing_users_box">
+    <p class="invite_form_titles">INVITE EXISTING USERS</p>
+    <%= render :partial => 'user_form' %>
+  </div>
+  <div id="new_users_box">
+    <p class="invite_form_titles">INVITE NEW USERS</p>
+    <%= render :partial => 'guest_form' %>
+  </div>
+
+  <div class="clear_both"></div>
+
+  <div id="preview_email_box">
+    <span id="preview-email" style="color:#0000FF">Preview Email</span>
+    <%#= preview_email_tooltip('preview-email', @resource) %>
+
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <%#= include_stylesheets 'facebox' %>
+    <%#= include_javascripts 'facebox' %>
+    <script type="javascript">
+        document.observe("dom:loaded", function() {
+            $$('[rel="facebox"]').each(function(elem) {
+                elem.facebox();
+            });
+        });
+    </script>
+    <%= link_to(
+      'Create an Invite Link',
+      self.send("new_#{@resource_type.downcase}_invite_link_path", @resource),
+      :rel => 'facebox'
+    )%>
+
+
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <%= link_to(
+      'Invite Links',
+      self.send("#{@resource_type.downcase}_invite_links_path", @resource),
+      :rel => 'facebox'
+    )%>
+  </div>
+
+  <% invitation_users_list(@resource) do |options| %>
+    <div id="users_and_guests">
+      <%= render :partial => 'users_and_guests' %>
+      <div class="clear_both"></div>
+    </div>
+    <div class="clear_both"></div>
+    <div id="invitations_buttons" style="text-align:center;padding:25px 0px 30px 0px;">
+      <%= render :partial => 'invitations/buttons' %>
+    </div>
+  <% end %>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

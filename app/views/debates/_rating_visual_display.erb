@@ -1,0 +1,5 @@
+<div style="height:24px;position:relative;margin-left:-4px;">
+  <div style="position:absolute;top:6px;left:16px;"><%= image_tag "rating_gradient.png",:width =>330 %> </div>
+  <div style="position:absolute;left:3px;top:7px;">Rating: <%= @debate.rating.to_f > 0 ? sprintf("%.1f",  @debate.rating.to_f) : 0 %> </div>
+  <div style="position:absolute;left:<%= 64 + 1.3*@debate.rating.to_i  %>px;top:2px;"><%= image_tag 'vee.png' %> </div>
+</div>

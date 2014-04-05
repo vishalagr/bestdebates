@@ -1,0 +1,42 @@
+<div class="sub_arguments">
+  <div class="dd_purple"> 
+    MORE-RELATIONS
+    <span class="right">
+      SHOW
+      <%= select(
+        'relation_type', '',
+        Argument::RELATIONS.to_a,
+        {:include_blank => true},
+        {:id => 'relations-select', :name => 'relation_type'}
+      ) %>
+
+      <script type="text/javascript">
+          document.observe('dom:loaded', function() {
+              $('relations-select').observe('change', function() {
+                try {
+                    var url = location.pathname;
+                    if(location.pathname[location.pathname.length - 1] != '/')
+                      url = url + '/';
+                    url = url + 'relations';
+
+                    new Ajax.Updater('relations-list', url, {
+                        method: 'post',
+                        parameters: {
+                            relation_type: $('relations-select').value,
+                            authenticity_token: $$('input[name="authenticity_token"]')[0].value
+                        },
+                    });
+                } catch(err) {
+                }
+              });
+          });
+      </script>
+
+    </span>
+    <div class="clear_both"></div>
+  </div>
+
+  <div id="relations-list">	 
+  </div>
+</div>
+

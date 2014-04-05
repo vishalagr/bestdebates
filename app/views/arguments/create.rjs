@@ -1,0 +1,24 @@
+unless @argument.parent_id.blank?
+  rslt = ''
+  render_arguments_for([@argument], rslt)
+#  render_scripts_for(  [@argument], rslt) popup
+  
+  page << "new Insertion.Bottom(createULforLI('#{mktree_node_dom_id(@argument.parent)}'), #{rslt.inspect});"
+  page << "var h = (window.size.innerHeight() - $('#{mktree_node_dom_id(@argument)}').clientHeight) / 2"
+  page << "processInsertLi($('#{mktree_node_dom_id(@argument)}'),('#{@argument.argument_type}'));"
+
+  page.visual_effect :scroll_to, mktree_node_dom_id(@argument), :duration => 2.0, :offset => "-h"
+  page.visual_effect :highlight, mktree_node_dom_id(@argument), :duration => 9.9
+  
+  #page << "processInsertLi($('#{mktree_node_dom_id(@argument)}'),('#{@argument.argument_type}'));"
+  # page << "processInsertLi($('#{mktree_node_dom_id(@argument)}'));"
+else
+  page << toggle_div_cancel(@argument.debate)
+  #page << "document.getElementById(\"dd_debate#{@argument.debate_id}\").scrollIntoView(true);"
+end
+
+page.call 'toggle_div_cancel', argument_id(@argument, true)
+page.call 'expandTreeToLevel', argument_ul_dom_id(@argument)
+page.call 'fMoreLessDetailsArg', more_less_link_dom_id(@argument)
+page.reload_flashes!
+page.redirect_to(argument_invitations_path(@argument)) if params[:invite_people] == '1' 

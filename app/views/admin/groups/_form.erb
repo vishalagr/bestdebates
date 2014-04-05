@@ -1,0 +1,13 @@
+<div style="padding-left: 16px;">
+  <div class="errors"><%= f.error_messages %></div>  
+  <div class="argument-form-edit">
+    <div class="left d-medium"><%= f.label 'Group:' %></div>
+    <div class="left"><%= f.text_field :name, :style => 'width:454px;' %></div>
+  </div>
+  
+  <br />
+  
+  <div class="argument-form-edit">
+    <%= image_submit_tag 'save.png', :class => 'right create-button', :name => 'save', :style => 'border: none;' %>
+  </div>
+</div>

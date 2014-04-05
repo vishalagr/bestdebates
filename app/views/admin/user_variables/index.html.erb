@@ -1,0 +1,21 @@
+<h1> Admin: User Score Config Variables</h1>
+
+<h3>User Score Equation : </h3>
+<pre>
+vars = UserVariable.current
+	
+	user_score  = (no_of_debates * vars.a) + (no_of_args_in_debates * vars.b)
+	user_score += (total_ratings  *  vars.c)  +  (no_of_own_arguments * vars.d) 
+	user_score += (no_of_args_rated * vars.e)  + (no_of_first_level_argues * vars.f) 
+	user_score += (no_of_sec_level_argues * vars.g) + (user_pic * vars.h ) 
+	user_score += (no_of_watchings * vars.i) + (total_ratings * vars.j) 
+	user_score += (avg_ratings_on_own_argues * vars.k)
+	user_score += (avg_clarity * vars.l ) + (avg_accuracy * vars.m ) + (avg_relevance * vars.n ) 
+	user_score += (no_of_videos * vars.o) + (no_of_images * vars.p) 
+	user_score += (no_of_links * vars.q) + (no_of_tags * vars.r)
+	
+</pre>
+
+<%= render :partial => 'user_variable', :collection => current_objects %>
+
+<%= link_to 'New User  Score Variable', new_object_path %>

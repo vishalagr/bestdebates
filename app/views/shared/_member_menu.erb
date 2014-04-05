@@ -1,0 +1,5 @@
+<div id="member-menu">
+  <div class="spacing" id="username_box">Hello, <%= current_user_name %></div>
+  <span class="spacing"><%= link_to 'Profile',  user_path(current_user) %>( <%= link_to 'Edit', edit_user_path(current_user) %> )</span>
+  <span class="spacing" id="singout_link"><%= link_to_logout %></span>
+</div>

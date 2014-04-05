@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  argument: 
+  user: 
+  accuracy: 1
+  clarity: 1
+  relevance: 1
+
+two:
+  argument: 
+  user: 
+  accuracy: 1
+  clarity: 1
+  relevance: 1

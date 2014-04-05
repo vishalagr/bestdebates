@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=7" />
+  <meta name="generator" content="HTML Tidy, see www.w3.org" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title><%= @title || 'BestDebates.com | Your opinion changes the debate. Join, judge, or create a debate today!' %></title>
+
+  <%=stylesheet_link_tag "application", "facebox"%>
+  <%=javascript_include_tag "prototype", "effects", "scriptaculous", "application", "facebox", "event.simulate"%>
+  <%#= include_javascripts :base %>
+  <%#= javascript_include_tag 'prototype', 'effects', 'scriptaculous', 'application' %>
+  <%#= include_stylesheets :base %>
+<%#= include_javascripts 'facebox' %>
+<%#= include_stylesheets 'facebox' %>
+  <%#= stylesheet_link_tag    'application' %>
+
+  <%= javascript_include_tag 'prototip' %>
+  <%#= include_stylesheets :prototip %>
+  <%= stylesheet_link_tag    'prototip' %>
+
+  <!--[if IE ]>
+    <%= javascript_include_tag "#{http_protocol}ie7-js.googlecode.com/svn/version/2.0(beta3)/IE7.js" %>
+    <style type="text/css" media="screen">
+      body{behavior:url(/javascripts/csshover.htc); font-size:100%;}
+    </style>
+  <![endif]-->
+  <!--[if lt IE 8]>
+    <%= stylesheet_link_tag    'ie8.css' %>
+    <%= javascript_include_tag "#{http_protocol}ie7-js.googlecode.com/svn/version/2.0(beta3)/IE8.js" %>
+  <![endif]-->
+
+  <!--[if lt IE 7]>
+    <%#= include_javascripts :pngfix %>
+	<%=javascript_include_tag "pngfix"%>
+  <![endif]-->
+
+  <% fb_include! %>
+
+  <%#= yield :b_header -%>
+  <%#= yield :header -%>
+  <%#= yield :after_header -%>
+
+  <!--[if IE 7]>
+    <style type="text/css">
+
+      div#main #top_main_bg {
+      padding-top:42px;
+      background-image:url(/images/main_top_bg.gif);
+      background-repeat:no-repeat;
+      background-position:bottom left;
+      }
+
+      ul.sub_nav { margin-left: -95px; }
+
+      #footer_text div {margin-top: -6px;}
+
+      ul.mktree li { margin-top: -19px; margin-bottom: -19px }
+
+      ul.mktree li.liBullet .pro,
+      ul.mktree li.liBullet .con,
+      ul.mktree li.liOpen .pro,
+      ul.mktree li.liOpen .con,
+      ul.mktree li.liClosed .pro,
+      ul.mktree li.liClosed .con
+      { top: 27px; left: 14px; position: absolute; }
+    </style>
+  <![endif]-->
+
+</head>
+<body>
+
+  <div id="main">
+    
+    <%= yield :home_image %>
+
+    <!-- middle -->
+  
+    <div>
+
+      <!-- content -->
+      <div id="content">
+        <div id="flash">          
+          <%= flash_messages({:fade => 6}) %>
+        </div>
+        <%= yield %>
+      </div>
+
+      <!-- right column -->
+      <div id="right_column"><%= render :partial => '/shared/firefox_right_block'%></div>
+      <div class="clear_both"></div>
+    </div>
+
+    <!-- footer -->
+ 
+    <%= render(:partial => 'shared/just_registered') if session[:just_registered] %>
+  </div>
+</body>
+</html>

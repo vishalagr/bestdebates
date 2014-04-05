@@ -1,0 +1,6 @@
+<%= link_to "Accuracy #{question_mark_image}", '#', :id => accuracy_tooltip_dom_id, :onclick => "return false" %>
+<script type="text/javascript">
+	new Tip('<%= accuracy_tooltip_dom_id %>', '<div class="definitions"><b>Accuracy measures the reader’s best estimate of the factual value of the premise of an argument. </b>  <br /> <br />* 10-stars = the premise is a proven fact or certain knowledge based on experience & experiment. <br /> * 7-stars = mostly factually true, but it is either inaccurately slanted or overstated <br /> * 3-stars = more false than true, or so slanted, overstated, or misrepresented as to be mostly inaccurate <br /> * 0-stars = Clearly false, contradicting known facts or certain knowledge</div>',{
+    viewport: true
+  });
+</script>

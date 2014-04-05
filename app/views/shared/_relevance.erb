@@ -1,0 +1,6 @@
+<%= link_to "Relevance #{question_mark_image}", '#', :id => relevance_tooltip_dom_id, :onclick => "return false" %>
+<script type="text/javascript">
+	new Tip('<%= relevance_tooltip_dom_id %>', '<div class="definitions"><b>Relevance measures how well the argument affirms or negates its parent argument. </b>  <br /><br /> * 10-stars = The argument, if it were 1oo% true, would logically mean the parent is 100% true. <br /> * 7-stars = Mostly relevant, if 100% true, parent is strongly affirmed. <br /> * 3-stars = Largely irrelevant, if 100% true, parent is only partially affirmed. <br /> * 0-stars = Completely irrelevant, if 100% true, has zero bearing on parent’s truth.</div>',{
+    viewport: true
+  });
+</script>

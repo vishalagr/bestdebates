@@ -1,0 +1,112 @@
+/* Put this inside a @media qualifier so Netscape 4 ignores it */
+@media screen, print {
+	/* Turn off list bullets */
+	ul.mktree li {
+		list-style:none;
+    position: relative;
+		}
+	/* Control how "spaced out" the tree is */
+	ul.mktree, ul.mktree ul, ul.mktree li {
+		margin-left:10px;
+		padding:0px;
+		}
+	/* Provide space for our own "bullet" inside the LI */
+	ul.mktree  li .bullet {
+		padding-left:20px;
+		_padding-left:18px;
+		_margin-left:0px;
+		_margin-bottom:-11px;
+		position:relative;
+		float:left;
+		top:0px;
+		left:0px;
+		display:inline-block;
+		height:23px;
+		z-index:220;
+		_width:1px;
+		}
+	/* Show "bullets" in the links, depending on the class of the LI that the link's in */
+	ul.mktree li.liOpen .bullet {
+		cursor:pointer;
+		background:url(/images/minus.gif) center left no-repeat;
+		}
+	ul.mktree li.liClosed .bullet {
+		cursor:pointer;
+		background:url(/images/plus.gif) center left no-repeat;
+		}
+	ul.mktree li.liBullet .bullet {
+		cursor:default;
+		background:url(/images/bullet.gif) center left no-repeat;
+		}
+
+  ul.mktree li.liOpen .pro {
+		background:url(/images/minus-green.gif);
+		top:8px;
+		left:16px;
+		width:3px;
+		}
+	ul.mktree li.liClosed .pro {
+		background:url(/images/plus-green.gif);
+		top:8px;
+		left:14px;
+		width:3px;
+		}
+  ul.mktree li.liBullet .pro {
+		background:url(/images/bullet-green.gif);
+		top:8px;
+		left:16px;
+		width:3px;
+		}
+  ul.mktree li.liOpen .com {
+		background:url(/images/minus-blue.gif);
+		top:8px;
+		left:16px;
+		width:3px;
+		}
+	ul.mktree li.liClosed .com {
+		background:url(/images/plus-blue.gif);
+		top:8px;
+		left:14px;
+		width:3px;
+		}
+  ul.mktree li.liBullet .com {
+		background:url(/images/bullet-blue.gif);
+		top:8px;
+		left:16px;
+		width:3px;
+		}
+  ul.mktree li.liOpen .con {
+		background:url(/images/minus-red.gif);
+		top:8px;
+		left:14px;
+		width:3px;
+		}
+	ul.mktree li.liClosed .con {
+		background:url(/images/plus-red.gif);
+		top:8px;
+		left:14px;
+		width:3px
+		}
+  ul.mktree li.liBullet .con {
+		background:url(/images/bullet-red.gif);
+		top:8px;
+		left:14px;
+		width:3px;
+		}
+
+	/* Sublists are visible or not based on class of parent LI */
+	ul.mktree li.liOpen ul {display:block;}
+	ul.mktree li.liClosed ul {display:none;}
+
+	/* Format menu items differently depending on what level of the tree they are in */
+	/* Uncomment this if you want your fonts to decrease in size the deeper they are in the tree */
+/*
+	#ul.mktree  li ul li { font-size: 90% }
+*/
+	ul.nktree li {list-style:none;}
+	ul.nktree, ul.nktree ul, ul.nktree li {
+		margin-left:10px;
+		padding:0px;
+		}
+        /*ul.mktree li {border-bottom:1px solid #000000;}*/
+}

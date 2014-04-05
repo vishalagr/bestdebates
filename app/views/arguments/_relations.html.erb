@@ -1,0 +1,21 @@
+<p style="text-align:center">
+  <span style="font-weight:bold"><%= Argument::RELATIONS.index(relation_type.to_i) %></span> of the current argument
+</p>
+
+<span class="right">
+  <%= link_to_function 'Show Argument Full Text', 'relationShowHideDetails(this)' %>
+</span>
+
+<div class="clear_both"></div>
+
+<% if arguments.empty? %>
+  No such arguments !!
+<% else %>
+  <ul class="mktree">
+    <% arguments.each do |a| %>
+      <li id="<%= mktree_node_dom_id(a) %>" class="<%= a.argument_type %>" negates_parent="<%= a.negates_parent?%>">
+        <%= render(:partial => 'debates/argument', :locals => {:argument => a, :options => {}}) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

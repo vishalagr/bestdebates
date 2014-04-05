@@ -1,0 +1,45 @@
+
+ <script type="text/javascript">
+    document.observe("dom:loaded", function() {
+      $("preview_show_btn").observe('click', msg_preview_show);
+      $("preview_hide_btn").observe('click', msg_preview_hide);
+      $("groups_list").observe('change', select_group);
+    });    
+  </script>
+
+<h1>Reply To Message</h1>
+
+Search user by username :
+<%=
+text_field_with_auto_complete(
+  :user, :login, {:size => 70}, :url => '/users/message_users_mails',
+  :method => :get, :param_name => 'search',
+  :after_update_element => 'function(f, e) { user_login_autocomplete(f, e) }');
+%>
+
+<%= error_messages_for :message %>
+<% form_for :message, :url => reply_private_messages_path ,:html => {:method => :post} do |f| -%>
+
+<p><%= label_tag "recipient User(s)" %><br/>
+<%= f.text_field :to_users , :size => 70 , :value => message.author.login %></p>
+
+<p><%= label_tag 'subject' %><br/>
+<%= f.text_field :subject , :size => 70 %></p>
+
+<!--<div id="preview">
+<div id="preview_controls">
+ <input type="button" id="preview_hide_btn" value="Hide Preview"/>
+</div>
+<div id="preview_body"></div>
+</div>-->
+
+<p><%= label_tag 'Message Body' %><br/>
+<%= f.text_area :body, :class => "" %></p>
+
+<p>
+ <%= hidden_field_tag "parent_msg", @parent_message_id %>
+</p>
+<!--<%#= check_box :message, :alert_email, :checked => email_alerts?(@root_id, current_user.id) %> Notify activity via email --> <br />
+
+<p><!--<input type="button" id="preview_show_btn" value="Preview"/>--> &nbsp; <%= submit_tag 'Reply' %> &nbsp;<%= link_to 'Back', private_messages_path, :confirm => "Are you sure? The message will be lost!" , :style => "padding-left: 10px;" -%></p>
+<% end -%>

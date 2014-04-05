@@ -1,0 +1,15 @@
+<p>Hello Administrator,</p>
+
+<p>The following debate/argument has been reported to be offensive by the user <%= link_to @user.name, user_url(@user) %>. Kindly review it and retire/delete it.</p>
+
+<p>
+  Title: <b><%= @obj.title %></b> <br />
+  Description: <%= @obj.body %> <br />
+  Link: <%= link_to @link, @link %>
+</p>
+
+
+<p>
+  Thanks,<br />
+  Bestdebates
+</p>

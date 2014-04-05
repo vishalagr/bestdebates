@@ -1,0 +1,20 @@
+<div class="debate-argument">
+  <div class="debate-listings">
+          <div class="debate-argument-title-background">
+             <h2>Editing member</h2>
+          </div>
+     <div class="argument-form-inner">
+        <div class="argument-form-wrapper"><br />
+          <%= render :partial => 'form', :locals => { :submit_action => 'Update' } %>
+          <p style="padding-left:20px;">
+            <%= link_to 'Show', member_path %> |
+            <%= link_to 'Back', group_members_path(@group) %>
+          </p><br />
+        </div>
+      </div>
+    </div>
+    <div class="debate-listing-inner-footer">
+    </div>
+</div>
+<div class="debate-listing-footer">
+</div>

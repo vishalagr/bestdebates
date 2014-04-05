@@ -1,0 +1,80 @@
+<!-- First -->
+<%= fckeditor_include! %>
+<%# header_content do %>
+<%#*<script type="text/javascript">%>
+<%#*addEvent(window, 'load', new_argument_form_init, false);%>
+<%#*</script>%>
+<%# end %>
+<script type="text/javascript">
+  function isParentPublic(){
+    if(<%= @argument.new_record? || params[:action] == 'new' %>)
+    {
+        if(<%= params[:parent_id].blank? %> )
+          return true;
+        else
+        {
+          if(<%=  !@argument_parent.blank? && @argument_parent.draft? %>)
+          {
+            alert("you cannot make an argument 'public' when its parent is a 'draft.' ");
+            return false;
+          }
+          else
+            return true;
+        }
+
+    }
+  else if (<%=  @argument.draft? %>)
+  {
+   if(<%= !@argument.parent_id.blank? && @argument.parent.draft? %>)
+    {
+      alert("you cannot make an argument 'public' when its parent is a 'draft.' ");
+      return false;
+    }
+    else
+      return true;
+  }
+
+  return true;
+}
+</script>
+
+<% unless (@argument_parent.nil?)  %>
+  <div style="padding: 3px 5px 0px 15px;">
+    <b>Responds to Argument: </b>
+    <h5><%= @argument_parent.full_title %></h5>
+    <p><b>Clarification:</b> <%= @argument_parent.body %></p>
+  </div>
+<% end %>
+
+<% if !@argument.new_record? and @argument.draft? -%>
+  <div class='private'>This argument has not yet been published</div>
+<% end -%>
+<% if params[:parent_id].blank? %>
+  <div style="padding-left:15px;"><%= render :partial => "my_parent", :locals => {:argument => @argument} %><br /></div>
+<% end  %>
+<% form_for([@argument.debate, @argument] , :html => {:multipart => true}) do |f| %>
+  <div class="errors"><%= f.error_messages %></div>
+  <%= render :partial => 'shared/argument_form_fields', :locals => {:argument => @argument, :f => f} %>
+  <div class="clear_both"></div>
+  <div class="argument-form-edit">
+    <%= image_submit_tag 'save.png',          :class => 'left  create-button', :name => "publish",   :style => 'border: none; padding-left:15px;' , :onclick => "return isParentPublic();" %>
+    <%= image_submit_tag 'save_as_draft.png', :class => 'left publish-button', :name => "savedraft", :style => 'border: none;' if arg_save_as_draft_button?(@argument) %>
+    <div style="padding-left:66px;  padding-top: 6px;">
+      <a href="#" id="more_less_options_<%=@argument.dest_id || 0 %>" onclick="fMoreLessOptions(this); return false;">more options</a>
+    </div>
+    <%= image_submit_tag 'cancel.png',        :class => 'cancel-button', :name => "cancel",    :style => 'border: none; padding-left:119px;' %>
+    <div class="clear_both"></div>
+  </div>
+<% end %>
+
+<div class="clear_both"></div>
+<!--<br />
+<%#= render :partial => 'xml_upload_form', :locals => {:argument => @argument} %>
+<br />
+<%#= render :partial => 'arguments/similar_argument', :locals => {:argument => @argument} %>
+-->
+<% if @argument.parent %>
+  <!-- <br /><br />-->
+  <div id="argument_detail_<%= @argument.parent.id %>" class="details"> </div>
+<% end %>
+<!--<br /><br />-->

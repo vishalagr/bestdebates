@@ -1,0 +1,39 @@
+<div class="debate-listings">
+  <div class="debate-detail-header-bg">
+    <div class="argument-form-inner">
+      <div class="debate-form-wrapper">
+        <span class="created" style="padding-right:24px;">
+          Group ID <%= @group.id %>, <%= @group.name  %> , Created <%= @group.created_at.strftime('%b. %d, %Y') %>
+        </span>
+        
+        <p style="font-size:9pt; margin:10px 0;">
+          Group signup url:<br />
+          <%= link_to signup_url(:hash => @group.unique_hash), signup_url(:hash => @group.unique_hash) %>
+        </p>
+
+        <div class="argument-listings" >
+          <dl class="listing-labels" style="width:620px">
+            <dd style="width: 32px">&nbsp;</dd>
+            <dd style="width: 220px;" >
+              <%= sort_link 'Name', :member %>
+            </dd>
+            <dd style="width: 300px;">
+              <%= sort_link 'Email', :email  %>
+            </dd>
+          </dl>
+          <dl>
+            <dd class="listings" id="members">
+              <%= render :partial => 'member', :collection => @members %>
+            </dd>
+          </dl>
+          <div class="right" style="padding:20px;">
+            <%#= link_to 'Create Member', new_admin_member_path(@group) %>
+          </div>
+        </div><br /><br />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="debate-listing-inner-footer"></div>
+<div class="debate-listing-footer"></div>

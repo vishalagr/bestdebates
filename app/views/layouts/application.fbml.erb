@@ -1,0 +1,16 @@
+<fb:fbml version="1.1">
+  <%#= stylesheet_link_tag 'application'  %>
+  <%#= javascript_include_tag 'facebooker'  %>
+
+  <% fb_dashboard do %>
+    <%#= fb_action 'Invite your friends', new_invitation_path %>
+    <%#= fb_help 'Help & Feedback', fb_about_url %>
+  <% end %>
+  <% fb_tabs do %>
+    <%= fb_tab_item 'Home', '', :selected => true %>
+    <%#= fb_tab_item 'Your Battles', battles_path, :selected => !@battles.nil? %>
+    <%#= fb_tab_item 'Attack!', new_attack_path, :selected => @battles.nil? %>
+    <%#= fb_tab_item 'Help &amp; Feedback', fb_about_url, :align => 'right' %>
+  <% end %><br />
+  <%= yield %>
+</fb:fbml>

@@ -1,0 +1,28 @@
+<div style="padding-left: 16px;">
+  
+  <% form_for([@group, @member]) do |f| %>
+  <div class="errors"><%= f.error_messages %></div>
+
+  <div class="argument-form-edit">
+    <div class="left d-medium"><%= f.label 'Users:' %></div>
+    <div class="left"><%= f.select :user_id, User.find(:all).collect{|u| [u.login, u.id]}.insert(0, [" -- Select User --", -1]), {}, {:style => 'width:458px;'} %></div>
+  </div>
+
+  <div class="argument-form-edit">
+    <div class="left d-medium"><%= f.label 'Name:' %></div>
+    <div class="left"><%= f.text_field :name, :style => 'width:454px;' %></div>
+  </div>
+
+  <div class="argument-form-edit">
+    <div class="left d-medium"><%= f.label 'Email:' %></div>
+    <div class="left"><%= f.text_field :email, :style => 'width:454px;' %></div>
+  </div>
+
+  <br />
+
+  <div class="argument-form-edit">
+    <%= image_submit_tag 'save.png',   :class => 'right create-button',  :name => 'save',   :style => 'border: none;' %>
+  </div>
+
+  <% end %>
+</div>

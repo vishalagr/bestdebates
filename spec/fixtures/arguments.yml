@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+democrats_and_republicans_con:
+    id: 1
+    debate: democrats_and_republicans
+    user_id: 1
+    argument_type: con
+    title: Republicans are less filling
+    body: Well, at least the skinny ones are.
+    evidence_type: undermine
+
+democrats_and_republicans_pro:
+    id: 2
+    debate: democrats_and_republicans
+    user_id: 1
+    argument_type: pro
+    title: Democrats taste great
+    body: That's because they are vegetarians.
+    evidence_type: support
+    

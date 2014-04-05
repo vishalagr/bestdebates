@@ -1,0 +1,14 @@
+<br/>
+<span style='padding-left:3px;'>Please,<%= link_to 'Login', new_session_path, :id => "#{action_name}_#{login_links_dom_id(argument)}" %> to <%=  action_name %> </span>
+<script type="text/javascript">
+	new Tip('<%=action_name%>_<%=login_links_dom_id(argument)%>', {
+    closeButton: true,
+    title: 'Login',
+	width: 250,
+    hook: { target: 'topRight', tip: 'bottomRight'},
+    stem: 'bottomRight',
+    hideOn: false,
+    viewport: true,
+    hideAfter: 1,
+    ajax: {url: '<%= new_session_path %>?url=' + location.href, options: {method: 'get'}}});
+</script>

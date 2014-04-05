@@ -1,0 +1,13 @@
+<p>This argument responds to an argument or debate you are "watching" on BestDebates.com
+</p>
+
+<%= render_html_arguments(@argument, @depth) %>
+
+<div style="clear:both;font-size:0px;height:0px;line-height:0px;width:0px;">&nbsp;</div>
+
+<p>The argument or debate you are watching is: <%= link_to @argument.title , argument_url(@argument) %> </p>
+
+
+
+
+<!--<p>This email is from BestDebates.com , if you wish to stop receiving updates for this argument, click here <%#= link_to "Unsubscription", unsubscription_url(@subscription.activation_code) %> . This will not affect other updates you may have signed up for</p>-->

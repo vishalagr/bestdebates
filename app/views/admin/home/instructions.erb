@@ -1,0 +1,60 @@
+<div id="content">
+  <div style="background:#FFFFFF; border:medium double gray; padding:15px;">
+    <h3>Admin Instructions</h3>
+    <ul>
+      <li>Statistics</li>
+      <ul>
+        <li>There are statistics for logins, debates and categories</li>
+        <li>Logins: The client IP/username, number of arguments, debates and ratings created, number of the minutes the login lasted, number of clicks done in that login and last active time are displayed.</li>
+        <li>Debates: The title of the debate, number of arguments and ratings belonging to the debate and the last_updated timestamp are displayed</li>
+        <li>Categories: The category name, number of debates, arguments and ratings belonging to that category and timestamps are displayed.</li>
+      </ul>
+
+      <li>Users: Users administration (edit, suspend and delete users)</li>
+      <li>Categories: Display, hide and destroy categories</li>
+      <li>Groups: Create groups and view users belonging to the group</li>
+      <li>Tags: Create, Edit and Delete tags</li>
+      <li>Manage "variable" sets</li>
+      <li>Manage definitions</li>
+    </ul>
+
+    <h3>Developer Instructions</h3>
+    <pre>
+    Major configuration files:
+        config/database.yml
+            - database configuration
+            - database_name, username, password and hostname for all the environments
+              -- staging, development, production and server_dev
+        config/deploy.rb
+            - deployment related configuration
+            - IP address of staging and production servers is present in this file
+        config/deploy/access.yml
+            - credentials for deploying into staging, production and server_dev servers
+              such as username and password
+        config/deploy/production.rb, staging.rb and server_dev.rb
+            - environment related deployment configuration
+              need not be looked into unless some serious changes are needed
+        config/facebooker.yml
+            - facebook configuration such as
+              api_key, secret_key, callback_url and public host, port number, etc.
+        config/assets.yml
+            - Jammit compressor
+            - For adding any javascript or stylesheet, an entry needs to be made in this file
+
+
+    Commands:
+        rake db:migrate                         # To run migrations
+        rake spec                               # Run the test suite i.e., all specs in
+                                                  spec directory (excluding plugin specs)
+        cap staging deploy                      # To deploy on the staging server
+        cap staging deploy:migrate              # To run migrate task on staging server
+        # similarly
+        #   cap production deploy; and
+        #   cap production deploy:migrate;
+
+        rake thinking_sphinx:configure              # Rebuild the configuration file for
+                                                  this particular environment.
+        rake thinking_sphinx:index                  # Reindex and rotate all indexes.
+    </pre>
+  </div>
+</div>

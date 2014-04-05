@@ -1,0 +1,48 @@
+<div class="sub_arguments">
+  <div class="dd_purple">    
+   Debate Statistics
+  <div class="clear_both"></div>
+ <br/> 
+</div> 
+</div>
+<div class="sub_arguments">
+<table cellpadding="1" cellspacing="1" border="0" class="debate_stat">
+<tr>
+<th>Full Name</th>
+<th>User Name</th>
+<th>Group&nbsp;</th>
+<th>No of Arguments&nbsp;</th>
+<th>No of Rate Arguments&nbsp;</th>
+<th>Site Score&nbsp;</th>
+<th>Avg Score&nbsp;</th>
+<th>Avg Clarity&nbsp;</th>
+<th>Avg Accuracy&nbsp;</th>
+<th>Avg Relevance&nbsp;</th>
+<th>1st Level Arguments&nbsp;</th>
+<th>2nd Level Arguments&nbsp;</th>
+<th>Last Contribution&nbsp;</th>
+</tr>
+<% @debate_users.each do |user| %>
+<% ratings = avgs_ratings(user,@debate)%>
+<% first_level , second_level = first_and_sec_level_argues(user,@debate)%>
+<tr>
+<td class="d_category_box" style="width:30px;"><%=link_to user.name , user_path(user)  %>&nbsp;</td>
+<td class="d_category_box" style="width:30px;"><%=link_to user.login , user_path(user)  %></td>
+<td align="center" style="width:25px;"><span class="name"><%= user.group ? user.group.name : '-' %></span>&nbsp;</td>
+<td class="d_category_box" align="center" style="width:15px; text-align:center;"><%= no_of_argues(user,@debate) %>&nbsp;</td>
+<td class="d_category_box" align="center" style="width:15px;text-align:center;"><%= no_of_rated_argues(user, @debate) %>&nbsp;</td>
+<td class="d_category_box" align="center" style="width:15px;text-align:center;"><%= user_score(user) %>&nbsp;</td>
+
+<td class="d_category_box"><%= sprintf("%.2f", avg_score_of_argues(user,@debate).to_f)  %>&nbsp;</td>
+<td class="d_category_box"><%= sprintf("%.2f", ratings.avg_clarity.to_f)  %>&nbsp;</td>
+<td class="d_category_box"><%= sprintf("%.2f", ratings.avg_accuracy.to_f)  %>&nbsp;</td>
+<td class="d_category_box"><%= sprintf("%.2f", ratings.avg_relevance.to_f)  %>&nbsp;</td>
+<td class="d_category_box"><%= first_level %></td>
+<td class="d_category_box"><%= second_level %></td>
+<td class="d_category_box"><%= user_argues(user,@debate).first.created_at.strftime('%b. %d, %Y') %></td>
+</tr>
+<% end %>
+
+</table>
+
+</div>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+democrats_vs_republicans:
+  id: 1
+  category: politics
+  user: quentin
+  title: There is no practical difference between the Democratic and Republican parties
+  link: http://aclu.org
+  body: You might as well pick a party based on whether you prefer the color blue or red.
+
+creationism_vs_evolution:
+  id: 2
+  category: religion
+  user: aaron
+  title: The world was not created. It evolved.
+  link: http://richarddawkins.net
+  body: You're going to depend on a 2000 year old book to explain how the world came into existence?

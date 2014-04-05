@@ -1,0 +1,5 @@
+page.reload_flashes!
+
+if @argument_link and !@argument_link.new_record?
+  page.insert_html :bottom, external_links_dom_id(@argument), render_link(@argument, @argument_link)
+end

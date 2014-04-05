@@ -1,0 +1,13 @@
+<div class="sub_arguments">
+	<div class="dd_purple">
+    <span class="right">
+      <%= link_to_function verbose_link_name , 'fShowHideDetails("children_tree", this);' %>
+      <%= link_to "|","#" %>
+      <%= link_to_function "Expand All", "expandTree('children_tree');$('expand_all').hide();$('collapse_all').show()", :id => "expand_all" %>
+      <%= link_to_function "Collapse All", "collapseTree('children_tree');$('collapse_all').hide();$('expand_all').show()", :id => "collapse_all", :style => "display:none;" %>
+    </span> Arguments
+    <div class="clear_both"></div>
+  </div>
+  <div class="clear_both">&nbsp;</div>
+  <div id="children_argument_list"><%= render_partial "arguments" %></div>
+</div>

@@ -1,0 +1,29 @@
+<div class="debate-listings">
+	<div class="debate-detail-header-bg">
+		<div class="argument-form-inner">
+		  <div class="debate-form-wrapper">
+            <div style="margin:20px;">
+
+              <p>
+                <b>Name:</b>
+                <%=h @member.name %>
+              </p>
+
+              <p>
+                <b>Email:</b>
+                <%=h @member.email %>
+              </p>
+
+              <br /><br />
+              <p>
+                <%= link_to 'Edit', edit_member_path(@member) %> |
+                <%= link_to 'Back', group_members_path(@group) %>
+              </p>
+            </div>
+	 	  </div>
+	 	</div>
+	</div>
+</div>
+
+<div class="debate-listing-inner-footer"></div>
+<div class="debate-listing-footer"></div>

@@ -1,0 +1,10 @@
+<h1> Creating user_variable</h1>
+
+<%= error_messages_for :user_variable %>
+
+<%- form_for(:user_variable, :url => objects_url) do |f| %>
+  <%= render :partial => "form", :locals => {:f => f} %>
+  <p> <%= submit_tag "Create" %></p>
+  <% end %>
+
+<%= link_to 'Back', objects_path %>

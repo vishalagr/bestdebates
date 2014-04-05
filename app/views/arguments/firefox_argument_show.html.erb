@@ -1,0 +1,181 @@
+
+<script type="text/javascript">
+
+  function sendCommand(cmd) {
+    var element = document.createElement("BestDebatesDataElement");
+    element.setAttribute("command", cmd);
+    document.documentElement.appendChild(element);
+
+    var evt = document.createEvent("Events");
+    evt.initEvent("BestDebatesExtensionEvent", true, false);
+    element.dispatchEvent(evt);
+  }
+</script>
+<style type="text/css">
+  #content{
+    float:left;
+    margin-right:15px;
+    width:702px;
+  }
+  #content_top_box{
+    width:702px;
+    min-height:54px;
+    background-image:url(/images/lc_top_bg.png);
+    background-position:top left;
+    background-repeat:no-repeat;
+  }
+  #content_box  {
+    background-image:url("/images/lc_middle_bg.png");
+    background-position:left top;
+    background-repeat:repeat-y;
+    padding-left:26px;
+    padding-right:38px;
+    width:638px;
+  }
+  #content_inner_bottom_bg {
+    height:20px;
+    background-image:url(/images/lc_inner_bottom_bg.png);
+    background-position:top left;
+    background-repeat:repeat-y;
+  }
+  #content_outer_bottom_bg {
+    height:24px;
+    background-image:url(/images/lc_outer_bottom_bg.png);
+    background-position:top left;
+    background-repeat:repeat-y;
+  }
+
+
+  html, body {
+    color:#313131;
+    font-family:Tahoma,Arial,sans-serif;
+    font-size:12px;
+    line-height:1.5;
+    text-align:left;
+    background-image:url("");
+
+  }
+
+  #middle {
+    width:952px;
+    padding-left:15px;
+    background-image:url(/images/main_middle_bg.gif);
+    background-repeat:repeat-y;
+    background-position:top left;
+  }
+  .page_title  {
+    color:#FFFFFF;
+    font-family:'Arial Narrow';
+    font-size:29px;
+    margin-left:22px;
+    padding-top:1px;
+    text-transform:uppercase;
+  }
+
+
+
+  .firefox_right_top_border {
+    background-image:url("/images/right_column_top_bg.gif");
+    background-position:left top;
+    background-repeat:no-repeat;
+    color:#FFFFFF;
+    font-family:Arial Narrow;
+    font-size:17px;
+    margin-left:-1px;
+    min-height:45px;
+    padding-left:22px;
+    padding-top:9px;
+    text-transform:uppercase;
+    width:213px;
+  }
+  .firefox_right_container  {
+    background-color:#E4F8FF;
+    border-color:-moz-use-text-color #069BCC;
+    border-style:none solid;
+    border-width:medium 1px;
+    padding:12px 11px;
+    width:210px;
+  }
+  .firefox_right_titles {
+    font-family:Trebuchet MS,sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+  }
+  .firefox_right_bottom_border {
+    background-image:url("/images/right_column_bottom_bg.gif");
+    background-position:left top;
+    background-repeat:no-repeat;
+    height:10px;
+    margin-bottom:10px;
+    width:235px;
+  }
+
+  .login_form_labels {
+    padding-right:10px;
+  }
+  #content_top_bg {
+    width:702px;
+    height:35px;
+    margin-left:-1px;
+    background-image:url(/images/lc_inner_top_bg.png);
+    background-position:top left;
+    background-repeat:no-repeat;
+  }
+
+  .a_red_arg_title {
+    color:brown;
+    font-size:15px;
+    font-weight:bold;
+    line-height:18px;
+    padding-bottom:15px;
+    padding-left:16px;
+    padding-top:15px;
+    width:600px;
+  }
+  .a_body_title {
+    font-weight:bold;
+    padding:0 16px;
+  }
+  .a_body_text {
+    margin-top:-17px;
+    padding:0 16px 10px;
+  }
+  .a_body_text p{
+    text-align:justify;
+    text-indent:78px;
+  }
+</style>
+
+
+<div id="content">
+  <div id="content_top_bg"></div>
+  <div id="content_box">
+    <div style="height:auto;">
+
+      <%- if argument_show_draft_info?(@argument) -%>
+        <div style="text-align:center;margin-bottom:-8px; font-size: 14px;font-weight: bold;">This argument is a DRAFT and is not public. </div>
+      <% end -%>
+
+      <div id="<%= mktree_node_dom_id(@argument) %>">
+        <div class="a_red_arg_title"> Argument: <%= @argument.full_title %> </div>
+        <div class="a_body_title">Clarification:</div>
+        <div class="a_body_text"><%= argument_body(@argument) %> </div>
+      </div>
+
+      <div class="a_buttons_bottom">
+        <% if !params[:show_layout] %>
+        <%= image_submit_tag 'close_button_small_red.gif',:class => 'cancel-button', :name => "cancel",    :style => 'border: none; padding-left:245px;float:left;', :onclick => "return sendCommand('cancel')" %>
+        <% else %>
+        <%= link_to 'Delete',firefox_delete_argument_url(@argument),:confirm => "Are you sure you'd like to delete the argument #{@argument.title}?",:class => 'cancel-button',:method=>'delete', :name => "cancel",    :style => 'border: none; padding-left:245px;float:left;' %>
+        <% end %>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+
+  <div id="content_inner_bottom_bg"></div>
+
+  <div id="content_outer_bottom_bg"></div>
+</div>
+

@@ -1,0 +1,16 @@
+<dl>
+  <dd style="width:166px;margin-left:4px;" title="<%= user.name.blank? ? user.login : user.name %>"> <%= user.login.titleize %></dd>
+  <% content_tag :dd, :style => "width:40px;margin-left:4px;" do %>
+    <%= check_box_tag "users[#{user.invitation_id}]", '1', user.is_writable? %>
+    <%= hidden_field_tag "users[#{user.invitation_id}]", '0'  %>
+  <% end if @resource.can_be_invited_by?(current_user) %>
+
+  <% content_tag :dd, :style => "width:70px;margin-left:4px;" do %>
+    <%= link_to_remote(
+      'Resend',
+      :url => self.send("resend_email_#{@resource_type.downcase}_invitation_path", @resource, @resource.invitations.find_by_user_id(user)),
+      :method => :post,
+      :html => {:title => 'Resend Invitation Email'}
+    )%>
+  <% end if @resource.can_be_invited_by?(current_user) %>
+</dl>

@@ -1,0 +1,58 @@
+begin
+  
+  #page.replace_html "rate_message_#{@argument.id}", @message
+  #page.replace_html "close_rating", rating_close_box # ? we have a close button
+  #page.replace_html score_dom_id(@unique_id), "Your Score:&nbsp;&nbsp;#{@rating.score}"
+  logger.info "CONTROL IS HERE ---------------"
+  page["save_rating#{@unique_id}"].src = "/images/save-new-rating-button-gray.png";
+  page["save_rating#{@unique_id}"].disabled = "disabled";
+  
+  #page.visual_effect(:highlight, score_dom_id(@unique_id))
+  #page.replace_html("cum_#{arg.id}", combo_score(arg)) # we dont have a % in the rating popup
+ 
+  page.replace_html "aa_rating",  "#{sprintf('%.1f', @argument.cascaded_score) }"
+  page.replace_html "aa_vetting",  "/#{@argument.v}%"
+ # page['#{argument_rate_id(argument)}'].prototip.hide();
+  
+=begin 
+  if page["aa_vetting_#{@argument.id}"]
+    page.replace_html "aa_vetting_#{@argument.id}",  "/#{@argument.v}%"
+  else
+    page.replace_html "aa_vetting",  "/#{@argument.v}%"
+  end
+  if page["score_#{@argument.id}"]
+    page.replace_html "score_#{@argument.id}" , "Score: #{sprintf('%.2f',  @argument.cascaded_score)}"
+  end
+  if page["vetted_#{@argument.id}"]
+    page.replace_html "vetted_#{@argument.id}" ,"Vetted: #{@argument.v} #{'%' unless @argument.v.to_s == 0}"
+  end
+  if page["vis_score_#{@argument.id}"]
+    page.replace_html "vis_score_#{@argument.id}","<div style='position:absolute;left:#{(77 + 33 * @argument.cascaded_score).to_i}px;top:9px;'>#{image_tag 'vee.png'}</div>"
+  end
+  if page["vis_vetted_#{@argument.id}"]
+    vis_vetted = (77 + 33 * @argument.v / 10).to_i
+    page.replace_html "vis_vetted_#{@argument.id}","<div style='position:absolute;left:#{vis_vetted}px;top:23px;'>#{image_tag 'eev.png'}</div>"
+  end
+  
+  
+  
+  
+  
+  #code has been changed on 29/6/2011 for xml issue with rating popup starts here"
+
+page.replace_html "aa_rating_#{@argument.id}",  "#{sprintf('%.1f', @argument.cascaded_score) }"
+
+page.replace_html "aa_vetting_#{@argument.id}",  "/#{@argument.v}%"
+
+page.replace_html "score_#{@argument.id}" , "Score: #{sprintf('%.2f',  @argument.cascaded_score)}"
+page.replace_html "vetted_#{@argument.id}" ,"Vetted: #{@argument.v} #{'%' unless @argument.v.to_s == 0}"
+page.replace_html "vis_score_#{@argument.id}","<div style='position:absolute;left:#{(77 + 33 * @argument.cascaded_score).to_i}px;top:9px;'>#{image_tag 'vee.png'}</div>"
+vis_vetted = (77 + 33 * @argument.v / 10).to_i
+page.replace_html "vis_vetted_#{@argument.id}","<div style='position:absolute;left:#{vis_vetted}px;top:23px;'>#{image_tag 'eev.png'}</div>"
+=end
+  #code has been changed on 29/6/2011 for xml issue with rating popup ends here"
+  
+  
+rescue StandardError => e
+  logger.info "ddddddddddddddd #{e.inspect}"
+end

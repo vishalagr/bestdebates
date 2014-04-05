@@ -1,0 +1,11 @@
+
+<span class="watching-heading">Email</span>
+<div class="watching-email">
+  <%= render :partial => 'debates/send_email', :locals => {:debate => debate} %>
+</div>
+
+<span class="arg">
+    Arguments deep: <%= debate_feed_links(debate) %>
+</span>
+<br/>
+<br/><br/>

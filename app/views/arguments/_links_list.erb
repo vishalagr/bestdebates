@@ -1,0 +1,19 @@
+<% if can_edit_argument?(argument) -%>
+  <% form_remote_for(:link, :url => argument_links_url(argument)) do |f| -%>
+    <div>
+      <font size="2">
+        <span style="background-color:lightyellow">add link for</span>
+        &nbsp;
+        <span style="color:blue">http://</span>
+        <%= f.text_field :url, :size => 18 %>
+      </font>
+      <%= submit_tag "add" %>
+    </div>
+  <% end %>
+<% end %>
+<span style="font-size: 11px;">External Links: </span>
+  <% content_tag :span, :id => external_links_dom_id(argument) do -%>
+    <% argument.links.each do |lnk| -%>
+      <%= render_link(argument, lnk) %>
+    <% end -%>
+  <% end %>

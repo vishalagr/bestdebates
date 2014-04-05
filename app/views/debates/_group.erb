@@ -1,0 +1,12 @@
+<dl>
+  <dd  style="width:28px">
+    <%= group_counter  %>
+  </dd>
+  <dd class="category" style="width:200px;">
+    <%= link_to group.name, group  %>
+  </dd>
+  <dd>
+    <%= check_box_tag "groups[#{group.id}]", '1', 
+      (params[:groups] && params[:groups][group.id.to_s] == '1') || @invs[group.id] %>
+  </dd>
+</dl>

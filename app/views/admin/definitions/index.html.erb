@@ -1,0 +1,17 @@
+<div style="background-color:white; height:500px;padding:20px; border: medium double gray; overflow:auto">
+  <h2>Current Definitions:</h2>
+  <div id="notice"></div>
+  <% remote_form_for(:definition, @definition, :url => admin_definitions_url) do |f| %>
+    Create a new Definition named <br />
+    <%= f.text_field "name" %> <br />with description: <br />
+    <%= f.text_field "description" %>
+    <%= f.submit('Create Definition') %>
+  <% end %>
+  <br /> <br />
+  <div id="definitions" style="margin-left:22px"><%= render :partial => 'definitions', :locals => {:definitions => Definition.all} %></div>
+  <br /><br />
+  
+  <table>
+    <tr><td align='center' colspan='5'><%= will_paginate @definitions %></td></tr>
+  </table>
+</div>

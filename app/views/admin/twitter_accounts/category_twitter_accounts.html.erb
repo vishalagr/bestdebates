@@ -1,0 +1,27 @@
+<table style="width: 60%;" align="center">
+  <tr>
+    <td><b>#</b></td>
+    <td align="center"><b>Categories</b></td>
+    <td align="center"><b>Twitter Account</b></td>
+    <td align="center"><b>Twitter Account</b></td>
+  </tr>
+  <% @categories.each do |category| %>
+    <tr>
+      <td style="width: 5%;"><%=category.id%></td>
+      <td style="width: 60%;"><%=category.name %></td>
+      <td style="width: 35%; text-align: center;">
+        <% form_for @twitter_debate_category , :url => {:controller =>'admin/twitter_accounts', :action => 'twitter_category_create' , :id => category.id }, :html => {:method => :post} do |f| %>
+          <%= f.hidden_field(:category_id , :value => "#{category.id}")  %>
+          <%= f.select(:twitter_account_id, TwitterAccount.all.collect {|twitter| [ twitter.twitter_username, twitter.id ] }, {:selected => category.try(:twitter_debate_category).try(:twitter_account).try(:id),:include_blank => 'Select a Twitter' }, :onchange => 'this.form.submit();')%>
+        <% end  %>
+      </td>
+      <td style="width: 35%; text-align: center;">
+        <% form_for @twitter_debate_category , :url => {:controller =>'admin/twitter_accounts', :action => 'twitter_category_create' , :id => category.id }, :html => {:method => :post} do |f| %>
+          <%= f.hidden_field(:category_id , :value => "#{category.id}")  %>
+          <%= f.select(:twitter_account_id_two, TwitterAccount.all.collect {|twitter| [ twitter.twitter_username, twitter.id ] }, {:selected => category.try(:twitter_debate_category).try(:twittertwo).try(:id),:include_blank => 'Select a Twitter' }, :onchange => 'this.form.submit();')%>
+        <% end  %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+

@@ -1,0 +1,26 @@
+<% header_content do %>
+  <% @author_js_included = true # skip script load duplications %>
+  <%= javascript_include_tag '/greybox/AJS.js', '/greybox/AJS_fx.js', '/greybox/gb_scripts.js' %>
+  <%= include_stylesheets :author %>
+  <%=stylesheet_link_tag "author"%>
+<% end unless @author_js_included %>
+
+<span style="vertical-align: top;">  Images : </span>
+<% if argument.image %>
+<%= image_tag url_for_file_column('argument','image','thumb') , :id => image_dom_id(argument) , :style => "cursor:pointer;" %>
+<script type="text/javascript">
+  new Tip('<%=image_dom_id(argument)%>',{
+            viewport: 'true',
+            closeButton: true,
+            showOn: 'click',
+            hideOn: false,
+            title: 'Image',            
+            width: 'auto',
+            hideAfter: 1,
+            hook: {target: 'rightTop', tip: 'bottomLeft',mouse: true },
+            stem: 'bottomLeft',
+            radius: 16,
+            ajax: {url: '<%= large_image_argument_url(argument) %>', options: {method: 'get',onLoading:'put_circle(<%=image_dom_id(argument)%>)'}}});
+  </script>
+
+<% end %>

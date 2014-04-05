@@ -1,0 +1,8 @@
+<h1> Admin: Shortcuts </h1>
+
+<table  style="width:100%;">
+<tr><th>Resource Type &nbsp;&nbsp;</th><th>Resource Id&nbsp;&nbsp;</th><th>Shortcut Url&nbsp;&nbsp;</th><th>Resource Name&nbsp;&nbsp;</th>
+</tr>
+<%= render :partial => 'shortcut', :collection => current_objects %>
+</table>
+<%= link_to 'Create New Shortcute', new_object_path %>

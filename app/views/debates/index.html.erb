@@ -1,0 +1,50 @@
+<%= javascript_include_tag :fckeditor %>
+<div id="content_top_box"><p class="page_title">Debate Listings</p></div>
+<div id="content_box">
+  <%= render_partial "shared/featured_arguments" %>
+  <div style="height:5px;line-height:5px;font-size:5px;">&nbsp;</div>
+  <div class="grey_box"></div>
+  <%= link_to(image_tag('create_debate_button.png', :id => "create_debate_button"), new_debate_url) %>
+  <div style="margin-left:2px; padding-left: 13px;font-family:Tahoma, sans-serif;">
+   Filter/find by debate title:
+<%#= text_field_with_auto_complete :debate, Debate::AUTO_COMPLITE_FIELD, {}, :url => auto_complete_for_debate_title_debates_url %>
+    <input id="debates-search" type="text" name="query" />
+    &nbsp;
+    <img src="/images/spinner-small.gif" id="debates-search-spinner" style="display:none" />
+
+    <%#= include_javascripts 'debates' %><!-- moved for optimization -->
+     
+  </div>
+ <div id="show_hide_link" style="margin-top: -20px;">
+    <%= sort_link('Sort By Date',  :updated_at,     {}, nil, {:id => "d_updated_at_label"}) %>
+    |
+    <%= link_to_function 'Show Debate Full Text', 'debateShowHideDetails(this)' %>
+  </div>
+
+  <div id="debates_list_labels">
+    <%= sort_link('Category', :category_id, {}, nil, {:id => "d_category_label"}) %>
+    <%= sort_link('Rating',   :rating,      {}, 'down', {:id => "d_rating_label"}) %>
+    <%= sort_link('Title',    :title,       {}, params[:d] == 'up' ? 'down' : 'up', {:id => "d_title_label"}) %>
+    <%= sort_link('Type',     :priv,        {}, nil, {:id => "d_type_label"}) if admin_user? %>
+    <%= sort_link('Sponsor',  :user_id,     {}, nil, {:id => "d_sponsor_label", :style => "margin-left:#{(admin_user? ? '38' : '280')}px"}) %>
+  </div>
+
+  <div id="debates_list_container">
+    <% if admin_user? %>    
+        <%= hidden_field_tag 'frmurl', manage_admin_debates_url %>
+        <%= hidden_field_tag 'category_id', params[:category_id] %>
+        <%= render :partial => 'debate', :collection => @debates %>
+        <input type="button" value="Retire" onclick="return adminManage(this);" />
+        <input type="button" value="Delete" onclick="return adminManage(this);" />
+        <input type="button" value="Freeze" onclick="return adminManage(this);" />
+        <input type="button" value="Unfreeze" onclick="return adminManage(this);"/> 
+    <% else %>
+      <%= render :partial => 'debate', :collection => @debates %>     
+    <% end %>
+     <%= will_paginate @debates  %>
+  </div>
+</div>
+
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>
+

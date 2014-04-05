@@ -1,0 +1,10 @@
+<h2>  Creating twitter_account </h2>
+
+<div><%= error_messages_for :twitter_account %></div>
+
+<% form_for(:twitter_account, :url => objects_url) do |f| %>
+  <%= render :partial => "form", :locals => {:f => f} %>
+  <%= submit_tag "Create" %>
+<% end %>
+<%= link_to 'Back', objects_path %>
+

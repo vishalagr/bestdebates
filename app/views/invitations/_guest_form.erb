@@ -1,0 +1,31 @@
+<% remote_form_for [@resource, Invitation.new] ,:before => "put_circle('invite_new');",
+    :complete => "remove_circle('invite_new');"  do |f| %>
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td> &nbsp; </td>
+      <td> &nbsp; </td>
+    </tr>
+    <tr>
+      <td class="invite_form_labels">
+        <%= f.label 'Emails:' %><br/>(separate users by comma, or new line - cut and paste from excel.)
+      </td>
+      <td><%= text_area_tag :emails, params[:emails], :style => 'width:200px;height:80px;' %></td>
+    </tr>
+    <% if @resource.can_be_modified_by?(current_user) %>
+      <tr>
+        <td class="invite_form_labels"><%= f.label 'Write Access:' %></td>
+        <td><%= check_box_tag :is_writable, '1', true %> <%= write_access_question_mark_tooltip %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td class="invite_form_labels"><%= f.label 'Personalized <br />Note:' %></td>
+      <td><%= text_area_tag :message, params[:message], :style => 'width:200px;height:80px;' %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="invite_form_submits">
+        <%= question_mark_tooltip('guest_question_mark', '<div style="width:400px;font-size: 12px;">When you click this button, an invitation to participate in this debate, including your custom text above, will be sent to all the emails listed above.</div>') %>
+        <%= image_submit_tag 'Invite-New-Users-button-blu.gif', :name => 'save', :style => 'border: none;' , :id =>'invite_new' %>
+      </td>
+    </tr>
+  </table>
+<% end %>

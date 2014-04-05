@@ -1,0 +1,10 @@
+#            -----
+#            page.replace_html "mktree_argument_#{@argument.id}",
+#              render(:partial => 'debates/argument', :locals => {:argument => @argument})
+#            page.visual_effect :highlight, "mktree_argument_#{@argument.id}", :duration => 5.0
+#            -----
+#                  page.replace_html "external_links#{@argument.id}", render(:action => 'add_link', :layout => false)
+#                  page.replace_html "tags#{@argument.id}", render(:action => 'add_tag', :layout => false)
+page.call 'window.location.reload'
+#          page.replace_html 'arguments', :partial => '/arguments/argument', :collection => arguments, :locals => {:category_id => 12}
+#            page.call 'show_default_level', @argument.debate.id

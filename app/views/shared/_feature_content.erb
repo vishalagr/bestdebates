@@ -1,0 +1,229 @@
+<!--contest blue box-->
+<%if params[:action_page]!="Cannabis_Contest"%>
+<div class="rc_top_border">
+    Contest
+</div>
+<div class="rc_container">
+    Win an iPad or medical marijuana expenses in Legalize Cannabis Debate!&nbsp;<%=link_to "click Here",page_url(:action_page => "Cannabis_Contest") %>
+</div>
+<div class="rc_bottom_border">
+</div>
+<%end%>
+<!-- start now bluebox-->
+<%if show_start_box?%>
+<div class="rc_top_border">
+    Start Now
+</div>
+<div class="rc_container">
+	<div class="rc_titles">
+   	 <%=link_to "Sign Up",login_url%> to start debating now
+	</div>
+	<p><%=link_to "Watch",page_url(:action_page => "1_Introduction")%> 3 minute introduction Video </p>
+	
+	<p>Goto the  <%=link_to "Legalize Marijuana Debate",find_debate%></p>
+	
+</div>
+<div class="rc_bottom_border">
+</div>
+<%end%>
+<% unless logged_in? %>
+<%if params[:controller] == 'home' %>
+<div class="rc_top_border">
+    VIDEOS
+</div>
+<div class="rc_container">
+    <div class="rc_titles" style="text-align: center;">
+        3 MINUTE INTRO VIDEO
+    </div>
+    <p>
+        <%= image_tag('support_video_logo.jpg' , :style=>'width:207px;height:177px;') %>
+    </p>
+    <div class="rc_titles" style="text-align: center;">
+        <%= link_to  "click here" , support_link %>
+    </div>
+</div>
+<div class="rc_bottom_border">
+</div>
+<% end %>
+<div class="rc_top_border" onclick="location.href='<%= signup_url %>'">
+    Why join us?
+</div>
+<div class="rc_container" onclick="location.href='<%= signup_url %>'">
+    <div class="rc_titles">
+        Why YoU'LL LOVE BEST DEBATES
+    </div>
+    <p>
+        <b>It's Free:</b>
+        - You can join a debate, add arguments, and rate entries
+    </p>
+    <p>
+        <b>Instant Feedback:</b>
+        You can see the impact of how you rate arguments and 
+        how the ratings of your arguments impact the debate.
+    </p>
+    <p>
+        <b>Add value to your site:</b>
+        You can extend the value of your blog, website and
+        organization by giving your members a new venue for expression on any topic that matters
+    </p>
+    <p>
+        <b>Improve your life: </b>The more diverse opinions you can engage, the broader your 
+        judgment and the better your decisions
+    </p>
+</div>
+<div class="rc_bottom_border" onclick="location.href='<%= signup_url %>'">
+</div>
+<% end %>
+<% if params[:action] == 'participate' %>
+<% unless logged_in? %>
+<% @user ||= User.new %>
+<div class="rc_top_border">
+    <b>Sign up here</b>
+</div>
+<div class="rc_container">
+    <% form_for @user do |f| -%>
+    <%= error_messages_for :user %>
+    <%= hidden_field_tag 'code', params[:code] if @guest && params[:code] %>
+    <p>
+        <%= f.label 'name', 'Your Full Name:    (private)' %>
+        <br/>
+        <%= f.text_field :name, :size => 20 %>
+    </p>
+    <p>
+        <%= f.label 'login', 'User Name:        (public)', :id => 'lb_login' %>
+        <br/>
+        <%= f.text_field :login, {:size => 20, :autocomplete => 'off'} %>
+    </p>
+    <p>
+        <%= f.label 'email', 'Email:' %>
+        <br/>
+        <%= f.text_field :email, :size => 20 %>
+    </p>
+    <p>
+        <%= f.label 'I belong to group:' %>
+        <br/>
+        <% if @group %>
+        <b><%= @group.name %></b>
+        <%= f.hidden_field :group_id %>
+        <% else %>
+        <%= f.select :group_id, [['None', nil]] + public_groups.collect{|group| [group.name, group.id]}, :size => 8 %>
+        <% end %>
+    </p>
+    <p>
+        <%= f.label 'password', 'Password:' %>
+        <br/>
+        <%= f.password_field :password, :size => 20 %>
+    </p>
+    <p>
+        <%= f.label 'password_confirmation', 'Confirm Password:' %>
+        <br/>
+        <%= f.password_field :password_confirmation, :size => 20 %>
+    </p>
+    <% if session[:invitation_code] || session[:unique_code] %>
+    <p>
+        <%= check_box_tag 'sponsor_allow', '1', false %>
+        <label>
+            Allow sponsor to send emails
+        </label>
+    </p>
+    <% end %>
+    <p>
+        <%= submit_tag 'Sign Up' %>
+    </p>
+    <% end %>
+</div>
+<div class="rc_bottom_border">
+</div>
+<% end %>
+<% end %>
+
+<%# if show_featured_debates? %>
+<%#if show_featured_debates_all_pages?%>
+<div class="rc_top_border">
+    Join A Topic
+</div>
+<div class="rc_container">
+    <div class="rc_titles">
+        Join a topic that matters to you
+    </div>
+    <%#= featured_debates(@featured_debates) %>
+	<%= featured_debates_all_pages(@featured_debates)%>
+    <p>
+        <%= link_to "Most Recent Arguments", arguments_url %>
+    </p>
+</div>
+<div class="rc_bottom_border">
+</div>
+<% #end %>
+<%#end%>
+<% if logged_in? and !@login_signup and current_user.invited_to.size > 0 %>
+<div id="find-a-debate">
+    <div class="rc_top_border">
+        Invitations
+    </div>
+    <div class="rc_container">
+        <div class="rc_titles">
+            Your Invitations
+        </div>
+        <% current_user.invited_to.each do |resource| %>
+        <p>
+            <%=link_to resource.title, (resource.is_a?(Argument) ? argument_url(resource) : debate_url(resource)) %>
+        </p>
+        <% end %>
+    </div>
+    <div class="rc_bottom_border">
+    </div>
+</div>
+<% end %>
+<% if !@login_signup and !admin_user? %>
+<div class="rc_top_border">
+    Create debate
+</div>
+<div class="rc_container">
+    <div class="rc_titles">
+        State your new proposition.
+    </div>
+    <p>
+        Open a new debate that brings the concerns, wisdom and experience of your community 
+        to a critical issue. Start a new conversation.  Ask a good question. Move truth forward.
+    </p>
+    <p style="text-align:center;">
+        <%= link_to image_tag('create_button.png', :name => "create", :alt => "create new debate", :style => 'border: none;'), new_debate_path %>
+    </p>
+</div>
+<div class="rc_bottom_border">
+</div>
+<% end %>
+<% if logged_in? && current_user.show_my_favorites? %>
+<div class="rc_top_border">
+    Favorites
+</div>
+<div class="rc_container">
+    <div class="rc_titles">
+        Arguments
+    </div>
+    <ul>
+        <% current_user.favorite_arguments(favorites_sort(current_user.fav_sort_by,'argument')).each do |fav| %>
+        <li>
+            <p>
+                <%= link_to fav.argument.title, argument_url(fav.argument) %>
+            </p>
+        </li>
+        <% end %>
+    </ul>
+    <div class="rc_titles">
+        Debates
+    </div>
+    <ul>
+        <% current_user.favorite_debates(favorites_sort(current_user.fav_sort_by,'debate')).each do |fav| %>
+        <li>
+            <p>
+                <%= link_to fav.debate.title ,debate_url(fav.debate) %>
+            </p>
+        </li>
+        <% end %>
+    </ul>
+</div>
+<div class="rc_bottom_border">
+</div>
+<% end %>

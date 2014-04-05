@@ -1,0 +1,47 @@
+<div class="argument-tooltip" id=<%= "arg#{@argument.id}" %> >
+  <%= render_partial "rating_visual_display" %>
+  <span style="position:absolute; right:0;top:33px">
+    <% if @argument.can_be_modified_by?(current_user) %>
+      <%= link_to 'Edit', edit_argument_path(@argument) %> |
+      <%= link_to 'Delete', @argument, :confirm => "Are you sure you'd like to delete the argument <b>#{@argument.title}</b>?", :method => :delete %> |
+    <% end %>
+    <% if logged_in? and can_create_argument?(@argument) %>
+      <%= link_to("Reply" , new_debate_argument_url(@argument.debate, :parent_id => @argument.id)) %> | <%= bookmark_link(@argument, true) %>
+    <% end %>&nbsp;&nbsp;
+  </span>
+  <p>
+    <%= argument_type_icon(@argument) -%> <b><%=link_to_function @argument.full_title, :href=> argument_path(@argument), :onclick => 'return true', :id => arg_popup_dom_id(@argument)%></b>
+    <%= argument_body(@argument) %>
+  </p>
+  <div class="left" style="width:30px;"><b>Tags:</b></div>
+  <div class="left" style="width:310px;"><%= tags_links @argument.tags %></div>
+
+  <br/>
+  <div style="clear:both;">
+    <div class="left">
+      <span class="black"><%=search_external_links_icon(@argument) -%> <%=search_video_icon(@argument) %><%= search_image_icon(@argument) %><%=  search_argument_draft_notification(@argument) %></span>&nbsp;
+      <span class="<%#= @argument.priv? ? 'grey' : (@argument.argument_type == 'pro' ? 'blue' : 'red') %> title" ><%#= combo_score(@argument) %> &nbsp;</span>
+      <%#= argument_type_icon(@argument) -%>
+    </div>
+    <%# unless @argument.owner?(current_user) %>
+   <!-- <div class="right" style="position:relative;top:4px">[ <%#= link_to "Rate This Argument","#", :id => argument_rate_id(@argument) %> ]</div>-->
+    <%# end %>
+  </div>
+
+  <div class="clear_both"></div>
+  <div style="margin-top:10px; position:relative;">
+    <span style="position:absolute;right:4px;">
+      <span <%= "style=\"position:relative;top:6px;\"" if logged_in? -%>>
+        Argument <%= @argument.id %> by <%= render_author(@argument.author) %>
+      </span>
+    </span>
+    <% if can_rate_argument?(@argument) %>
+      <div style="display:block; float:left">
+        <%#= render :partial => 'shared/rating_form', :locals => {:argument => @argument, :buttons_in_right => true} %>
+      </div>
+    <% else %>
+      <br /><br />
+    <% end %>
+  </div>
+
+</div>

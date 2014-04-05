@@ -1,0 +1,52 @@
+
+<table width="100%" >
+  <tr>
+    <td><div class="user-tooltip">
+  <div class="user-tooltip-left"><%=  if @user.image
+   image_tag url_for_file_column("user", "image")
+  else
+   image_tag "owl.png"
+   end %>
+</div></td>
+    <td>
+	
+	<table >
+  <tr>
+    <td><div class="user-tooltip-right">  <b><%= @user.login %> </b></td>
+  </tr>
+  <tr>
+    <td><p> Member Since: <%= @user.created_at.strftime('%b. %d, %Y') %> </p></td>
+  </tr>
+  <tr>
+    <td><p> Debates: <%= @user.debates.size %> </p></td>
+  </tr>
+  <tr>
+    <td><p> Arguments: <%= @user.arguments.size %></p></td>
+  </tr>
+  <tr>
+    <td> <p> Ranking: <%= "tbd" %></p></td>
+  </tr>
+  <tr>
+    <td><p> <%= @user.description %></p></div></div></td>
+  </tr>
+</table>
+
+	
+	
+	
+	
+	
+	
+	
+    
+    
+    
+   
+    
+  </td>
+  </tr>
+</table>
+
+
+
+  

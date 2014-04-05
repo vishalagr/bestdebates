@@ -1,0 +1,24 @@
+<div id="content_top_box"><p class="page_title">Arguments</p></div>
+<div id="content_box">
+
+<div class="debate-argument">
+  <div class="debate-listings" style="padding:10px;">
+    <div class="debate-argument-title-background">
+      <h2>Recent Arguments</h2>
+    </div>
+    <div class="argument-form-inner">
+      <div class="argument-form-wrapper">
+        <div class="argument-list-wrapper" id="arguments">
+          <%= render :partial => '/arguments/argument', :collection => @arguments %>
+        </div>
+      </div>
+    </div>
+    <div><%= will_paginate @arguments %></div>
+  </div>
+  <div class="debate-listing-inner-footer"></div>
+</div>
+<div class="debate-listing-footer"></div>
+
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

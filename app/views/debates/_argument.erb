@@ -1,0 +1,49 @@
+<div class="<%= debate_argument_bg(argument, options,params[:controller],params[:id]) %>">
+  
+  <div class="dda_top_left_corner"></div>
+  <div class="dda_top_right_corner"></div>
+  <div class="dda_container_bg">
+    <div class="dd_question_mark">
+      <%= image_tag 'question_mark.png', :id => "question-mark#{argument.id}", :class => "argument-question-mark", :alt => '' %>
+      <%#= question_mark_help_tooltip(argument.id) %>
+    </div>
+    <div class="dd_argument_info">
+      <div class="dd_arg_vote" style=" width: 95%;">        
+        <span class="dd_arg_<%= argument.argument_type == 'pro' ? 'blue' : (argument.argument_type == 'con' ? 'red' : 'green') %>_title" style="width:2px;" id="aa_rating_<%= argument.id %>">
+          <%= ratting_score(argument) %>
+        </span><%#= rating_tooltip_script("aa_rating_#{argument.id}") %>
+        <span class="dd_arg_<%= argument.argument_type == 'pro' ? 'blue' : (argument.argument_type == 'con' ? 'red' : 'green') %>_title_vetting" style="width:1px;" id="aa_vetting_<%= argument.id %>">
+          <%= vetting_score(argument) %>
+        </span><%#= vetting_tooltip_script("aa_vetting_#{argument.id}") %>
+        <%= argument_type_icon(argument) -%>&nbsp;<% if logged_in? && argument.user_id == current_user.id %> <%=argument_own_icon(argument)%>&nbsp;<%#=author_tooltip_script("star#{argument.id}")%><% end %>
+       <% if logged_in? && !current_user.bookmarked_text(object).blank? %><%= bookmark_text_tooltip(current_user.my_bookmarked(object)) %><% end %>
+        <% if argument.draft? %> <%=argument_anti_draft_icon(argument)%><%#=anti_draft_tooltip_script("anti#{argument.id}")%> <% end %>
+        <%= link_to(argument.full_title.to(argument_content(argument)), argument_url(argument), :id => arg_popup_dom_id(argument), :class => "bold") %>
+        <%= link_to_function "<b>...</b>", "fMoreLessDetailsArg(this);", :id => more_less_link_dom_id(argument) -%>
+        <%= link_to(argument.full_title, argument_url(argument), :id => arg_popup_full_dom_id(argument), :class => "bold" ,:style => "display:none;") %>
+     </div>    
+    
+        <div class="clear_both"></div>      
+    </div>
+        
+        <div class="dd_arg_desc" id="parent_link<%= argument.id %>" style="display:none">&nbsp;
+          <%= argument_body(argument) %>
+        </div>
+    <div class="dd_arg_desc2" id="clarification<%= argument.id %>" style="display:none">
+       <div class="dd_arg_desc2_left"><span>
+      <%= link_to_function "<b>Full Text</b>", "fArgLinks(this)", :id => fulltext_link_dom_id(argument) %>
+      <%= link_to_function '|', '' %> 
+      <%= link_to_function "<b>Overview</b>", "fMoreLessDetailsArg(this);", :id => overview_link_dom_id(argument) -%>
+      <%= link_to_function '|', '' %>
+      <%= link_to_function "<b>go to parent</b>", "new Effect.ScrollTo('mktree_node_#{argument.parent_id}',{duration:3.0, offset:-20});new Effect.Highlight('mktree_node_#{argument.parent_id}',{duration:9.9});"  %>
+      <%= link_to_function '|', '' %> <%= external_links_icon(argument) -%> <%= video_icon(argument) %> <%=image_icon(argument) %> <%#= thumb_tooltip(argument) if argument.argument_type != 'com' %><%= argument_draft_notification(argument) %>
+        </span></div>
+    <div class="dd_arg_desc2_right"><span class="green arg_auth" >Author:<%= render_author(argument.user) %></span></div>
+    </div>
+    <div class="clear_both"></div>
+    <%= render :partial => "arguments/links", :locals => {:argument => argument } %>
+  </div>
+  <div class="dda_bottom_left_corner"></div>
+  <div class="dda_bottom_right_corner"></div>
+</div>
+<%= render :partial => "shared/argument_forms", :locals => {:argument => argument} %>

@@ -1,0 +1,24 @@
+<div class="sub_arguments">
+  <div class="dd_purple"> 
+    <span class="right">
+      <span class="bold">Show </span>
+      <%= link_to_function "Full Text", "fShowHideDetailsArg('children_tree', this)", :id => 'full_text_collapser' %>
+      <%= link_to_function '|', '' %>
+      <%= link_to_function "Titles Only", "set_default_status('children_tree', #{(@debate or @argument.debate).id}); fShowHideDetailsArg('children_tree', this)", :id => 'text_collapser' %>
+      <%= link_to_function '|', '' %>
+      <%= link_to_function "Overview", "fShowHideDetailsArg('children_tree', this)", :id => 'overview_text_collapser', :class =>"bold" %>
+      <%= link_to_function '|', '' %>
+      <span class="bold">Show Levels:</span>
+      <% 1.upto(5) do |i| %>
+        <%= link_to_function i, "set_default_level(#{(@debate or @argument.debate).id}, #{i}); expandTreeToLevel('children_tree',#{i})" %>
+      <% end %>
+      <%=   link_to_function "All", "expandTree('children_tree');", :id => "expand_all" %>
+    </span>
+    SUB-ARGUMENTS
+    <div class="clear_both"></div>
+  </div>
+  <div class="clear_both">&nbsp;</div>
+  <div id="children_argument_list">	 
+  	<%= render :partial => "arguments" %>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div style="background-image:url(http://<%=@host_url%>/images/lc_inner_top_bg.png);background-position:left top;background-repeat:no-repeat;height:35px;margin-left:-1px;width:702px;">&nbsp;</div>
+<div style="background-image:url(http://<%=@host_url%>/images/lc_middle_bg.png);background-position:left top;background-repeat:repeat-y;padding-left:26px;padding-right:38px;width:638px;">
+ 
+ 
+  <div style="padding:10px 16px;">
+    <div style="margin-top:4px;">
+      <b style="font-family:Arial,Helvetica,sans-serif;">Argument: </b>
+      <%= link_to argument.full_title, argument_url(argument),:style =>"font-size:15px;font-family:Arial,Helvetica,sans-serif;" %>
+    </div>
+  </div>
+
+
+  <div style="margin-top:4px;">
+    <div style="padding:0px 16px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;">Clarification: </div>
+    <div style="padding:0px 16px 10px 16px;margin-top:-35px;"><p style="text-align:justify;text-indent:122px;font-family:Arial,Helvetica,sans-serif;"><%= argument_body(argument) %></p></div>
+  </div>
+ 
+
+  
+  
+  
+  <div style="color:#313131;font-family:Tahoma,sans-serif;font-size:13px;line-height:1.5;padding:10px 16px 0px;">
+    <div style="padding-bottom:20px;">
+   <%=  render :partial => 'arguments/email_buttons', :locals => {:debate => argument.debate , :argument => argument , :parent_arg => parent_arg} %>
+     <div style="clear:both;font-size:0px;height:0px;line-height:0px;width:0px;"></div>
+    </div>
+  <div style="border-bottom:1px solid #CCCCCC;border-top:1px solid #CCCCCC;margin-left:8px;padding-bottom:0;">
+   <div style="background-color:#EFEEEE;margin:7px 16px 10px 0px;padding:3px 3px;width:602px;">
+     <span style="color:#006600;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;line-height:15px;">
+       Author: <%= !argument.user.blank? ? (argument.user.fb_user? ? argument.user.name : argument.user.login) : 'Anonymous' %>&nbsp;
+     </span>
+      <div style="text-align:right; padding-left: 360px;margin-top:-20px;">
+          <span style="font-family:Arial,Helvetica,sans-serif;font-size:11px;"><%= link_to 'Invite', argument_invitations_url(argument) %></span> |
+          <span style="font-family:Arial,Helvetica,sans-serif;font-size:11px;"><%=link_to 'Bookmark' , bookmark_from_email_argument_url(argument) %></span>
+      </div>
+  </div>
+
+
+    <div style="margin-left: 6px;">	  
+    <span style="font-size:11px; font-weight: bold;font-family:Arial,Helvetica,sans-serif;">In Response To: </span>
+    <% if !argument.parent_id.blank? %><%= link_to(argument.parent.title,argument_url(argument.parent),:style =>"font-size:13px;line-height:20px;font-family:Arial,Helvetica,sans-serif;") %><% end %>
+    </div>
+    <div style=" margin-left: 6px;">
+      <span style="font-size:11px; font-weight: bold;font-family:Arial,Helvetica,sans-serif;">In Debate: </span><%= link_to(argument.debate.title,debate_url(argument.debate),:style =>"font-size:13px;line-height:20px;font-family:Arial,Helvetica,sans-serif;") %>
+    </div>
+    </div>
+  
+</div>
+  <div style="clear:both;font-size:0px;height:0px;line-height:0px;width:0px;">&nbsp;</div>
+</div>
+  
+
+<div id="content_inner_bottom_bg" style="background-image:url(http://<%=@host_url%>/images/lc_inner_bottom_bg.png);background-position:left top;background-repeat:repeat-y;height:20px;"></div>
+<div id="content_outer_bottom_bg" style="background-image:url(http://<%=@host_url%>/images/lc_outer_bottom_bg.png);background-position:left top;background-repeat:repeat-y;height:24px;"></div>

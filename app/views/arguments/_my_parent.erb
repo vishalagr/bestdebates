@@ -1,0 +1,28 @@
+ <%  if !argument.parent.blank? %>
+ <div>
+  <span style="font-size: 11px;">In Response To:</span>  
+  <% parent = (argument.parent || @argument_parent) %>
+  <%= link_to_function parent.title, :href=> argument_path(parent), :onclick => 'return true', :id => "arg_dom_parent" , :name => "#{tooltip_argument_url(parent.id)}" %>
+
+  
+</div>
+  <% end  %>
+
+<div>
+  <span style="font-size: 11px;">In Debate:</span>
+ 
+    <%= link_to_function(
+      argument.debate.title,
+      :href => debate_path(argument.debate),
+      :onclick => 'return true',
+      :id => "debate_dom_id#{argument.debate.id}",
+      :class =>"debate_tip",
+      :name => "#{tooltip_debate_url(argument.debate)}"
+    ) %>
+    <%#= debate_tooltip_script(argument.debate) %> 
+
+  <% if @argument_parent and !argument.new_record? -%>
+    <br />
+    <b>Replying to Argument ID <%= argument.id %>: </b><%= argument_tooltip_script(@argument_parent) %>
+  <% end %>
+</div>

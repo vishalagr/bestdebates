@@ -1,0 +1,1 @@
+require 'remote_link_renderer'

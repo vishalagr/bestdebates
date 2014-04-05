@@ -1,0 +1,10 @@
+<tr>
+
+<td><%= h shortcut.resource_type %> &nbsp;&nbsp;</td>
+<td><%= h shortcut.resource_id %>&nbsp;&nbsp;</td>
+<td><a href='<%=(!shortcut.resource_url.blank? ? "http://#{HOST_DOMAIN}/i/#{shortcut.resource_name}" : "http://#{HOST_DOMAIN}/#{shortcut.resource_type.first}/#{shortcut.resource_id}")%>'><%=(!shortcut.resource_url.blank? ? "http://#{HOST_DOMAIN}/i/#{shortcut.resource_name}" : "http://#{HOST_DOMAIN}/#{shortcut.resource_type.first}/#{shortcut.resource_id}") %> </a>&nbsp;&nbsp;</td>
+<td><%= h shortcut.resource_name %>&nbsp;&nbsp;</td>
+
+
+<td><%= link_to 'Destroy', object_path(shortcut), :confirm => 'Really destroy shortcut?', :method => :delete   %>&nbsp;&nbsp;</td>
+</tr>

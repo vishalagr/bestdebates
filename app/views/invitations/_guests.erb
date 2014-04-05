@@ -1,0 +1,16 @@
+<div class="argument-listings right" style="float:right;width:310px; padding-right:4px;">
+  <dl class="listing-labels" style="width:310px">
+    <dd style="width:12px;margin:0px">&nbsp;</dd>
+    <dd style="width:136px;margin-left:15px;">
+      <%= sort_link 'NEW USERS', :email %>
+    </dd>
+    <% content_tag :dd, :style => "margin-left:0px;" do %>
+      <%= sort_link 'WRITE?', :write %>
+    <% end if @resource.can_be_invited_by?(current_user) %>
+  </dl>
+  <dl>
+    <dd class="listings" id="guests" style="height:180px;border:1px solid #CCCCCC;border-top:0;">
+      <%= render :partial => 'guest', :collection => @guests %>
+    </dd>
+  </dl>
+</div>

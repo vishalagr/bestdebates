@@ -1,0 +1,12 @@
+<% if argument.draft == 0 %>
+<span class="watching-heading">Email</span>
+<div class="watching-email">
+  <%= render :partial => 'arguments/send_email', :locals => {:argument => argument} %>
+</div>
+<% end %>
+<span class="watching-heading">RSS</span>
+<div class="watching-rss">
+  <span class="arg">
+    Argument deep: <%= rss_links(argument) %>
+  </span>
+</div>

@@ -1,0 +1,109 @@
+  <%= argument_parent_hidden_field(argument) %> 
+  
+  <table cellpadding="0" cellspacing="0" border="0" id="a_form_box">
+    <tr>
+      <td class="a_f_labels_top_<%=params[:action]%>"><%= f.label "Type:" %></td>
+      <td>
+        <%= f.label "For: "%> <%= f.radio_button :argument_type, 'pro' %>
+        &nbsp; &nbsp; &nbsp;
+        <%= f.label "Against: "%> <%= f.radio_button :argument_type, 'con' %>
+      </td>
+    </tr>
+  <!--
+    <tr>
+      <td class="a_f_labels"><%#= f.label 'Political Position:' %></td>
+      <td><%#= f.select :definition_id,
+          [['-- Select Position --', nil]] + Definition.find(:all).collect{|d| [d.name, d.id]},
+          {}, {:style => 'width:200px;'} %></td>
+    </tr>
+  -->
+    <tr>
+      <td class="a_f_labels_top_<%=params[:action]%>"><%= f.label 'Title:' %></td>
+      <td>
+        <%= f.text_field(
+          :title, 
+          :id => "argument-title#{argument_id(argument)}", 
+          :size => 44, :class => "a_f_fields_top_#{params[:action]}"
+        )%>
+        <%= javascript_tag "initArgumentTitleFieldHandlers('argument-title#{argument_id(argument)}')" if argument.new_record?%>
+      </td>
+    </tr>
+
+    <% if false -%>
+      <tr>
+        <td class="a_form_labels">change author:</td>
+        <td>
+          <%= f.select :author_login, User.find_all_active.collect(&:login), {:include_blank => true}, {:style => 'width:200px;'} %>
+        </td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <td colspan="2">        
+        
+          <% content_tag :id => fckeditor_div_id('debate', 'body') do %>
+            <%= fckeditor_textarea("argument", "body", :toolbarSet => 'Standard', :width => '580px;', :height => '200px',:id =>debate.id ) %>
+          <% end %>
+        
+      </td>
+    </tr>
+  </table>
+<table cellpadding="0" cellspacing="0" border="0" id="a_form_box2_<%=debate.id%>"  style="display: none;">
+    <tr>
+      <td class="a_f_labels_bottom_<%=params[:action]%>">
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.label 'Add External Link: <font color=brown>http://</font>' %>
+        <% end %>
+      </td>
+      <td>
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.text_field :link_url,:size => 19, :style => 'width:380px;' %>
+        <% end %>
+      </td>
+    </tr>
+
+    <% f.fields_for :video do |v| %>
+      <tr>
+        <td class="a_f_labels_bottom_<%=params[:action]%>"><%= v.label 'Place video embed code here' %></td>
+        <td><%= v.text_field :code, :size => 19, :style => 'width:380px;' %></td>
+      </tr>
+    <% end unless argument.immutable? %>
+
+    <tr>
+      <td class="a_f_labels_bottom_<%=params[:action]%>">
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.label 'Tags (separate by commas):' %>
+        <% end %>
+      </td>
+      <td>
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.text_field :tag_list, :size => '50', :maxlength => 100, :style => 'width:380px;' %>
+        <% end %>
+      </td>
+    </tr>
+
+    <%# Display `move` option only if this is edit action %>
+    <% if (@argument_parent.nil? and !argument.new_record?) %>
+      <tr>
+        <td class="a_form_labels_bottom_<%=params[:action]%>"><font size=1> Move arg <b><%= argument.id %></b> to arg:</font></td>
+        <td><%= text_field :argument, :dest_id, :size => 2 %></td>
+      </tr>
+    <% end %>
+
+    <!--
+    <tr>
+      <td class="a_f_labels">
+        <%# content_tag :div, :class => "argument-form-edit" do %>
+          <font size=1> Move arg <b><%#= argument.id %></b> to arg:</font>
+        <%# end unless argument.new_record? -%>
+      </td>
+      <td>
+        <%# content_tag :div, :class => "argument-form-edit" do %>
+          <%#= text_field :argument, :dest_id, :size => 2 %>
+        <%# end unless argument.new_record? -%>
+      </td>
+    </tr>
+    -->
+    <input id="clicked_button<%= unique_id -%>" type="hidden" name="clicked_button" />
+</table>
+ <div class="clear_both"></div>

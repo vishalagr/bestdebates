@@ -1,0 +1,20 @@
+
+<div style="background-color:white; min-height:500px;padding:20px; border: medium double gray">
+  <div id="error-msg"> </div>
+  <div style="margin: 10px 0 10px 0; text-align: center">
+    <% remote_form_for(
+      TimeSpec.new,
+      :url => '/admin/stats',
+      :update => "stats_display",
+      :before => "if(!validateDates()) {return false;}",
+      :html => {:id => "stats-search"}
+    )do |f| %>
+      Start: <%= f.text_field :start_time, :size => 8 %>
+      &nbsp;&nbsp; End Date: <%= f.text_field :stop_time,:size => 8 %>
+     <%= submit_tag 'Go' %>
+    <% end -%>
+
+    or <%= timeline_links('stats') %> Days | <%= link_to_remote "Show All", :update => "stats_display", :url => admin_home_url(:stats) %>
+  </div>
+  <div id="stats_display" style="clear:both;"><%= render :partial => 'stats' %></div>
+</div>

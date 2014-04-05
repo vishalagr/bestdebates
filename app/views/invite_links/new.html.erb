@@ -1,0 +1,18 @@
+<div style="width:600px">
+  <h2 style="text-align:center">Create an invitation link</h2>
+  <br />
+
+  <div id="invite_link_notification"> </div>
+
+  <% form_remote_tag(
+    :url    =>  self.send("#{@resource_type.downcase}_invite_links_path", @resource),
+    :update => 'invite_link_notification',
+    :method => :post
+  ) do %>
+    <p style="text-align:center">
+      Invitation Title: &nbsp; &nbsp; <%= text_field_tag 'title' %>
+      <%= submit_tag 'Create' %>
+    </p>
+  <% end %>
+
+</div>

@@ -1,0 +1,7 @@
+                  <p><i>Forgot your password?</i> Enter your email address for a new one:</p>
+                  <br />
+                  <% form_remote_tag :url => forgot_password_path do -%>
+                    <label for="email">Email Address</label><%= br rescue nil %>
+                    <%= text_field_tag 'email', nil %>
+                    <%= submit_tag 'Send reminder' %>
+                  <% end %>

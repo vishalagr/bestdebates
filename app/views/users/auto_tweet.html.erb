@@ -1,0 +1,12 @@
+<h1>Enter Twitter account details</h1>
+
+<p> To get auto Tweets to your account</p>
+
+<% form_for 'user_twitter_account' , @user_twitter_account , :url => auto_tweet_create_user_path(current_user) , :html => {:method => :post} do |f| -%>
+  <%= error_messages_for :user_twitter_account %>
+  <table>
+  <tr><td><label> Twitter UserName: </label></td><td><%= f.text_field :twitter_username %></td></tr>
+  <tr><td><label> Twitter Password: </label></td><td><%= f.password_field :twitter_password %></td></tr>
+</table>
+<%= submit_tag "Create" %>
+<% end -%>

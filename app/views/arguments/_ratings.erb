@@ -1,0 +1,15 @@
+<% unless true or  @argument.ratings.empty? %>
+  Score: <%= @argument.score %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  KYValue: <%= @argument.ky_value %>
+  <table>
+    <% for rating in @argument.ratings %>
+      <tr>
+        <td width=155px> <%= rating.user.login %></td>
+        <td width=101px> score: <%= rating.score %></td>
+        <td width=75px> acc: <%= rating.accuracy %></td>
+        <td width=75px> rel: <%= rating.relevance %></td>
+        <td width=75px> clar: <%= rating.clarity %>  </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

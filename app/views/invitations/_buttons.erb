@@ -1,0 +1,2 @@
+  <%= link_to image_tag('green-return-to-debate-button.png', :name => 'return-to-debate', :alt => 'return-to-debate', :style => 'border: none;'), @resource %>
+  <%= image_submit_tag 'green-save-changes-button.png', :name => 'save-changes', :style => 'border: none;' if @resource.can_be_invited_by?(current_user) %>

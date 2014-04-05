@@ -1,0 +1,6 @@
+<p><b>A New Argument/Debate was created on BestDebates.com</b></p>
+<% if @argument_or_debate.is_a?(Argument) %>
+<%= render :partial => "arguments/argument_email_body" , :locals => {:argument => @argument_or_debate, :host_url => @host_url} %>
+<% else %>
+<%= render :partial => "debates/debate_email_body" , :locals => {:debate => @argument_or_debate, :host_url => @host_url} %>
+<% end %>

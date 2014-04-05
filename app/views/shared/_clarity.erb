@@ -1,0 +1,6 @@
+<%= link_to "Clarity #{question_mark_image}", '#', :id => clarity_tooltip_dom_id, :onclick => "return false" %>
+<script type="text/javascript">
+	new Tip('<%= clarity_tooltip_dom_id %>', '<div class="definitions"><B>Clarity measures a reader’s ability to clearly understand what the argument is arguing.<br /> The more clarity, the more precisely users can judge its accuracy and relevance. </b><br /><br /> * 10-stars = The argument is crystal clear in its meaning. <br /> * 7-stars = The argument is mostly clear,but there is some ambiguity in meaning. <br /> * 3-stars = The meaning of the argument can be intepreted in multiple conflicting ways.  <br /> * 0-stars = The argument is completely vague and ambiguous,  <br />making its accuracy and relevance impossible to judge.</div>',{
+    viewport: true
+  });
+</script>

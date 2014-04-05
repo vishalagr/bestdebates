@@ -1,0 +1,4 @@
+page.replace_html "dd_debate#{@debate.id}", render(:partial => 'shared/debate', :locals => {:debate => @debate})
+page << "document.getElementById(\"dd_debate#{@debate.id}\").scrollIntoView(true);"
+page.visual_effect :highlight, "dd_debate#{@debate.id}", :duration => 5.0
+page.visual_effect :scroll_to, "dd_debate#{@debate.id}", :duration => 2.0, :offset => "200"

@@ -1,0 +1,48 @@
+<div style="background-image:url(http://<%=host_url%>/images/lc_inner_top_bg.png);background-position:left top;background-repeat:no-repeat;height:35px;margin-left:-1px;width:702px;">&nbsp;</div>
+<div style="background-image:url(http://<%=host_url%>/images/lc_middle_bg.png);background-position:left top;background-repeat:repeat-y;padding-left:26px;padding-right:38px;width:638px;">
+ <% if argument.debate_id != 0 %>
+  <div style="color:#333333;float:left;font-family:Verdana,Arial,Helvetica,sans-serif;font-size:10px;padding:0 16px;text-align:left;width:50%;">
+    Category: <%= link_to argument.debate.category.name, debates_url(:category_id => argument.debate.category_id) %>    
+  </div>
+ <% end %>
+  <div style="color:#333333;float:right;font-family:Verdana,Arial,Helvetica,sans-serif;font-size:9px;padding:0 12px;text-align:right;width:50%;">Arg. ID <%= argument.id %>, created <%= argument.created_at.strftime('%b. %d, %Y') %></div>
+  
+  <%- if argument.draft == 1 -%>   
+ <br/>  <br/>  
+    <div style="text-align:center;margin-top:8px;margin-bottom:-8px; font-size: 14px;font-weight: bold;">This argument is a DRAFT and is not public. </div>
+<% elsif argument.debate_id == 0 %>
+ <br/>  <br/>
+<div style="text-align:center;margin-top:8px;margin-bottom:-8px; font-size: 14px;font-weight: bold;">This argument is a TEMP and is not public. </div>
+<% end -%>
+  <div style="clear:both;font-size:0;height:0;line-height:0;width:0;"></div>
+  <div style="padding:10px 16px;">
+    <div style="margin-top:4px;">
+      <b>Argument: </b>
+      <%= link_to argument.full_title, argument_url(argument),:style =>"font-size:15px;" %>
+    </div>
+  </div>
+  <div style="margin-top:4px;">
+    <div style="padding:0px 16px;font-weight:bold;">Clarification: </div>
+    <div style="padding:0px 16px 10px 16px;margin-top:-35px;"><p style="text-align:justify;text-indent:122px;"><%= argument_body(argument) %></p></div>
+  </div>
+
+   <div style="border-bottom:1px solid #CCCCCC;border-top:1px solid #CCCCCC;margin-left:8px;padding-bottom:0;">
+   <div style="background-color:#EFEEEE;margin:7px 16px 10px 0px;padding:3px 3px;width:602px;">
+    <span style="color:#006600;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;line-height:15px;">
+      Author: <%= !argument.user.blank? ? (argument.user.fb_user? ? argument.user.name : argument.user.login) : 'Anonymous' %></span>
+  </div>
+    <div style="margin-left: 6px;">
+    <span style="font-size:10px; font-weight: bold;">In Response To: </span>
+    <% if !argument.parent_id.blank? %><%= link_to(argument.parent.title,argument_url(argument.parent),:style =>"font-size:14px;line-height:20px;") %><% end %>
+    </div>
+    <% if argument.debate_id != 0 %>
+    <div style=" margin-left: 6px;">
+      <span style="font-size:10px; font-weight: bold;">In Debate: </span><%= link_to(argument.debate.title,debate_url(argument.debate),:style =>"font-size:14px;line-height:20px;") %>
+    </div>
+    <% end %>
+    </div>
+
+  <div style="clear:both;font-size:0px;height:0px;line-height:0px;width:0px;">&nbsp;</div>
+</div>
+<div id="content_inner_bottom_bg" style="background-image:url(http://<%=host_url%>/images/lc_inner_bottom_bg.png);background-position:left top;background-repeat:repeat-y;height:20px;"></div>
+<div id="content_outer_bottom_bg" style="background-image:url(http://<%=host_url%>/images/lc_outer_bottom_bg.png);background-position:left top;background-repeat:repeat-y;height:24px;"></div>

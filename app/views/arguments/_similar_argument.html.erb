@@ -1,0 +1,12 @@
+<!-- Similar Argument -->
+<% if argument.new_record? %>
+  <div style="text-align:center">
+    <% form_tag similar_argument_debate_arguments_path(argument.debate) do %>
+      <%= argument_parent_hidden_field(argument) %>  
+      Paste <tt>argument_code</tt>: 
+      <%= text_field_tag 'identification_hash', '', :size => '35' %>
+      &nbsp; &nbsp;
+      <%= submit_tag 'Submit' %>
+    <% end %>
+  </div>
+<% end %>

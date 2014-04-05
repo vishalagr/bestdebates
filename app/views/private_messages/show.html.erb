@@ -1,0 +1,30 @@
+<%= fckeditor_include! %>
+<script type="text/javascript">
+  var AUTH = "<%= form_authenticity_token %>";
+  window.onload = function()
+  {
+    var oFCKeditor = new FCKeditor( 'message_body','580px;', '150px', 'Standard' ) ;
+    oFCKeditor.BasePath = '/javascripts/fckeditor/';
+    oFCKeditor.Config['CustomConfigurationsPath'] = '/javascripts/fckcustom.js';
+    oFCKeditor.ReplaceTextarea() ;
+  }
+</script>
+<div id="content_top_box"><p class="page_title">Message thread #<%= @root_id %></p></div>
+<div id="content_box" style="margin-top:-4px;">
+<div id="messages_list_container">
+<% for message in @thread %>  <br />
+<div class="message_box" id="message_<%=message.id%>">
+  <%= render :partial => "message", :locals => { :message => message } %>
+</div>
+<br /> <br />
+<% end %>
+<br /> <br />
+<% if params[:folder] == "inbox" %>
+<%= render :partial => "reply" , :locals => { :message => message }%>
+<% else %>
+<%= link_to 'Back', private_messages_path, :style => "padding-left: 10px;" -%>
+<% end %>
+</div>
+</div>
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>

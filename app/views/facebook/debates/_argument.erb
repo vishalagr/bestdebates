@@ -1,0 +1,15 @@
+<h3>Argument: <br /><%= argument.title.clean %></h3>
+<p><%= argument.body.clean %></p>
+<% if argument.parent %>
+<p>In response to <h3><%= argument.parent.title.clean %></h3></p>
+<% end %>
+<p style="text-align:right;">
+  <%= link_to 'Go To Argument', argument_url(argument.id, :canvas => false) %> |
+  <%= link_to 'Add argument to argument',
+        new_debate_argument_url(argument.debate_id, :parent_id => argument.id, :canvas => false)  %> |
+  <%= link_to 'Invite', argument_invitations_url(argument.id, :canvas => false) %> 
+  <% unless argument.fb_event_id.nil? %> |
+    <%= fb_facebook_event_link(argument.fb_event_id, 'argument event link')  %>
+  <% end %> |
+  <%= fb_facebook_share_link argument_url(argument.id, :canvas => false), argument.title.clean %> 
+</p>

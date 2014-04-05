@@ -1,0 +1,57 @@
+[RAILS 2.3.5] replace ramdom_id with ActiveSupport::SecureRandom.hex(16)
+migrate to REE + nginx + passenger + memcached
+
+FB:
+ - FacebookHelper: ensure that user has accept all required permission, app install etc
+ - css fix in: applcaition, da, home(#logo_box, #fb_connect)
+ - Facebook::Tasks.create_debate_event:
+    if !debate.category.blank? and debate.category.fb_event_category_id #where id assigning fb_event_category_id?
+ - User: create_from_fb_connect(get user email from fb)
+ - Dest model!
+ - Facebook::DebatesController
+ - what for need FacebookPermission, FacebookTemplate? it not using anywhere in the app
+ - :debates, :fb_publish_stream_id, :string, :limit => 20
+
+ - add_column :debates, :fb_event_id(:fb_publish_stream_id), :integer, :limit => 20. integer type has max length in 10 :)
+
+ - cats = {
+      :politics =>  [ 2, 26 ], #cause     - rally
+      :science  =>  [ 3, 16 ], #education - study group
+      :history  =>  [ 3, 16 ], #education - study group
+      :sports   =>  [ 6, 44 ]  #sports    - pep rally
+    }
+ - NO STUBBS!! what if 3,5,11 will be changed? - this migration will filed or create fully incorrect data
+------------------>
+http://kpumuk.info/ruby-on-rails/flexible-application-configuration-in-ruby-on-rails/
+Profiler: http://kpumuk.info/ruby-on-rails/creating-a-simple-but-powerful-profiler-for-ruby-on-rails/
+Presenter pattern:
+ - http://kpumuk.info/ruby-on-rails/simplifying-your-ruby-on-rails-code/
+ - http://github.com/ihoka/viewtastic
+ - http://www.subelsky.com/2008/01/presenter-classes-help-with-rails.html
+embed_images config:  http://documentcloud.github.com/jammit/#embedding
+JavaScript Templates: http://documentcloud.github.com/jammit/#jst
+http://github.com/purify/mail_style
+
+protect_from_forgery: uncomment + recheck controllers
+#cache argument's cascaded_score, relation_to_debate, vetting_percentage, rated?
+#speedup argument/debate rate calculation
+# added missed Watching tab and action for debates. implement RSS for debate
+move link_to_remote('Unbookmark"/"Bookmark') to application.js
+argument's default title & body recheck
+FixArgumentsNested: each_arg.move_to_child_of(parent). use root_argument.descendants for children select
+move an invitations delivering to background
+make a single argument's form for edit action via ajax and /articles/id/edit actions. currently using different templates
+cache weight debate/arg methods
+debate, argument bookmark_by() make throught Bookmark
+TreeController: what for?
+refactor Invitation.invite_groups
+js cleanup
+css cleanup
+css -> saas ( http://github.com/nex3/haml .css2sass util )
+recheck update_logins
+remove AR.find from helpers to http://kpumuk.info/ruby-on-rails/simplifying-your-ruby-on-rails-code/
+put js code of new Tip to a helper. OR move it to a scalable js function
+!tests:
+ - http://github.com/grosser/single_test
+ - http://kpumuk.info/ruby-on-rails/my-top-7-rspec-best-practices/
+ - http://guides.rubyonrails.org/testing.html

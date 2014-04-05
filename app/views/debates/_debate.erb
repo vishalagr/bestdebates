@@ -1,0 +1,54 @@
+<table cellpadding="0" cellspacing="0" border="0" class="list_debate">
+  <tr>
+    <td class="d_category_box">
+      <%= check_box_tag 'debates[id][]', (debate.id if admin_user?),false,{:class=>"mychecks"}  %>
+      <%= link_to(debate.category.name, debates_url(:category_id => debate.category)) if debate.category %>
+    </td>
+    <td class="d_rating_box">
+      <%= debate.humanized_rating || '&nbsp;' %>
+    </td>
+    <td class="d_title_box">
+      <div id="dd_debate<%= debate.id  -%>">
+        <%= render :partial => 'shared/debate', :locals => {:debate => debate} %>
+      </div>
+    </td>
+    <% if admin_user? %>
+      <td class="d_type_box">
+        <%= debate_type(debate) %>
+      </td>
+    <% end %>
+    <td class="d_sponsor_box">
+      <%= render_author(debate.author) %>
+    </td>
+    <td class="d_updated_at_box">
+      <%= debate.updated_at.strftime('%m %b') %>
+    </td>
+  </tr>
+
+    <tr class="b_tags_box" id="debate_tags<%= debate.id -%>" style="display:none;">
+      <td colspan="5">
+        <div id="links<%= debate.id -%>"class="d_tabs_container">
+          <div class="d_tabs_box">
+            <span class="d_tab"><%= tab_link_to_remote('Tags', :tags, debate) %></span>
+             <span class="d_tab"><%= tab_link_to_remote('Reply', :reply,  debate) %></span>
+            <% if edit_tab?(debate) -%>
+             <!-- <span class="d_tab"><%#= tab_link_to_remote('Edit', :edit, debate) %></span> -->
+             <span class="d_tab"><%= link_to 'Edit', edit_debate_url(debate) %></span>
+            <% end -%>
+            
+            <% if bookmark_tab? %>
+              <span class="d_tab"><%= tab_link_to_remote('Bookmark', :bookmark, debate) %></span>
+            <% end %>
+            
+            <span class="d_tab">
+              <%#= link_to "Watching", "#", :id => "Watching_#{debate.id}", 
+                :onclick => 'toggle_div(this);return false;' %>
+              <%= tab_link_to_remote('Watching', :watching, debate) %>
+            </span>
+          </div>
+        </div>
+        <%= render :partial => 'debates/forms', :locals => {:debate => debate} %> 
+      </td>
+    </tr>
+
+</table>

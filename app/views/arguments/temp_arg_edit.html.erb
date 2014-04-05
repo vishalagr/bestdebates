@@ -1,0 +1,77 @@
+<div id="content_top_box" style="margin-bottom:-5px;"> <p class="page_title">Edit Argument</p></div>
+<div id="content_box">
+  <br/>
+<%= fckeditor_include! %>
+<% form_for(:argument , @argument , :url =>{:controller => "arguments" , :action => "update_temp_argument"}) do |f| %>
+  <table cellpadding="0" cellspacing="0" border="0" id="a_form_box">    
+    <tr>
+      <td class="a_f_labels_top_edit"><%= f.label 'Title:' %></td>
+      <td>
+        <%=f.text_area(:title,
+          :id =>"argument-title#{argument_id(@argument)}",
+          :class =>"a_f_fields_top_edit",
+          :cols => 75,
+          :rows => 2,
+          :wrap=>"physical",          
+          :onKeyDown =>"textCounter(this,220);",
+          :onKeyUp => "textCounter(this,220);" )%>       
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">        
+        <% unless request.xhr? %>
+          <% content_tag :id => fckeditor_div_id('argument', 'body') do %>
+            <%= fckeditor_textarea("argument", "body", :toolbarSet => 'Standard',:cols => "75",:rows=> "12", :width => '580px;', :height => '200px') %>
+          <% end %>      
+        <% else %>
+          <textarea id="<%= editor_id(argument) -%>" cols="75" rows="12" width = '550px;' height = '200px' name="argument[body]"><%= argument.body %></textarea>         
+        <% end %>
+      </td>      
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" id="a_form_box">
+    <tr>
+      <td class="a_f_labels_bottom_edit">
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.label 'Add External Link: <font color=brown>http://</font>' %>
+        <% end %>
+      </td>
+      <td>
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.text_field :link_url,:size => 19, :style => 'width:380px;' , :value => @argument.try(:argument_links).try(:last).try(:url) %>
+        <% end %>
+      </td>
+    </tr>
+    <% f.fields_for :video do |v| %>
+      <tr>
+        <td class="a_f_labels_bottom_<%=params[:action]%>"><%= v.label 'Place video embed code here' %></td>
+        <td><%= v.text_field :code, :size => 19, :style => 'width:380px;' , :value => @argument.try(:video).try(:code) %></td>
+      </tr>
+    <% end unless @argument.immutable? %>
+    <tr>
+      <td class="a_f_labels_bottom_<%=params[:action]%>">
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.label 'Tags (separate by commas):' %>
+        <% end %>
+      </td>
+      <td>
+        <% content_tag :div, :class => "argument-form-edit" do %>
+          <%= f.text_field :tag_list, :size => '50', :maxlength => 100, :style => 'width:380px;' %>
+        <% end %>
+      </td>
+    </tr>   
+</table>   
+
+  <div class="argument-form-edit">
+    <%= image_submit_tag 'save_as_draft.png', :class => 'left publish-button', :name => "savedraft", :style => 'border: none;'%>
+    <%= image_submit_tag 'cancel.png',        :class => 'cancel-button', :name => "cancel",    :style => 'border: none; padding-left:119px;' %>
+    <div class="clear_both"></div>
+  </div>
+ <% end %>
+   <div class="clear_both"></div>
+</div>
+      
+<div id="content_inner_bottom_bg"></div>
+<div id="content_outer_bottom_bg"></div>
+
+ 

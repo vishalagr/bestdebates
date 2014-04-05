@@ -1,0 +1,34 @@
+<style type="text/css">
+  .welcome-message h2{
+    font-size: 20px;
+    color:#000000;
+    font-weight:bold;
+    text-align:center;
+  }
+  .welcome-message a{
+    text-decoration:none;
+    color:#0f0ca1;
+  }
+  .welcome-message a:visited{
+    font-weight:bold;
+    text-decoration:none;
+    font-weight:normal;
+    color:#0f0ca1;
+  }
+  .welcome-message p{
+    font-size: 14px;
+    font-weight:normal;
+    color:#000000;
+    padding: 6px;
+  }
+  
+</style>
+
+<div class="welcome-message" style="margin:10px;">
+  <h2>Welcome to BestDebates.com.</h2>
+  <p>If you would like to learn about this site, <%= link_to 'click here', '/' %>.</p>
+  <p>If you would like to go directly to the debate you were invited to, <%= link_to 'click here', debate %>.</p><br />
+  <% unless debate.priv? %>
+    <p style="color:#c90909;font-size:13px;">This debate has been marked private. Only people invited to participate can read or reply to it. Your replies will only be visible to other people invited to the debate.</p>
+  <% end %>
+</div>

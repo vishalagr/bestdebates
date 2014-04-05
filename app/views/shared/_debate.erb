@@ -1,0 +1,11 @@
+<%= debate_title(debate) %>
+<span style="display:none">
+  [<%= link_to_function "Full text/Rate/Reply", "debateMoreLessDetatils(this);", 
+    :id => more_less_link_dom_id(debate) -%>]
+</span>
+
+<div id="debate_details<%= debate.id -%>" style="display:none">
+  <%= debate_body(debate) %>
+  <%#= render :partial => 'debates/links', :locals => {:debate => debate} %>
+</div>
+<%= " [ " << link_to("Unretire", [:unretire, :admin, debate]) << " ]" if admin_user? and !debate.is_live? %>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: members_controller.rb [RDoc Documentation]</title>
+
+	<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet" />
+
+	<script src="../../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+	<div id="metadata">
+		<dl>
+			<dt class="modified-date">Last Modified</dt>
+			<dd class="modified-date">Wed Jan 20 16:31:41 +0530 2010</dd>
+
+			
+			<dt class="requires">Requires</dt>
+			<dd class="requires">
+				<ul>
+				
+				</ul>
+			</dd>
+			
+
+			
+		</dl>
+	</div>
+
+	<div id="documentation">
+		
+		<div class="description">
+			<h2>Description</h2>
+			<p>
+class MembersController < <a
+href="../../ApplicationController.html">ApplicationController</a>
+</p>
+<pre>
+  before_filter :login_required
+  before_filter :group_owner_required, :only =&gt; [:new, :create]
+  before_filter :owner_required,       :only =&gt; [:edit, :update, :destroy]
+
+  make_resourceful do
+    actions :all
+    belongs_to :group
+
+    before :show do
+      @group = @member.group
+    end
+
+    response_for :destroy do |format|
+      format.html do
+        flash[:notice] = &quot;Member deleted!&quot;
+        redirect_to group_members_path(@group)
+      end
+      format.xml{ head :ok }
+      format.js
+    end
+  end
+
+  private
+
+  def group_owner_required
+    @group = Group.find(params[:group_id])
+     check_owner
+  end
+
+  def owner_required
+    load_object
+    @group = @member.group
+     check_owner
+  end
+
+   def check_owner
+     return false unless logged_in? and @group.owner?(current_user)
+   end
+</pre>
+<p>
+end
+</p>
+
+		</div>
+		
+	</div>
+</body>
+</html>
+

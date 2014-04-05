@@ -1,0 +1,21 @@
+<div style="margin-left:-25px;">
+  <% reset_unique_id %>
+  <% remote_form_for([debate, argument], :html => {:id => 'argument_form_' + debate_form_id(argument,debate),
+    :onreset => (argument.new_record? ? "setTimeout(\"setArgumentDefaultTitle($('#{title_id(argument)}'));setArgumentDefaultBody(FCKeditorAPI.GetInstance('#{editor_id(argument)}'), $('#{editor_id(argument)}'));\", 100);" : "")},
+    :before => "document.getElementById('#{editor_id(argument)}').value = FCKeditorAPI.GetInstance('#{editor_id(argument)}').GetXHTML()" ) do |f| %>
+
+    <% content_tag( :div, :class => "errors", :id => arguments_errors(argument)) do f.error_messages end %>
+
+    <%= render :partial => 'argument_fields_debates', :locals => {:argument => argument,:debate => debate, :f => f} %>
+
+    <p>
+      <%= image_submit_tag 'save.png', :name => "publish", :class => 'left create-button', :style => 'border: none;', :onclick => "$('clicked_button#{unique_id}').value = this.name;" %>    
+      <%= image_submit_tag 'save_as_draft.png', :class => 'left publish-button', :name => "savedraft", :style => 'border: none;' if arg_save_as_draft_button?(argument) %>
+    </p>
+    <div style="padding-left:100px;  padding-top: 6px;">
+      <a href="#" id="more_less_options_<%=debate.id%>" onclick="fMoreLessOptions(this); return false;">more options</a>
+    </div>
+  <% end %>
+
+  <div class="clear_both"></div> 
+ </div>

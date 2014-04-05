@@ -1,0 +1,12 @@
+<h2> Editing Twitter Account </h2>
+
+<div><%= error_messages_for :twitter_account %></div>
+
+<%- form_for(:twitter_account, :url => object_url, :html => { :method => :put }) do |f| %>
+  <%= render :partial => "form", :locals => {:f => f} %>
+  <%= submit_tag "Update" %>
+<% end %>
+
+<%= link_to 'Show', object_path %>
+|
+<%= link_to 'Back', objects_path %>

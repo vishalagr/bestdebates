@@ -1,0 +1,8 @@
+<style>
+  .pagination { float: right; }
+  .battle { padding: 3px; font-size: large; clear: both; }
+  .battle img { padding-right: 3px; }
+</style>
+<%= will_paginate(@debates_and_arguments)%><br />
+<%= render :partial => "debate_or_argument", :collection => @debates_and_arguments, :as => :debate_or_argument %><br />
+<%= will_paginate(@debates_and_arguments)%><br />

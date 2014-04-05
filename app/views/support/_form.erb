@@ -1,0 +1,57 @@
+<!-- First -->
+<%= fckeditor_include! %>
+
+<% form_for([@support_page]) do |f| %>
+  <div class="errors"><%= f.error_messages %></div>
+
+  <table cellpadding="0" cellspacing="0" border="0" id="a_form_box">
+   <tr>
+      <td class="a_f_labels_top"><%= f.label 'Page Title(with out spaces):' %></td>
+      <td>
+        <%= f.text_field :page_title,:size => 19, :style => 'width:380px;' %>
+        <script type="text/javascript">
+            new Tip('support_page_page_title', 'use "_" for space',{
+              hook: { target: 'rightMiddle', tip: 'leftMiddle' },
+              stem: 'leftMiddle',
+              showOn: 'nothing',
+              hideOn: 'blur',
+              viewport: 'true'
+            });
+            var objUserLogin = document.getElementById("support_page_page_title");
+            showOrHideTip = function (event) {
+              obj = Event.element(event);
+              if(obj.value.indexOf(' ') > -1) obj.prototip.show(); else obj.prototip.hide();
+            }
+            Event.observe(objUserLogin, 'focus',   showOrHideTip)
+            Event.observe(objUserLogin, 'keydown', showOrHideTip)
+            Event.observe(objUserLogin, 'change',  showOrHideTip)
+          </script>
+      </td>
+    </tr>
+    <tr>
+        <td class="a_f_labels_bottom"><%= f.label 'Place video embed code here' %></td>
+        <td><%= f.text_field :video_code, :size => 19, :style => 'width:380px;' %></td>
+      </tr>
+    <tr>
+      <td colspan="2">
+        <% unless request.xhr? %>
+          <% content_tag :id => fckeditor_div_id('support_page', 'body') do %>
+            <%= fckeditor_textarea("support_page", "body", :toolbarSet => 'Standard', :width => '580px;', :height => '200px') %>
+          <% end %>
+        <% else %>
+          <textarea id="support_page_body" name="support_page[body]"><%= support_page.body %></textarea>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+ <div class="clear_both"></div>
+  <div class="argument-form-edit">
+    <%= image_submit_tag 'save.png',          :class => 'left  create-button', :name => "publish",   :style => 'border: none; padding-left:15px;'  %>
+
+    <%= image_submit_tag 'cancel.png',        :class => 'cancel-button', :name => "cancel",    :style => 'border: none; padding-left:119px;' %>
+    <div class="clear_both"></div>
+  </div>
+<% end %>
+
+<div class="clear_both"></div>

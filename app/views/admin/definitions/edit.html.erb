@@ -1,0 +1,52 @@
+<div>
+  <div id="left-content">
+    <div class="debate-argument">
+      <div class="debate-listings">
+        <div class="debate-argument-title-background">
+          <h2>Update Defination</h2>
+        </div>
+        <div class="argument-form-inner">
+          <div class="argument-form-wrapper">
+            <div style="padding-left:10px;"><br />
+              
+              <% form_for([:admin, @definition]) do |f| %>
+                <%= f.error_messages %>
+                <table width="60%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>Definition:</td>
+                    <td><%= f.text_field :name %></td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>Discription:</td>
+                    <td><%= f.text_field :description %></td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <center>
+                        <input type="submit" name="save" value="Save" >
+                      </center>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+              
+            </div>
+            <div style="padding-right:10px;clear:both;"><br /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="debate-listing-inner-footer"></div>
+  </div>
+  <div class="debate-listing-footer"></div>
+</div>

@@ -1,0 +1,37 @@
+<% unless @invite_link.errors.empty? %>
+
+  <ul style="color:#FF0000">
+    <% @invite_link.errors.each do |k,v| %>
+      <li><%= "#{k} #{v}" %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+  <div style="border: 1px solid green; margin:5px; padding:5px;">
+    Invite Link created successfully. You can invite existing users and new users to this debate by sending them this link. <br />
+
+    <table>
+      <tr>
+        <td> Invitation Link : </td>
+        <td>
+          <span id="invitation_link">
+            <%#= link_to debate_with_invlink_url(@invite_link.debate, @invite_link.unique_id), debate_with_invlink_url(@invite_link.debate, @invite_link.unique_id) %>
+            <input type="text" id="invite_url" value="<%= self.send("#{@resource_type.downcase}_with_invlink_url", @invite_link.resource, @invite_link.unique_id) %>" size="40" />
+          </span>
+        </td>
+        <td> <input type="button" id="copy_url" style="z-index:100" value="Copy URL" /> </td>
+      </tr>
+      <tr>
+        <td> Invitation Title: </td>
+        <td>
+          <span style="font-weight:bold">
+            <%#= @invite_link.display_title %>
+            <input type="text" id="invite_title" value="<%= @invite_link.display_title %>" size="40" />
+          </span>
+        </td>
+        <td> <input type="button" id="copy_title" value="Copy Title" /> </td>
+      </tr>
+    </div>
+
+  <% end %>

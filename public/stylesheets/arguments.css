@@ -1,0 +1,417 @@
+.a_red_title {
+    /*float:left;
+	width:250px;
+	padding-left:22px;
+    margin-bottom:8px;
+	line-height:15px;*/
+    font-size:11px;
+    font-weight:bold;
+    color:#990000;
+}
+.a_blue_title {
+
+    /*width:250px;
+	padding-left:22px;
+    margin-bottom:8px;
+	line-height:15px;*/
+    font-size:11px;
+    font-weight:bold;
+    color:#3366FF;
+
+}
+.a_green_title {
+
+    /*width:250px;
+	padding-left:22px;
+    margin-bottom:8px;
+	line-height:15px;*/
+    font-size:11px;
+    font-weight:bold;
+    color:#1cb532;
+
+}
+
+.a_top_left_text  {
+    float: left; text-align: left;
+    padding:0px 16px;
+    font-size:10px;
+    font-family:Verdana,Arial,Helvetica, sans-serif;
+    color:#333333;
+    width: 60%;
+}
+
+.a_top_right_text {
+    float:right;
+    width:30%;
+    padding:0px 12px;
+    text-align:right;
+    font-size:9px;
+    font-family:Verdana,Arial,Helvetica, sans-serif;
+    color:#333333;
+}
+.arg_rating_top{
+    width: 50%;float: right;
+}
+.flag_middle{
+    text-align:center;
+    padding-bottom: 10px;
+    margin-left: 228px;
+    margin-top: -35px;
+}
+.middle_tag_links{
+    margin-left: 6px;
+    border-bottom:1px solid #CCCCCC;
+    border-top:1px solid #CCCCCC;
+    padding-bottom: 0px;
+}
+.a_black_title {
+    margin-bottom:8px;
+    padding:0px 16px;
+    padding-bottom: 0px;
+    padding-top: 30px;
+    line-height:15px;
+    font-size:12px;
+    font-weight:600;
+    color:#313131;
+}
+.a_red_arg_title {
+    color:brown;
+    font-size:15px;
+    font-weight:bold;
+    line-height:18px;
+    padding-bottom:15px;
+    padding-left:16px;
+    padding-top:15px;
+    width:600px;
+}
+.a_body_title {
+    padding:0px 16px;
+    font-weight:bold;
+}
+.a_body_text {
+    padding:0px 16px 10px 16px;
+    margin-top:-17px;
+}
+.a_body_text p{
+    text-align:justify;
+    text-indent:78px;
+}
+.a_indebate_link {
+    padding:0px 1px;
+}
+.a_buttons {
+    padding: 10px 10px 0px;
+    line-height:1.5;
+    font-size:13px;
+    font-family:Tahoma, sans-serif;
+    color:#313131;
+}
+.a_buttons_bottom{
+    padding-bottom:0px;
+}
+.access_functions{float:right; }
+.right {
+    float:right;
+}
+.left {
+    float: left;
+}
+.a_buttons span {
+    font-size:11px;
+    font-family:Arial,Helvetica, sans-serif;
+}
+a.stbutton {
+    padding:1px 5px 5px 22px;
+}
+.debate-listings a {
+    color:#0000CD;
+}
+.debate-listings a, .debate-listings h5 {
+    line-height:18px;
+    font-size:12px;
+    font-family:Verdana,Arial,Helvetica, sans-serif;
+}
+.stico_default {
+    background:transparent url(http://w.sharethis.com/images/share-icon-16x16.png?CXNID=1000014.0NXC) no-repeat scroll 0 0;
+}
+.a_grey_box {
+    width:603px;
+    margin:7px 16px 7px 0px;
+    padding-top:3px;
+    padding-left:5px;
+    padding-right:5px;
+    padding-bottom:3px;
+    background-color:#EFEEEE;
+}
+span.green a {
+    line-height:15px;
+    font-size:12px;
+    font-family:Verdana,Arial,Helvetica, sans-serif;
+}
+.arg_list_top {
+    margin:0px 16px 8px 16px;
+    padding-bottom:15px;
+    /*border-bottom:1px solid #CCCCCC;*/
+}
+.details {
+    width:600px;
+    padding-left:31px;
+    line-height:1.5;
+    font-size:13px;
+    font-family:Tahoma,Arial, sans-serif;
+    color:#313131;
+}
+/* double-styles with another name
+.a_purple {
+	padding:0px 15px 0px 0px;
+	line-height:18px;
+	font-size:13px;
+	font-weight:bold;
+	text-transform:uppercase;
+	word-spacing:5px;
+	color:black;
+	}
+.a_purple span {
+	line-height:18px;
+	font-size:12px;
+	font-family:Arial,Helvetica, sans-serif;
+	text-transform:none;
+	}
+.a_purple span.bold {
+	line-height:18px;
+	font-size:11px;
+	font-family:Arial,Helvetica, sans-serif;
+	font-weight:bold;
+	text-transform:uppercase;
+	}
+.a_a_container_green_bg {
+	margin-right:9px;
+	border-left:1px solid #C6C3C6;
+	border-right:1px solid #C6C3C6;
+	background-color:#D8EECE;
+	}
+.a_a_top_left_green_corner {
+	height:7px;
+	margin-right:7px;
+	margin-bottom:-7px;
+	_margin-bottom:-16px;
+	background-image:url(/images/dda_top_left_green_corner.gif);
+	background-repeat:no-repeat;
+	background-position:top left;
+	}
+.a_a_top_right_green_corner {
+	height:7px;
+	margin-left:7px;
+	_margin-bottom:-11px;
+	margin-right:9px;
+	background-image:url(/images/dda_top_right_green_corner.gif);
+	background-repeat:no-repeat;
+	background-position:top right;
+	}
+.a_a_bottom_left_green_corner {
+	height:7px;
+	margin-right:7px;
+	margin-bottom:-7px;
+	_margin-top:-9px;
+	_margin-bottom:-16px;
+	background-image:url(/images/dda_bottom_left_green_corner.gif);
+	background-repeat:no-repeat;
+	background-position:bottom left;
+	}
+.a_a_bottom_right_green_corner {
+	height:7px;
+	margin-left:7px;
+	margin-bottom:3px;
+	margin-right:9px;
+	background-image:url(/images/dda_bottom_right_green_corner.gif);
+	background-repeat:no-repeat;
+	background-position:bottom right;
+	}
+.a_a_container_red_bg {
+	margin-right:9px;
+	border-left:1px solid #C6C3C6;
+	border-right:1px solid #C6C3C6;
+	background-color:#FEF1EB;
+	}
+.a_a_top_left_red_corner {
+	height:7px;
+	margin-right:7px;
+	margin-bottom:-7px;
+	_margin-bottom:-16px;
+	background-image:url(/images/dda_top_left_red_corner.gif);
+	background-repeat:no-repeat;
+	background-position:top left;
+	}
+.a_a_top_right_red_corner {
+	height:7px;
+	margin-left:7px;
+	_margin-bottom:-11px;
+	margin-right:9px;
+	background-image:url(/images/dda_top_right_red_corner.gif);
+	background-repeat:no-repeat;
+	background-position:top right;
+	}
+.a_a_bottom_left_red_corner {
+	height:7px;
+	margin-right:7px;
+	_margin-top:-16px;
+	margin-bottom:-7px;
+	_margin-bottom:-16px;
+	_padding-bottom:7px;
+	background-image:url(/images/dda_bottom_left_red_corner.gif);
+	background-repeat:no-repeat;
+	background-position:bottom left;
+	}
+.a_a_bottom_right_red_corner {
+	height:7px;
+	margin-left:7px;
+	margin-bottom:3px;
+	margin-right:9px;
+	background-image:url(/images/dda_bottom_right_red_corner.gif);
+	background-repeat:no-repeat;
+	background-position:bottom right;
+	}
+.a_question_mark {
+	position:relative;
+	top:-5px;
+	_top:-2px;
+	z-index:200;
+	max-height:14px;
+	padding:0px 2px 0px 0px;
+	text-align:right;
+	}
+.a_question_mark img {
+	height:14px;
+	}
+.a_argument_info {
+	margin-top:-12px;
+	padding-left:19px;
+	}
+.a_arg_bullet {
+	width:21px;
+	height:21px;
+	background-color:#1CB532;
+	}
+.a_arg_vote {
+	float:left;
+	}
+.a_arg_vote img {
+	margin-bottom:-3px;
+	}
+.a_arg_blue_title {
+	margin-left:15px;
+	padding:0px 5px;
+	line-height:15px;
+	font-size:12px;
+	font-family:Arial,Helvetica, sans-serif;
+	font-weight:bold;
+	color:#3366FF;
+	}
+.a_arg_author {
+	float:right;
+	margin-top:3px;
+	padding-right:30px;
+	text-align:right;
+	font-size:12px;
+	}
+.a_arg_author a {
+	font-size:12px;
+	}
+.a_arg_title_box {
+	padding-right:20px;
+	padding-left:20px;
+	}
+a.a_arg_title_link {
+	font-size:11px;
+	font-family:Verdana,Arial,Helvetica, sans-serif;
+	font-weight:bold;
+	}
+.a_arg_desc {
+	padding-top:15px;
+	padding-left:20px;
+	padding-right:20px;
+	line-height:16px;
+	font-size:13px;
+	font-family:Arial,Helvetica,sans-serif;
+	}
+.a_tabs_container {
+	margin-left:20px;
+	margin-right:20px;
+	}
+.a_cancel_button {
+	padding-left:515px;
+	margin-bottom:-15px;
+	}
+.a_a_content {
+	margin-left:42px;
+	font-size:12px;
+	}
+.a_a_rating_labels {
+	float:left;
+	width:75px;
+	margin-top:-4px;
+	}
+.a_a_rating_info {
+	float:left;
+	width:447px;
+	_margin-top:-1px;
+	}
+.a_a_rating_arrows {
+	height:12px;
+	line-height:12px;
+	font-size:12px;
+	}
+.a_a_rating_line {
+	width:335px;
+	height:5px;
+	padding:0px 6px;
+	line-height:5px;
+	font-size:5px;
+	background-image:url(/images/rating_gradient.png);
+	background-position:top right;
+	background-repeat:no-repeat;
+	}
+.a_a_rating_line img {
+	}
+.a_a_tags_box {
+	width:475px;
+	}
+.a_buttons .tags_list {
+
+	}
+*/
+#a_form_box {
+    width:100%;
+    margin-left:15px;
+}
+/*#a_form_box textarea {width: 97.5%}*/
+#a_form_box td {
+    padding-top:1px;
+    padding-bottom:1px;
+    vertical-align:top;
+}
+#a_form_box td p {
+    padding-bottom:1px;
+}
+.a_form_labels {
+    width:170px;
+    padding-right:35px;
+}
+.a_form_box2 {
+    width:100%;
+    margin-left:15px;
+}
+.a_form_box2 textarea {width: 97.5%}
+.a_form_box2 td {
+    padding-top:1px;
+    padding-bottom:1px;
+    vertical-align:top;
+}
+.a_form_box2 td p {
+    padding-bottom:1px;
+}
+.make_public_middle{
+ float:right;
+margin-bottom:-35px;
+padding-right:221px;
+}

@@ -1,0 +1,71 @@
+<%=javascript_include_tag 'prototype'%>
+<% buttons_in_right rescue buttons_in_right = false %>
+<%logger.info "before ratingiiiiiiiiiiiiiiiiiiiii"%>
+<% rating = argument.ratings.find_by_user_id(current_user) || argument.ratings.build %>
+
+<% reset_unique_id %>
+<% remote_form_for(rating , :url => rate_debate_argument_url(argument.debate, argument) , :html => {:method => :post})  do |f| %>
+<%# remote_form_for(:rating, rating, :url => rate_debate_argument_url(argument.debate, argument),  :before =>"$('#{argument_rate_id(argument)}').prototip.hide();",  :html => {:method => :post}) do |f| %>
+  <div id="<%= rating_form_id(argument) %>" class="rating_form">
+    <div class="rating-widgets">
+      <dl class="detail-popup-info-meta">
+
+        <dd class="red">
+          <div id="<%= "rate_message_#{argument.id}" %>" class="message" style="text-align:left">Rate this Argument</div>
+          <input type="hidden" id="unique_id" name="unique_id" value="<%= unique_id -%>" />
+        </dd>
+
+        
+
+        <dd>
+          <div class="rating-category"><%= render :partial => 'shared/clarity' %></div>
+          <div class="rating-select" id="<%= clarity_dom_id -%>">
+            <script type="text/javascript">
+              new Starbox('<%= clarity_dom_id -%>', <%= (rating ? rating.clarity : 5) %>, <%= starbox_options %>);
+              <%= observe_rated(clarity_dom_id) %>
+            </script>
+          </div>
+        </dd>
+        
+        <dd>
+          <div class="rating-category"><%= render :partial => 'shared/accuracy' %></div>
+          <div class="rating-select" id="<%= accuracy_dom_id -%>">
+            <script type="text/javascript">
+              new Starbox('<%= accuracy_dom_id %>', <%= (rating ? rating.accuracy : 0) %>, <%= starbox_options %>);
+              <%= observe_rated(accuracy_dom_id) %>
+            </script>
+          </div>
+        </dd>
+        <dd>
+          <div class="rating-category"><%= render :partial => 'shared/relevance' %></div>
+          <div class="rating-select" id="<%= relevance_dom_id -%>">
+            <script type="text/javascript">
+              new Starbox('<%= relevance_dom_id -%>', <%= (rating ? rating.relevance : 5) %>, <%= starbox_options %>);
+              <%= observe_rated(relevance_dom_id) %>
+            </script>
+          </div>
+        </dd>
+        <dd>
+          <div>&nbsp;<br/></div>
+          <p><b><%= str %> :</b> <%= content.title %>  </p>
+          <p><b> clarification :</b><%= content.body %> </p>         
+        </dd>
+        <dd>
+          <div>&nbsp;<br/></div>
+        </dd>
+        <dd>
+        	<%logger.info  argument.ratings.find_by_user_id(current_user)%>
+			<%logger.info argument.ratings.build.inspect%>
+            <% content_tag :div, :class => "message", :style => "width:140px;" do %>
+				<%if !rating.id.nil? %>
+                	<%= image_submit_tag(( 'save-new-rating-button-gray.png'), :alt => 'save rating', :id => save_rating_dom_id(unique_id))%>
+				<%else%>
+					<%= image_submit_tag(( 'save_rating.png'), :alt => 'save rating', :id => save_rating_dom_id(unique_id), :disabled => !rating.id.nil? )%>
+				<%end%>
+             <% end %>
+        </dd>
+      </dl>
+    </div>
+  </div>
+      <!--<dd><p id="<%#= score_dom_id(unique_id) -%>" style="font-weight:bold;margin-top:5px;margin-left:8px;">Your Score: &nbsp;<%#= user_rating_score(rating) %></p></dd>-->
+<% end %>

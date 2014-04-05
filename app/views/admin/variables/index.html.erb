@@ -1,0 +1,20 @@
+<h1>Admin: Vetting Config</h1>
+
+<table>
+  <tr></tr>
+  <% for v in @variables %>
+  <tr>
+    <td><%= variable_title(v) %>&nbsp;&nbsp;</td>
+    <td><%= link_to 'Test',     admin_variable_path(v) %>&nbsp;&nbsp;</td>
+    <td><%= link_to 'Activate', activate_admin_variable_path(v) %>&nbsp;&nbsp;</td>
+    <td><%= link_to 'Edit',     edit_admin_variable_path(v) %>&nbsp;&nbsp;</td>
+    <td><%= link_to v.active? ? 'Active' : 'Destroy', [:admin, v], 
+            :confirm => "Are you sure you want to permanently remove variable set #{v.title} from the database?", 
+            :method => :delete if v.active? and v.title != 'Default' %> &nbsp;&nbsp;
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+<%= link_to 'New Vetting Variable Set', new_admin_variable_path %>

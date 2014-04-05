@@ -1,0 +1,8 @@
+<h1>  Listing Twitter Accounts </h1>
+<table>
+  <tr><td>UserName &nbsp;&nbsp;</td> <td colspan="3" align="center">Actions</td></tr>
+
+<%= render :partial => 'twitter_account', :collection => current_objects %>
+</table>
+
+<%= link_to 'New Twitter Account', new_object_path %>
